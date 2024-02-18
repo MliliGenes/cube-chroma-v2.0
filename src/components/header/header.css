@@ -1,7 +1,16 @@
 .header--container {
   width: 100%;
   padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
 .header--logo {
-  width: 150px;
+  width: 160px;
+  height: auto;
+}
+.header--container a {
+  font-family: var(--small);
+  font-size: 14px;
+  color: black;
 }
