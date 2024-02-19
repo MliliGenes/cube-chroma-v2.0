@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   border-bottom: 1px solid rgb(192, 192, 192);
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .header--wrepper {

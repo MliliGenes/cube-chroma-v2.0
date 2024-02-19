@@ -11,11 +11,11 @@
 }
 
 .toolbar--wrapper {
+  width: 100%;
   display: flex;
   background-color: #efecea;
-  min-width: 1000px;
   padding: 5px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   box-shadow: var(--shadow);
 }
 

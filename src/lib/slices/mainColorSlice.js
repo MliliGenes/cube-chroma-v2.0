@@ -4,9 +4,9 @@ import chroma from "chroma-js";
 function generateGoodLookingColor() {
   const goldenRatio = 0.618033988749895;
   const hue = (Math.random() + goldenRatio) % 1;
-  const saturation = 0.5 + Math.random() * 0.5; // Adjust saturation range
-  const minLightness = 0.7; // Minimum lightness threshold
-  const maxLightness = 0.9; // Maximum lightness threshold
+  const saturation = 0.8 + Math.random() * 0.8;
+  const minLightness = 0.45;
+  const maxLightness = 0.65;
   const lightness =
     minLightness + Math.random() * (maxLightness - minLightness); // Adjust lightness range
 

@@ -49,11 +49,12 @@ export default function generateRandomPalette(baseColor, algorithm) {
     default:
       throw new Error(`Unexpected algorithm: ${algorithm}`);
   }
-  let threeColors = chroma.bezier(colorPalette).scale().colors(3);
+
+  let selected = chroma.bezier(colorPalette).scale().colors(3);
 
   return [
-    chroma(threeColors[0]).darken(5).hex(),
-    chroma(threeColors[0]).brighten(2.5).hex(),
-    ...threeColors,
+    chroma(selected[0]).darken(5).hex(),
+    chroma(selected[0]).brighten(4).hex(),
+    ...selected,
   ];
 }
