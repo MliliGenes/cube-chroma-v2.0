@@ -15,6 +15,7 @@
     "@mui/material": "^5.15.10",
     "@reduxjs/toolkit": "^2.2.1",
     "chroma-js": "^2.4.2",
+    "hex-color-to-color-name": "^1.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",

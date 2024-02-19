@@ -1,14 +1,25 @@
 .header--container {
   width: 100%;
-  padding: 18px 20px;
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgb(192, 192, 192);
+  margin-bottom: 20px;
+}
+
+.header--wrepper {
+  max-width: 1280px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
 }
+
 .header--logo {
-  width: 160px;
+  width: 120px;
   height: auto;
 }
+
 .header--container a {
   font-family: var(--small);
   font-size: 14px;
