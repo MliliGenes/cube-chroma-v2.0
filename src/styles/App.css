@@ -1,3 +1,5 @@
-* {
-  /* outline: 1px solid red; */
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--background);
 }

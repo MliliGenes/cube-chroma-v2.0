@@ -50,11 +50,24 @@ export default function generateRandomPalette(baseColor, algorithm) {
       throw new Error(`Unexpected algorithm: ${algorithm}`);
   }
 
-  let selected = chroma.bezier(colorPalette).scale().colors(3);
-
+  let selected =
+    colorPalette.length >= 3
+      ? [
+          colorPalette[0],
+          colorPalette[1],
+          chroma(colorPalette[2]).set("hsl.l", 0.75).hex(),
+        ]
+      : [
+          colorPalette[0],
+          colorPalette[1],
+          chroma(colorPalette[1])
+            .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
+            .set("hsl.l", 0.75)
+            .hex(),
+        ];
   return [
-    chroma(selected[0]).darken(5).hex(),
-    chroma(selected[0]).brighten(4).hex(),
+    chroma(selected[0]).darken(6).hex(),
+    chroma(selected[0]).mix("#fff", 0.95).hex(),
     ...selected,
   ];
 }

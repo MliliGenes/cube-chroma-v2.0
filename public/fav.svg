@@ -1,0 +1,21 @@
+<svg id="cubes" xmlns="http://www.w3.org/2000/svg" width="156" height="156" viewBox="0 0 156 156">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2e2e2e;
+      }
+
+      .cls-2 {
+        fill: #ebebeb;
+      }
+
+      .cls-3 {
+        fill: #9c9c9c;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_1_copy_2" data-name="Rectangle 1 copy 2" class="cls-1" y="52" width="104" height="104" rx="10" ry="10"/>
+  <rect id="Rectangle_1_copy_3" data-name="Rectangle 1 copy 3" class="cls-2" x="52" width="104" height="104" rx="15" ry="15"/>
+  <path id="Rectangle_1_copy_6" data-name="Rectangle 1 copy 6" class="cls-3" d="M104,104h25a0,0,0,0,1,0,0v18a7,7,0,0,1-7,7H104a0,0,0,0,1,0,0V104A0,0,0,0,1,104,104Z"/>
+  <path id="Rectangle_1_copy_7" data-name="Rectangle 1 copy 7" class="cls-3" d="M34,27H52a0,0,0,0,1,0,0V52a0,0,0,0,1,0,0H27a0,0,0,0,1,0,0V34A7,7,0,0,1,34,27Z"/>
+</svg>

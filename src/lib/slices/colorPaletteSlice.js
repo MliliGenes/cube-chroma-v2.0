@@ -11,12 +11,14 @@ export const colorPalette = createSlice({
         action.payload.color,
         action.payload.method
       );
+      let colorRoles = ["text", "background", "primary", "accent", "secondary"];
 
-      return newPalette.map((colorhex) => ({
+      return newPalette.map((colorhex, index) => ({
         color: colorhex,
         name: GetColorName(colorhex.replace("#", "")),
         isLocked: false,
         isPickerActive: false,
+        role: colorRoles[index],
       }));
     },
   },

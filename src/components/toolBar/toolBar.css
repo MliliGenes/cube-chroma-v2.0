@@ -1,37 +1,87 @@
 .toolBar--container {
-  position: sticky;
-  top: 0;
-  left: 0;
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  translate: -50% 0;
   z-index: 1000;
-
-  height: 60px;
-
+  width: 100%;
   display: flex;
   justify-content: center;
+  padding: 12px;
 }
 
 .toolbar--wrapper {
+  max-width: 1300px;
   width: 100%;
   display: flex;
-  background-color: #efecea;
-  padding: 5px;
-  /* border-radius: 12px; */
+  gap: 6px;
+  padding: 6px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
+}
+.colorScheme-container {
+  position: relative;
+}
+.btn {
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 50px;
+  border: 0;
+  border-radius: 6px;
+  font-family: var(--medium);
+  text-transform: capitalize;
+  background-color: var(--background);
+  font-size: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+  scale: 0.98;
+}
+
+.btn:active {
+  scale: 0.9;
+}
+
+.btn.large {
+  width: 120px;
+}
+
+.btn.xlarge {
+  width: 200px;
+}
+.btn.xlarge.btn:hover {
+  scale: 1;
+}
+.btn.xlarge.btn:active {
+  scale: 1;
+}
+.icon {
+  font-size: 20px;
 }
 
 .toolBar--palette {
+  flex: 1 0;
   display: flex;
-  gap: 5px;
+  gap: 6px;
   border-radius: 8px;
-  box-shadow: var(--shadow);
 }
 
 .toolBar--palette div {
-  flex: 0 0 110px;
-  color: white;
+  flex: 1 0;
+  height: 50px;
+  color: var(--background);
   font-family: var(--small);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 6px;
+  transition: 0.3s;
+  font-size: 14px;
+  font-family: var(--small);
+  text-transform: capitalize;
 }
