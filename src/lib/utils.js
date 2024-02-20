@@ -55,14 +55,14 @@ export default function generateRandomPalette(baseColor, algorithm) {
       ? [
           colorPalette[0],
           colorPalette[1],
-          chroma(colorPalette[2]).set("hsl.l", 0.75).hex(),
+          chroma(colorPalette[2]).set("hsl.l", 0.85).hex(),
         ]
       : [
           colorPalette[0],
           colorPalette[1],
           chroma(colorPalette[1])
             .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
-            .set("hsl.l", 0.75)
+            .set("hsl.l", 0.85)
             .hex(),
         ];
   return [

@@ -8,20 +8,19 @@
   position: relative;
 }
 .spinner {
+  scale: 0.8;
   width: 70.4px;
   height: 70.4px;
-  --clr: rgb(247, 197, 159);
-  --clr-alpha: rgb(247, 197, 159, 0.1);
   animation: spinner 1.6s infinite ease;
   transform-style: preserve-3d;
 }
 
 .spinner > div {
-  background-color: var(--clr-alpha);
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent 90%);
   height: 100%;
   position: absolute;
   width: 100%;
-  border: 3.5px solid var(--clr);
+  border: 3.5px solid var(--primary);
 }
 
 .spinner div:nth-of-type(1) {

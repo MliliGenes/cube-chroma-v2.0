@@ -4,10 +4,7 @@ import "./styles/fonts.css";
 import Header from "./components/header/header";
 import ToolBar from "./components/toolBar/toolBar";
 import { useEffect, useState } from "react";
-import {
-  colorPalette,
-  generateColorPalette,
-} from "./lib/slices/colorPaletteSlice";
+import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
 import chroma from "chroma-js";
 import Loader from "./components/loader/loader";
 
@@ -20,41 +17,44 @@ function App() {
   let colorScheme = useSelector((state) => state.colorScheme);
 
   useEffect(() => {
-    palette && localStorage.removeItem("cubePalettes");
-    palette && setTimeout(() => setLoading(false), 1000);
-  }, []);
+    localStorage.removeItem("cubePalettes");
+  }, [loading]);
+
+  useEffect(() => {
+    palette && setTimeout(() => setLoading(false), 1800);
+  }, [dispatch, palette]);
 
   useEffect(() => {
     dispatch(generateColorPalette({ color: color, method: colorScheme }));
   }, [dispatch, color]);
 
   useEffect(() => {
-    let localdb = JSON.parse(localStorage.getItem("cubePalettes"));
+    let localdb = JSON.parse(localStorage.getItem("cubePalettes")) || [];
     let cubePalettes = palette.map((c) => c.color);
     localdb.push(cubePalettes);
     localStorage.setItem("cubePalettes", JSON.stringify(localdb));
-  }, [palette]);
+  }, [dispatch, palette]);
 
   return (
-    <>
+    <div
+      className="app"
+      style={{
+        "--text": palette[0]?.color || "",
+        "--background": palette[1]?.color || "",
+        "--primary": palette[2]?.color || "",
+        "--accent": palette[3]?.color || "",
+        "--secondary": palette[4]?.color || "",
+      }}
+    >
       {loading ? (
-        <Loader bgColor={chroma(color).brighten(1.5).hex} c={color} />
+        <Loader />
       ) : (
-        <div
-          className="app"
-          style={{
-            "--text": palette[0].color,
-            "--background": palette[1].color,
-            "--primary": palette[2].color,
-            "--accent": palette[3].color,
-            "--secondary": palette[4].color,
-          }}
-        >
+        <>
           <Header bgColor={chroma(palette[2].color).set("hsl.l", 0.95).hex()} />
           <ToolBar bgColor={chroma(palette[2].color).set("hsl.l", 0.9).hex()} />
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 
