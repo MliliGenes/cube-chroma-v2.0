@@ -1,6 +1,6 @@
 .toolBar--container {
   position: fixed;
-  bottom: 0px;
+  bottom: 15px;
   left: 50%;
   translate: -50% 0;
   z-index: 1000;
