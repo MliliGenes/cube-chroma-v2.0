@@ -65,6 +65,13 @@ export default function ToolBar({ bgColor }) {
             onClick={() => setIsActive((state) => !state)}
           >
             {colorScheme}
+            <i
+              className={
+                isActive
+                  ? "fa-solid fa-chevron-up flip"
+                  : "fa-solid fa-chevron-up "
+              }
+            ></i>
           </button>
         </div>
         <button className="btn large">Export</button>

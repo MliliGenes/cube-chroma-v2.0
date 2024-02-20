@@ -22,13 +22,27 @@
 .colorScheme-container {
   position: relative;
 }
+.colorScheme-container i {
+  position: absolute;
+  right: 5px;
+  width: 40px;
+  border-radius: 6px;
+  font-size: 16px;
+  height: calc(100% - 10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.colorScheme-container i.flip {
+  rotate: 180deg;
+}
 .btn {
   cursor: pointer;
   display: flex;
   gap: 6px;
   justify-content: center;
   align-items: center;
-  width: 90px;
+  width: 80px;
   height: 50px;
   border: 0;
   border-radius: 6px;
@@ -52,7 +66,7 @@
 }
 
 .btn.xlarge {
-  width: 200px;
+  width: 220px;
 }
 .btn.xlarge.btn:hover {
   scale: 1;

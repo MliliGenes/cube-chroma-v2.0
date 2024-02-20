@@ -3,10 +3,10 @@ import chroma from "chroma-js";
 
 function generateGoodLookingColor() {
   const goldenRatio = 0.618033988749895;
-  const hue = (Math.random() + goldenRatio) % 1;
+  const hue = Math.random() + goldenRatio;
   const saturation = 1;
-  const minLightness = 0.45;
-  const maxLightness = 0.65;
+  const minLightness = 0.6;
+  const maxLightness = 0.8;
   const lightness =
     minLightness + Math.random() * (maxLightness - minLightness); // Adjust lightness range
 

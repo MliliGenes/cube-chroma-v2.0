@@ -10,7 +10,7 @@ export default function Header({ bgColor }) {
     <div className="header--container">
       <div
         className="header--wrepper"
-        style={{ backgroundColor: chroma(bgColor).brighten(1.5).hex() }}
+        style={{ backgroundColor: chroma(bgColor).brighten(0.8).hex() }}
       >
         <svg
           className="header--logo"

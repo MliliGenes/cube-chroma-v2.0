@@ -35,7 +35,7 @@ export default function generateRandomPalette(baseColor, algorithm) {
     case "monochromatic":
       colorPalette = chroma
         .scale([baseColor.darken(), baseColor, baseColor.brighten()])
-        .mode("lch")
+        .mode("hsl")
         .colors(3);
       break;
     case "square":
@@ -66,8 +66,8 @@ export default function generateRandomPalette(baseColor, algorithm) {
             .hex(),
         ];
   return [
-    chroma(selected[0]).darken(6).hex(),
-    chroma(selected[0]).mix("#fff", 0.95).hex(),
+    chroma(selected[0]).darken(5.5).hex(),
+    chroma(selected[0]).mix("#fff", 0.9).hex(),
     ...selected,
   ];
 }
