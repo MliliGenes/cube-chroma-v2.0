@@ -49,14 +49,6 @@ export default function ToolBar({ bgColor }) {
     <div className="toolBar--container">
       <div className="toolbar--wrapper" style={{ backgroundColor: bgColor }}>
         <div className="toolBar--palette">{colorPalette}</div>
-        <button
-          className="btn large"
-          onClick={() => dispatch(generateMainColor())}
-        >
-          Generate
-        </button>
-        <button className="btn ">Export</button>
-        <button className="btn ">Export</button>
         <div className="colorScheme-container">
           {isActive && <DropUp ref={dropUpRef} bgColor={bgColor} />}
           <button
@@ -74,7 +66,22 @@ export default function ToolBar({ bgColor }) {
             ></i>
           </button>
         </div>
-        <button className="btn large">Export</button>
+        <button
+          className="btn large"
+          onClick={() => dispatch(generateMainColor())}
+        >
+          Generate
+        </button>
+        <button className="btn ">
+          <i className="fa-solid fa-rotate-left"></i>
+        </button>
+        <button className="btn ">
+          <i className="fa-solid fa-rotate-right"></i>
+        </button>
+
+        <button className="btn">
+          <i className="fa-solid fa-file-arrow-down"></i>
+        </button>
       </div>
     </div>
   );
