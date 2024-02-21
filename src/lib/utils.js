@@ -75,7 +75,11 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
     return [
       chroma(selected[2]).mix("#fff", 0.85).hex(),
       chroma(selected[1]).darken(5).set("hsl.s", 0.15).hex(),
-      ...selected,
+      ...selected.map((color) =>
+        chroma(color)
+          .set("hsl.l", chroma(color).get("hsl.l") - 0.125)
+          .hex()
+      ),
     ];
   }
 }
