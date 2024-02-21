@@ -13,23 +13,14 @@ export const colorPalette = createSlice({
       );
 
       let colorRoles = ["text", "background", "primary", "secondary", "accent"];
-      if (state) {
-        return newPalette.map((colorhex, index) => ({
-          color: colorhex,
-          name: GetColorName(colorhex.replace("#", "")),
-          isLocked: false,
-          isPickerActive: false,
-          role: colorRoles[index],
-        }));
-      } else {
-        return state.map(c, (i) => ({
-          color: newPalette[i],
-          name: GetColorName(colorhex.replace("#", "")),
-          isLocked: c.isLocked,
-          isPickerActive: c.isPickerActive,
-          role: c.role,
-        }));
-      }
+
+      return newPalette.map((colorhex, index) => ({
+        color: colorhex,
+        name: GetColorName(colorhex.replace("#", "")),
+        isLocked: false,
+        isPickerActive: false,
+        role: colorRoles[index],
+      }));
     },
     toggleTheme: (state) => {
       return [state[1], state[0], state[2], state[3], state[4]];

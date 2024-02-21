@@ -109,9 +109,9 @@ export default function ToolBar() {
             {palette[4].role}
           </div>
         </div>
-        {/* <button className="btn" onClick={() => dispatch(toggleTheme())}>
+        <button className="btn" onClick={() => dispatch(toggleTheme())}>
           <i className="fa-solid fa-circle-half-stroke"></i>
-        </button> */}
+        </button>
 
         <button className="btn" onClick={() => dispatch(generateMainColor())}>
           <i className="fa-solid fa-dice-d20"></i>
@@ -140,7 +140,7 @@ export default function ToolBar() {
         </button>
 
         <button className="btn ">
-          <i class="fa-solid fa-arrow-rotate-right"></i>
+          <i className="fa-solid fa-arrow-rotate-right"></i>
         </button>
 
         <button className="btn">

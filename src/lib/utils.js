@@ -80,7 +80,7 @@ export function saveTolocalStorage(color, scheme) {
 }
 
 export function getLastColor() {
-  return JSON.parse(localStorage.getItem("oneCubeCombo"))?.color || "#ff8617";
+  return JSON.parse(localStorage.getItem("oneCubeCombo"))?.color || "#fbff42";
 }
 
 export function getLastScheme() {
