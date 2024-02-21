@@ -16,10 +16,10 @@
 }
 
 .spinner > div {
-  background-color: color-mix(in srgb, var(--primary) 10%, transparent 90%);
   height: 100%;
   position: absolute;
   width: 100%;
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent 90%);
   border: 3.5px solid var(--primary);
 }
 

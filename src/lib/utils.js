@@ -1,6 +1,6 @@
 import chroma from "chroma-js";
 
-export default function generateRandomPalette(baseColor, algorithm) {
+export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
   let colorPalette = [];
 
@@ -64,19 +64,37 @@ export default function generateRandomPalette(baseColor, algorithm) {
             .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 90) % 360)
             .hex(),
         ];
-  return [
-    chroma(selected[0]).darken(4.5).set("hsl.s", 0.2).hex(),
-    chroma(selected[2]).mix("#fff", 0.85).hex(),
-    ...selected,
-  ];
+
+  if (theme == "light") {
+    return [
+      chroma(selected[0]).darken(4.5).set("hsl.s", 0.2).hex(),
+      chroma(selected[2]).mix("#fff", 0.85).hex(),
+      ...selected,
+    ];
+  } else {
+    return [
+      chroma(selected[2]).mix("#fff", 0.85).hex(),
+      chroma(selected[0]).darken(4.5).set("hsl.s", 0.2).hex(),
+      ...selected,
+    ];
+  }
 }
 
 export function saveTolocalStorage(color, scheme) {
   let localdb = JSON.parse(localStorage.getItem("cubeCombo")) || [];
   let cubeCombo = { color: color, scheme: scheme };
+
   localdb.push(cubeCombo);
   localStorage.setItem("cubeCombo", JSON.stringify(localdb));
   localStorage.setItem("oneCubeCombo", JSON.stringify(cubeCombo));
+}
+
+export function saveTheme(theme) {
+  localStorage.setItem("cubeTheme", theme);
+}
+
+export function getLastTheme() {
+  return localStorage.getItem("cubeTheme") || "light";
 }
 
 export function getLastColor() {

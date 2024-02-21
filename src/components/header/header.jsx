@@ -61,14 +61,14 @@ export default function Header() {
               id="Rectangle_1_copy_6"
               data-name="Rectangle 1 copy 6"
               className="cls-5"
-              fill={palette[1].color}
+              fill={palette[3].color}
               d="M104,104h25a0,0,0,0,1,0,0v18a7,7,0,0,1-7,7H104a0,0,0,0,1,0,0V104A0,0,0,0,1,104,104Z"
             />
             <path
               id="Rectangle_1_copy_7"
               data-name="Rectangle 1 copy 7"
               className="cls-5"
-              fill={palette[1].color}
+              fill={palette[3].color}
               d="M34,27H52a0,0,0,0,1,0,0V52a0,0,0,0,1,0,0H27a0,0,0,0,1,0,0V34A7,7,0,0,1,34,27Z"
             />
           </g>

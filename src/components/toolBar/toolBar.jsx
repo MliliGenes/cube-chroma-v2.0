@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { generateMainColor } from "../../lib/slices/mainColorSlice";
 import DropUp from "../dropUp/dropUp";
 import chroma from "chroma-js";
-import { toggleTheme } from "../../lib/slices/colorPaletteSlice";
+import { toggleTheme } from "../../lib/slices/themeSlice";
+import { upDateLockState } from "../../lib/slices/colorPaletteSlice";
 
 export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
@@ -16,20 +17,24 @@ export default function ToolBar() {
   let palette = useSelector((state) => state.colorPalette);
   let colorScheme = useSelector((state) => state.colorScheme);
 
-  // let colorPalette = palette.map((p) => (
-  //   <div
-  //     key={p.color}
-  //     style={{
-  //       backgroundColor: p.color,
-  //       color:
-  //         chroma.contrast(palette[1].color, p.color) >= 3
-  //           ? "var(--background)"
-  //           : "var(--text)",
-  //     }}
-  //   >
-  //     {p.role}
-  //   </div>
-  // ));
+  let colorPalette = palette.map((p) => (
+    <div
+      key={p.color}
+      style={{
+        backgroundColor: p.color,
+        color:
+          chroma.contrast(palette[1].color, p.color) >= 3
+            ? "var(--background)"
+            : "var(--text)",
+      }}
+    >
+      {p.role}
+      <i
+        className={p.isLocked ? "fa-solid fa-lock" : "fa-solid fa-lock-open"}
+        onClick={() => dispatch(upDateLockState(p.role))}
+      ></i>
+    </div>
+  ));
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -52,63 +57,7 @@ export default function ToolBar() {
   return (
     <div className="toolBar--container">
       <div className="toolbar--wrapper">
-        <div className="toolBar--palette">
-          <div
-            style={{
-              backgroundColor: palette[0].color,
-              color:
-                chroma.contrast(palette[1].color, palette[0].color) >= 3
-                  ? "var(--background)"
-                  : "var(--text)",
-            }}
-          >
-            {palette[0].role}
-          </div>
-          <div
-            style={{
-              backgroundColor: palette[1].color,
-              color:
-                chroma.contrast(palette[1].color, palette[1].color) >= 3
-                  ? "var(--background)"
-                  : "var(--text)",
-            }}
-          >
-            {palette[1].role}
-          </div>
-          <div
-            style={{
-              backgroundColor: palette[2].color,
-              color:
-                chroma.contrast(palette[1].color, palette[2].color) >= 3
-                  ? "var(--background)"
-                  : "var(--text)",
-            }}
-          >
-            {palette[2].role}
-          </div>
-          <div
-            style={{
-              backgroundColor: palette[3].color,
-              color:
-                chroma.contrast(palette[1].color, palette[3].color) >= 3
-                  ? "var(--background)"
-                  : "var(--text)",
-            }}
-          >
-            {palette[3].role}
-          </div>
-          <div
-            style={{
-              backgroundColor: palette[4].color,
-              color:
-                chroma.contrast(palette[1].color, palette[4].color) >= 3
-                  ? "var(--background)"
-                  : "var(--text)",
-            }}
-          >
-            {palette[4].role}
-          </div>
-        </div>
+        <div className="toolBar--palette">{colorPalette}</div>
         <button className="btn" onClick={() => dispatch(toggleTheme())}>
           <i className="fa-solid fa-circle-half-stroke"></i>
         </button>
