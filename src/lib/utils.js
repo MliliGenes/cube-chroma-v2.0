@@ -67,14 +67,14 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 
   if (theme == "light") {
     return [
-      chroma(selected[0]).darken(4.5).set("hsl.s", 0.2).hex(),
+      chroma(selected[0]).darken(5).set("hsl.s", 0.15).hex(),
       chroma(selected[2]).mix("#fff", 0.85).hex(),
       ...selected,
     ];
   } else {
     return [
       chroma(selected[2]).mix("#fff", 0.85).hex(),
-      chroma(selected[0]).darken(4.5).set("hsl.s", 0.2).hex(),
+      chroma(selected[1]).darken(5).set("hsl.s", 0.15).hex(),
       ...selected,
     ];
   }

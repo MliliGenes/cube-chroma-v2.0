@@ -4,8 +4,10 @@ import "./styles/fonts.css";
 import Header from "./components/header/header";
 import ToolBar from "./components/toolBar/toolBar";
 import { useEffect, useState } from "react";
-import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
-import chroma from "chroma-js";
+import {
+  generateColorPalette,
+  upDateColorPalette,
+} from "./lib/slices/colorPaletteSlice";
 import Loader from "./components/loader/loader";
 import { saveTheme, saveTolocalStorage } from "./lib/utils";
 
@@ -18,10 +20,10 @@ function App() {
   let colorScheme = useSelector((state) => state.colorScheme);
   let theme = useSelector((state) => state.theme);
 
-  useEffect(() => {
-    localStorage.removeItem("cubeCombo");
-    saveTolocalStorage(color, colorScheme);
-  }, [loading]);
+  // useEffect(() => {
+  //   localStorage.removeItem("cubeCombo");
+  //   saveTolocalStorage(color, colorScheme);
+  // }, [loading]);
 
   useEffect(() => {
     color && theme && palette && setTimeout(() => setLoading(false), 1800);
@@ -31,7 +33,13 @@ function App() {
     dispatch(
       generateColorPalette({ color: color, method: colorScheme, theme: theme })
     );
-  }, [dispatch, color, theme]);
+  }, [dispatch, color]);
+
+  useEffect(() => {
+    dispatch(
+      upDateColorPalette({ color: color, method: colorScheme, theme: theme })
+    );
+  }, [dispatch, theme]);
 
   useEffect(() => {
     saveTolocalStorage(color, colorScheme);

@@ -107,6 +107,7 @@ i {
   font-family: var(--small);
   text-transform: capitalize;
   transition: 0.2s;
+  user-select: none;
 }
 
 .toolBar--palette div:hover i {

@@ -2,20 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 import generateRandomPalette from "../utils";
 import { GetColorName } from "hex-color-to-color-name";
 
+let colorRoles = ["text", "background", "primary", "secondary", "accent"];
+
 export const colorPalette = createSlice({
   name: "colorPalette",
   initialState: [],
   reducers: {
     generateColorPalette: (state, action) => {
-      console.log(action.payload.theme);
-
       let newPalette = generateRandomPalette(
         action.payload.color,
         action.payload.method,
         action.payload.theme
       );
-
-      let colorRoles = ["text", "background", "primary", "secondary", "accent"];
 
       // return newPalette.map((colorhex, index) => ({
       //   color: colorhex,
@@ -47,6 +45,23 @@ export const colorPalette = createSlice({
         return newState[index];
       });
     },
+    upDateColorPalette: (state, action) => {
+      let oldStateIsLocked = state.map((c) => c.isLocked);
+
+      let newPalette = generateRandomPalette(
+        action.payload.color,
+        action.payload.method,
+        action.payload.theme
+      );
+
+      return newPalette.map((colorhex, index) => ({
+        color: colorhex,
+        name: GetColorName(colorhex.replace("#", "")),
+        isLocked: oldStateIsLocked[index],
+        isPickerActive: false,
+        role: colorRoles[index],
+      }));
+    },
     upDateLockState: (state, action) => {
       let roleToUpdDate = action.payload;
 
@@ -70,5 +85,6 @@ export const colorPalette = createSlice({
   },
 });
 
-export const { generateColorPalette, upDateLockState } = colorPalette.actions;
+export const { generateColorPalette, upDateColorPalette, upDateLockState } =
+  colorPalette.actions;
 export default colorPalette.reducer;
