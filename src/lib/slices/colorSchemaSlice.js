@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getLastScheme } from "../utils";
 
 export const colorScheme = createSlice({
   name: "colorScheme",
-  initialState: "analogous",
+  initialState: getLastScheme(),
   reducers: {
     upDateColorScheme: (state, action) => {
       return action.payload;

@@ -10,7 +10,7 @@ const DropUp = React.forwardRef(({ bgColor }, ref) => {
 
   return (
     <div ref={ref} className="dropup--container">
-      <div className="dropup--wrapper" style={{ backgroundColor: bgColor }}>
+      <div className="dropup--wrapper">
         <ul>
           <li
             className={colorScheme == "analogous" ? "active" : ""}

@@ -2,9 +2,6 @@
   --large: "Varela", sans-serif;
   --medium: "Yantramanav", sans-serif;
   --small: "Poppins", sans-serif;
-  --shadow: 1.5px 1.3px 2.2px rgba(0, 0, 0, 0.001),
-    3.7px 3.2px 5.3px rgba(0, 0, 0, 0.001), 7px 6px 10px rgba(0, 0, 0, 0.002),
-    12.5px 10.7px 17.9px rgba(0, 0, 0, 0.004),
-    23.4px 20.1px 33.4px rgba(0, 0, 0, 0.006),
-    56px 48px 80px rgba(0, 0, 0, 0.01);
+  --shadow: 14.4px 14.9px 50.1px -20px rgba(0, 0, 0, 0.041),
+    30px 31px 143px -20px rgba(0, 0, 0, 0.22);
 }

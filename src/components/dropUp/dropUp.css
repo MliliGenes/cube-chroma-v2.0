@@ -3,13 +3,14 @@
   left: 50%;
   translate: -50%;
   bottom: calc(100% + 12px);
-  width: 240px;
+  width: 260px;
   z-index: 1000;
 }
 
 .dropup--wrapper {
   padding: 6px;
   border-radius: 10px;
+  background-color: color-mix(in srgb, var(--text) 10%, transparent 90%);
 }
 
 .dropup--wrapper ul {

@@ -12,7 +12,7 @@ export const colorPalette = createSlice({
         action.payload.method
       );
 
-      let colorRoles = ["text", "background", "primary", "accent", "secondary"];
+      let colorRoles = ["text", "background", "primary", "secondary", "accent"];
       if (state) {
         return newPalette.map((colorhex, index) => ({
           color: colorhex,
@@ -31,8 +31,11 @@ export const colorPalette = createSlice({
         }));
       }
     },
+    toggleTheme: (state) => {
+      return [state[1], state[0], state[2], state[3], state[4]];
+    },
   },
 });
 
-export const { generateColorPalette } = colorPalette.actions;
+export const { generateColorPalette, toggleTheme } = colorPalette.actions;
 export default colorPalette.reducer;

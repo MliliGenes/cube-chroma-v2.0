@@ -14,14 +14,17 @@
   padding: 15px;
   padding-left: 20px;
   border-radius: 10px;
-  box-shadow: var(--shadow);
+  background-color: color-mix(in srgb, var(--text) 5%, transparent 95%);
 }
 
 .header--logo {
   width: 120px;
   height: auto;
 }
-
+.header--logo path,
+.header--logo rect {
+  transition: 0.2s;
+}
 .header--container a {
   font-family: var(--medium);
   font-size: 18px;

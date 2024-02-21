@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
 import chroma from "chroma-js";
 import Loader from "./components/loader/loader";
+import { saveTolocalStorage } from "./lib/utils";
 
 function App() {
   let dispatch = useDispatch();
@@ -17,7 +18,8 @@ function App() {
   let colorScheme = useSelector((state) => state.colorScheme);
 
   useEffect(() => {
-    localStorage.removeItem("cubePalettes");
+    localStorage.removeItem("cubeCombo");
+    saveTolocalStorage(color, colorScheme);
   }, [loading]);
 
   useEffect(() => {
@@ -29,11 +31,8 @@ function App() {
   }, [dispatch, color]);
 
   useEffect(() => {
-    let localdb = JSON.parse(localStorage.getItem("cubePalettes")) || [];
-    let cubePalettes = palette.map((c) => c.color);
-    localdb.push(cubePalettes);
-    localStorage.setItem("cubePalettes", JSON.stringify(localdb));
-  }, [dispatch, palette]);
+    saveTolocalStorage(color, colorScheme);
+  }, [dispatch, color]);
 
   return (
     <div
@@ -50,8 +49,8 @@ function App() {
         <Loader />
       ) : (
         <>
-          <Header bgColor={chroma(palette[2].color).set("hsl.l", 0.95).hex()} />
-          <ToolBar bgColor={chroma(palette[2].color).set("hsl.l", 0.9).hex()} />
+          <Header />
+          <ToolBar />
         </>
       )}
     </div>

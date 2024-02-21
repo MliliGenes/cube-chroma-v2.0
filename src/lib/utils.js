@@ -34,7 +34,7 @@ export default function generateRandomPalette(baseColor, algorithm) {
       break;
     case "monochromatic":
       colorPalette = chroma
-        .scale([baseColor.darken(), baseColor, baseColor.brighten()])
+        .scale([baseColor, baseColor.brighten(), baseColor.darken()])
         .mode("hsl")
         .colors(3);
       break;
@@ -54,20 +54,37 @@ export default function generateRandomPalette(baseColor, algorithm) {
     colorPalette.length >= 3
       ? [
           colorPalette[0],
+          chroma(colorPalette[2]).set("hsl.s", 0.9).set("hsl.l", 0.8).hex(),
           colorPalette[1],
-          chroma(colorPalette[2]).set("hsl.l", 0.85).hex(),
         ]
       : [
           colorPalette[0],
-          colorPalette[1],
-          chroma(colorPalette[1])
-            .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
-            .set("hsl.l", 0.85)
+          chroma(colorPalette[1]).set("hsl.s", 0.9).set("hsl.l", 0.8).hex(),
+          chroma(colorPalette[0])
+            .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 90) % 360)
             .hex(),
         ];
   return [
-    chroma(selected[0]).darken(5.5).hex(),
-    chroma(selected[0]).mix("#fff", 0.9).hex(),
+    chroma(selected[0]).darken(4.5).set("hsl.s", 0.2).hex(),
+    chroma(selected[2]).mix("#fff", 0.85).hex(),
     ...selected,
   ];
+}
+
+export function saveTolocalStorage(color, scheme) {
+  let localdb = JSON.parse(localStorage.getItem("cubeCombo")) || [];
+  let cubeCombo = { color: color, scheme: scheme };
+  localdb.push(cubeCombo);
+  localStorage.setItem("cubeCombo", JSON.stringify(localdb));
+  localStorage.setItem("oneCubeCombo", JSON.stringify(cubeCombo));
+}
+
+export function getLastColor() {
+  return JSON.parse(localStorage.getItem("oneCubeCombo"))?.color || "#ff8617";
+}
+
+export function getLastScheme() {
+  return (
+    JSON.parse(localStorage.getItem("oneCubeCombo"))?.scheme || "analogous"
+  );
 }

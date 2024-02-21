@@ -1,14 +1,13 @@
 import React from "react";
 import "./header.css";
 import { useSelector } from "react-redux";
-import chroma from "chroma-js";
 
-export default function Header({ bgColor }) {
+export default function Header() {
   let palette = useSelector((state) => state.colorPalette);
 
   return (
     <div className="header--container">
-      <div className="header--wrepper" style={{ backgroundColor: bgColor }}>
+      <div className="header--wrepper">
         <svg
           className="header--logo"
           id="logo"
