@@ -26,6 +26,7 @@ export default function Header() {
             d="M381.7,145.21V299.12a18.71,18.71,0,0,1-9.36,16.21l-133.29,77A18.73,18.73,0,0,1,211,376.07V222.17A18.69,18.69,0,0,1,220.33,206l133.28-77A18.73,18.73,0,0,1,381.7,145.21Z"
           />
         </svg>
+        <h1>Cube Chroma</h1>
         {/* <a
           href="https://github.com/MliliGenes/cube-chroma-v2.0.git"
           target="blank"

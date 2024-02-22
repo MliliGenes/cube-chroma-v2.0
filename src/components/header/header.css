@@ -1,21 +1,29 @@
 .header--container {
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1000;
   width: 100%;
   padding: 12px;
   display: flex;
   justify-content: center;
+  color: var(--text);
 }
 
 .header--wrepper {
   max-width: 1300px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
   align-items: center;
   padding: 14px;
   border-radius: 10px;
   background-color: color-mix(in srgb, var(--text) 5%, transparent 95%);
 }
-
+.header--wrepper h1 {
+  font-family: var(--large);
+  font-size: 20px;
+}
 .header--logo {
   width: 40px;
 }

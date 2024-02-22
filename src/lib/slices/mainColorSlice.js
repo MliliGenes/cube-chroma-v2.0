@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import chroma from "chroma-js";
 import { getLastColor } from "../utils";
+import { useSelector } from "react-redux";
 
 function generateGoodLookingColor() {
   const goldenRatio = 0.618033988749895;

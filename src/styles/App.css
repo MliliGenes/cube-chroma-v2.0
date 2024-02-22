@@ -2,15 +2,14 @@
   width: 100vw;
   min-height: 100vh;
   background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .artwork {
-  width: 550px;
-  max-width: 70vw;
-  min-width: 300px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
+  max-height: 60vh;
+  min-height: 400px;
+  min-width: 400px;
 }
 .primary {
   fill: var(--primary);
@@ -29,13 +28,13 @@
 }
 .artwork path,
 .artwork rect {
-  transition: 0.2s;
+  transition: 0.2s color;
 }
 
-.rotation--one {
+/* .rotation--one {
   transform-origin: 75% 50%;
-  /* animation: rotate infinite 5s linear;
-  animation-play-state: paused; */
+  animation: rotate infinite 5s linear;
+  animation-play-state: paused;
 }
 @keyframes rotate {
   0% {
@@ -44,4 +43,4 @@
   100% {
     rotate: 360deg;
   }
-}
+} */

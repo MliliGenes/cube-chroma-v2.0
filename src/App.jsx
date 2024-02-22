@@ -33,7 +33,7 @@ function App() {
     dispatch(
       generateColorPalette({ color: color, method: colorScheme, theme: theme })
     );
-  }, [dispatch, color]);
+  }, [dispatch, color, colorScheme]);
 
   useEffect(() => {
     dispatch(
