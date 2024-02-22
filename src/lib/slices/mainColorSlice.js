@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import chroma from "chroma-js";
 import { getLastColor } from "../utils";
-import { useSelector } from "react-redux";
 
 function generateGoodLookingColor() {
   const goldenRatio = 0.618033988749895;
@@ -14,17 +13,22 @@ function generateGoodLookingColor() {
   return chroma.hsl(hue * 360, saturation, lightness).hex();
 }
 
+let color = getLastColor();
+
 export const mainColorSlice = createSlice({
   name: "mainColor",
   initialState: {
-    color: getLastColor(),
+    color: color,
   },
   reducers: {
     generateMainColor: (state) => {
       state.color = generateGoodLookingColor();
     },
+    setMainColor: (state, action) => {
+      state.color = action.payload;
+    },
   },
 });
 
-export const { generateMainColor } = mainColorSlice.actions;
+export const { generateMainColor, setMainColor } = mainColorSlice.actions;
 export default mainColorSlice.reducer;

@@ -8,9 +8,10 @@
 }
 
 .dropup--wrapper {
+  backdrop-filter: blur(2px);
   padding: 6px;
   border-radius: 10px;
-  background-color: color-mix(in srgb, var(--text) 10%, transparent 90%);
+  background-color: var(--light-bg-color);
 }
 
 .dropup--wrapper ul {

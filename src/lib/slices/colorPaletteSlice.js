@@ -15,14 +15,6 @@ export const colorPalette = createSlice({
         action.payload.theme
       );
 
-      // return newPalette.map((colorhex, index) => ({
-      //   color: colorhex,
-      //   name: GetColorName(colorhex.replace("#", "")),
-      //   isLocked: false,
-      //   isPickerActive: false,
-      //   role: colorRoles[index],
-      // }));
-
       if (state.filter((c) => c.isLocked).length === 5) {
         return state;
       }

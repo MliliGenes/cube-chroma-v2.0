@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import { useDispatch } from "react-redux";
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
@@ -52,12 +53,12 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 
   let selected =
     colorPalette.length >= 3
-      ? [colorPalette[0], chroma(colorPalette[2]), colorPalette[1]]
+      ? [colorPalette[0], colorPalette[2], colorPalette[1]]
       : [
           colorPalette[0],
           chroma(colorPalette[1]),
           chroma(colorPalette[0])
-            .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 90) % 360)
+            .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
             .hex(),
         ];
   return switchPalettetheme(theme, selected);
@@ -66,24 +67,24 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 export function switchPalettetheme(theme, palette) {
   if (theme == "light") {
     let threeColors = [
-      chroma(palette[0]).set("hsl.l", 0.6).hex(),
-      chroma(palette[1]).set("hsl.l", 0.85).hex(),
-      chroma(palette[2]).set("hsl.l", 0.7).hex(),
+      chroma(palette[0]).set("hsl.l", 0.5).hex(),
+      chroma(palette[1]).set("hsl.l", 0.75).hex(),
+      chroma(palette[2]).set("hsl.l", 0.6).hex(),
     ];
     return [
-      chroma(palette[0]).darken(5).set("hsl.s", 0.15).hex(),
+      chroma(palette[0]).darken(4.6).set("hsl.s", 0.15).hex(),
       chroma(palette[2]).mix("#fff", 0.85).hex(),
       ...threeColors,
     ];
   } else {
     let threeColors = [
-      chroma(palette[0]).set("hsl.l", 0.7).hex(),
-      chroma(palette[1]).set("hsl.l", 0.75).hex(),
-      chroma(palette[2]).set("hsl.l", 0.6).hex(),
+      chroma(palette[0]).set("hsl.l", 0.6).hex(),
+      chroma(palette[1]).set("hsl.l", 0.65).hex(),
+      chroma(palette[2]).set("hsl.l", 0.5).hex(),
     ];
     return [
       chroma(palette[2]).mix("#fff", 0.85).hex(),
-      chroma(palette[0]).darken(5).set("hsl.s", 0.15).hex(),
+      chroma(palette[0]).darken(4.6).set("hsl.s", 0.15).hex(),
       ...threeColors,
     ];
   }
@@ -93,9 +94,15 @@ export function saveTolocalStorage(color, scheme) {
   let localdb = JSON.parse(localStorage.getItem("cubeCombo")) || [];
   let cubeCombo = { color: color, scheme: scheme };
 
-  localdb.push(cubeCombo);
-  localStorage.setItem("cubeCombo", JSON.stringify(localdb));
-  localStorage.setItem("oneCubeCombo", JSON.stringify(cubeCombo));
+  let lastItem = localdb[localdb.length - 1];
+  let combinationExists =
+    lastItem && lastItem.color === color && lastItem.scheme === scheme;
+
+  if (!combinationExists) {
+    localdb.push(cubeCombo);
+    localStorage.setItem("cubeCombo", JSON.stringify(localdb));
+    localStorage.setItem("oneCubeCombo", JSON.stringify(cubeCombo));
+  }
 }
 
 export function saveTheme(theme) {
@@ -116,4 +123,21 @@ export function getLastScheme() {
   );
 }
 
-// export function undo()
+export function getIndex() {
+  if (JSON.parse(localStorage.getItem("cubeCombo"))) {
+    let index = JSON.parse(localStorage.getItem("cubeCombo")).length - 1;
+    return index;
+  }
+}
+
+export function getLength() {
+  if (JSON.parse(localStorage.getItem("cubeCombo"))) {
+    return JSON.parse(localStorage.getItem("cubeCombo")).length;
+  }
+}
+
+export function getPaletteByIndex(index) {
+  if (getLength() > 0) {
+    return JSON.parse(localStorage.getItem("cubeCombo"))[index];
+  }
+}

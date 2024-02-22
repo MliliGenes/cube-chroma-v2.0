@@ -1,0 +1,135 @@
+.home--container {
+  width: 100%;
+  max-width: 1300px;
+  min-height: 200vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+.left,
+.right {
+  margin-top: 50px;
+  flex: 1 0 50%;
+  display: flex;
+}
+.left {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.left h1 {
+  position: relative;
+  font-size: 70px;
+  color: var(--text);
+  font-family: var(--large);
+  z-index: 0;
+}
+
+.left .btns {
+  display: flex;
+  gap: 20px;
+}
+.left .btns .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  font-family: var(--medium);
+  font-size: 20px;
+  border: 0;
+  color: var(--text-btn-primary);
+  height: 50px;
+  padding: 0 40px;
+  background-color: var(--primary);
+  transition: 0.2s;
+}
+.left .btns .btn.special {
+  border: 0;
+  color: var(--text-btn-secondary);
+  background-color: var(--secondary);
+}
+
+.left .btns .btn:hover {
+  translate: 0 -3px;
+  box-shadow: 0px 15px 80px -20px var(--primary);
+}
+.left .btns .btn.special:hover {
+  translate: 0 -3px;
+  box-shadow: 0px 15px 80px -20px var(--primary);
+}
+.circle {
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  left: 75%;
+  width: 200px;
+}
+.gredient--1 {
+  color: transparent;
+  background-image: linear-gradient(135deg, var(--primary), var(--accent));
+  background-clip: text;
+}
+.gredient--2 {
+  color: transparent;
+  background-image: linear-gradient(135deg, var(--accent), var(--secondary));
+  background-clip: text;
+}
+
+.left p {
+  color: var(--text);
+  font-family: var(--small);
+  font-size: 18px;
+  line-height: 2;
+}
+.right {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.artwork {
+  translate: 0% 0%;
+  width: 600px;
+  max-width: 40vw;
+  /* animation: rotate 50s infinite linear; */
+}
+.primary {
+  fill: var(--primary);
+}
+.secondary {
+  fill: var(--secondary);
+}
+.accent {
+  fill: var(--accent);
+}
+.text {
+  fill: var(--text);
+}
+.primary--primary {
+  fill: var(--primary);
+}
+.artwork path,
+.artwork rect {
+  transition: 0.2s color;
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.cls-1 {
+  fill: var(--primary);
+}
+.cls-2 {
+  fill: var(--accent);
+}
+.cls-3 {
+  fill: var(--secondary);
+}

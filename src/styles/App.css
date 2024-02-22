@@ -1,46 +1,10 @@
-.app {
-  width: 100vw;
-  min-height: 100vh;
+:root {
+  --bg: red;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--text);
+}
+::-webkit-scrollbar-thumb {
   background-color: var(--background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-.artwork {
-  max-height: 60vh;
-  min-height: 400px;
-  min-width: 400px;
-}
-.primary {
-  fill: var(--primary);
-}
-.secondary {
-  fill: var(--secondary);
-}
-.accent {
-  fill: var(--accent);
-}
-.text {
-  fill: var(--text);
-}
-.primary--primary {
-  fill: var(--primary);
-}
-.artwork path,
-.artwork rect {
-  transition: 0.2s color;
-}
-
-/* .rotation--one {
-  transform-origin: 75% 50%;
-  animation: rotate infinite 5s linear;
-  animation-play-state: paused;
-}
-@keyframes rotate {
-  0% {
-    rotate: 0deg;
-  }
-  100% {
-    rotate: 360deg;
-  }
-} */

@@ -1,32 +1,34 @@
 import React from "react";
 import "./header.css";
-import { useSelector } from "react-redux";
 
 export default function Header() {
   return (
     <div className="header--container">
       <div className="header--wrepper">
-        <svg
-          id="Layer_1"
-          className="header--logo"
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 400 400"
-        >
-          <path
-            className="cls-1"
-            d="M342.65,117.07,209.36,194a18.69,18.69,0,0,1-18.72,0l-133.29-77a18.73,18.73,0,0,1,0-32.43L190.64,7.69a18.69,18.69,0,0,1,18.72,0l133.29,77A18.73,18.73,0,0,1,342.65,117.07Z"
-          />
-          <path
-            className="cls-2"
-            d="M189,222.17v153.9A18.73,18.73,0,0,1,161,392.29l-133.29-77a18.71,18.71,0,0,1-9.36-16.21V145.21A18.73,18.73,0,0,1,46.39,129l133.28,77A18.69,18.69,0,0,1,189,222.17Z"
-          />
-          <path
-            className="cls-3"
-            d="M381.7,145.21V299.12a18.71,18.71,0,0,1-9.36,16.21l-133.29,77A18.73,18.73,0,0,1,211,376.07V222.17A18.69,18.69,0,0,1,220.33,206l133.28-77A18.73,18.73,0,0,1,381.7,145.21Z"
-          />
-        </svg>
-        <h1>Cube Chroma</h1>
+        <a href="">
+          <svg
+            id="Layer_1"
+            className="header--logo"
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 400 400"
+          >
+            <path
+              class="cls-1"
+              d="M379.24,213.29V315.4l-88.42,51-41.21,23.79A31.47,31.47,0,0,1,202.41,363V213.29l88.41-51V264.33Z"
+            />
+            <path
+              class="cls-2"
+              d="M111.61,56.52,200,5.51l88.42,51,41.19,23.79a31.46,31.46,0,0,1,0,54.5l-41.19,23.79-88.42,51-88.39-51,88.39-51Z"
+            />
+            <path
+              class="cls-3"
+              d="M109.18,162.25h0l88.39,51V315.4l-88.41-51V366.44l-88.42-51V165.71A31.47,31.47,0,0,1,68,138.46Z"
+            />
+          </svg>
+          <h1>Cube Chroma</h1>
+        </a>
+
         {/* <a
           href="https://github.com/MliliGenes/cube-chroma-v2.0.git"
           target="blank"
