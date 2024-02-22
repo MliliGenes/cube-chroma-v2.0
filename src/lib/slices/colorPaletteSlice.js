@@ -41,6 +41,8 @@ export const colorPalette = createSlice({
       let oldStateIsLocked = state.map((c) => c.isLocked);
 
       let newPalette = switchPalettetheme(action.payload.theme, [
+        state[0].color,
+        state[1].color,
         state[2].color,
         state[3].color,
         state[4].color,
