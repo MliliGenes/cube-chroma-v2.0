@@ -52,34 +52,39 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 
   let selected =
     colorPalette.length >= 3
-      ? [
-          colorPalette[0],
-          chroma(colorPalette[2]).set("hsl.s", 0.9).set("hsl.l", 0.8).hex(),
-          colorPalette[1],
-        ]
+      ? [colorPalette[0], chroma(colorPalette[2]), colorPalette[1]]
       : [
           colorPalette[0],
-          chroma(colorPalette[1]).set("hsl.s", 0.9).set("hsl.l", 0.8).hex(),
+          chroma(colorPalette[1]),
           chroma(colorPalette[0])
             .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 90) % 360)
             .hex(),
         ];
+  return switchPalettetheme(theme, selected);
+}
 
+export function switchPalettetheme(theme, palette) {
   if (theme == "light") {
+    let threeColors = [
+      chroma(palette[0]).set("hsl.l", 0.6).hex(),
+      chroma(palette[1]).set("hsl.l", 0.85).hex(),
+      chroma(palette[2]).set("hsl.l", 0.7).hex(),
+    ];
     return [
-      chroma(selected[0]).darken(5).set("hsl.s", 0.15).hex(),
-      chroma(selected[2]).mix("#fff", 0.85).hex(),
-      ...selected,
+      chroma(palette[0]).darken(5).set("hsl.s", 0.15).hex(),
+      chroma(palette[2]).mix("#fff", 0.85).hex(),
+      ...threeColors,
     ];
   } else {
+    let threeColors = [
+      chroma(palette[0]).set("hsl.l", 0.7).hex(),
+      chroma(palette[1]).set("hsl.l", 0.75).hex(),
+      chroma(palette[2]).set("hsl.l", 0.6).hex(),
+    ];
     return [
-      chroma(selected[2]).mix("#fff", 0.85).hex(),
-      chroma(selected[1]).darken(5).set("hsl.s", 0.15).hex(),
-      ...selected.map((color) =>
-        chroma(color)
-          .set("hsl.l", chroma(color).get("hsl.l") - 0.125)
-          .hex()
-      ),
+      chroma(palette[2]).mix("#fff", 0.85).hex(),
+      chroma(palette[0]).darken(5).set("hsl.s", 0.15).hex(),
+      ...threeColors,
     ];
   }
 }
@@ -110,3 +115,5 @@ export function getLastScheme() {
     JSON.parse(localStorage.getItem("oneCubeCombo"))?.scheme || "analogous"
   );
 }
+
+// export function undo()

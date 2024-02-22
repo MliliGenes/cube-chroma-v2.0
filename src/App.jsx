@@ -56,8 +56,8 @@ function App() {
         "--text": palette[0]?.color || "#12151b",
         "--background": palette[1]?.color || "#ffebf9",
         "--primary": palette[2]?.color || "#08d3ff",
-        "--accent": palette[3]?.color || "#eafa9e",
-        "--secondary": palette[4]?.color || "#ff08d3",
+        "--secondary": palette[3]?.color || "#eafa9e",
+        "--accent": palette[4]?.color || "#ff08d3",
       }}
     >
       {loading ? (
@@ -65,6 +65,84 @@ function App() {
       ) : (
         <>
           <Header />
+          <svg
+            id="Layer_1"
+            className="artwork"
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1000 1000"
+          >
+            <path
+              className="primary"
+              d="M0,0H250a0,0,0,0,1,0,0V250a0,0,0,0,1,0,0h0A250,250,0,0,1,0,0V0A0,0,0,0,1,0,0Z"
+            />
+            <path
+              className="secondary"
+              d="M500,0h0a0,0,0,0,1,0,0V250a0,0,0,0,1,0,0H250a0,0,0,0,1,0,0v0A250,250,0,0,1,500,0Z"
+            />
+            <path
+              className="accent"
+              d="M500,0H750a0,0,0,0,1,0,0V250a0,0,0,0,1,0,0h0A250,250,0,0,1,500,0V0A0,0,0,0,1,500,0Z"
+            />
+            <rect className="text" x="750" width="250" height="250" rx="125" />
+            <path
+              className="secondary"
+              d="M250,250h0a0,0,0,0,1,0,0V500a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0v0A250,250,0,0,1,250,250Z"
+            />
+            <rect
+              className="accent"
+              x="250"
+              y="250"
+              width="250"
+              height="250"
+              rx="125"
+            />
+            <path
+              className="primary--primary rotation--one"
+              d="M750,250h0c-138.07,0-250,111.93-250,250h500c0-138.07-111.93-250-250-250Z"
+            />
+            <rect
+              className="primary--primary"
+              y="500"
+              width="250"
+              height="250"
+              rx="125"
+            />
+            <path
+              className="text"
+              d="M250,500H500a0,0,0,0,1,0,0v0A250,250,0,0,1,250,750h0a0,0,0,0,1,0,0V500A0,0,0,0,1,250,500Z"
+            />
+            <path
+              className="secondary"
+              d="M500,500H750a0,0,0,0,1,0,0v0A250,250,0,0,1,500,750h0a0,0,0,0,1,0,0V500A0,0,0,0,1,500,500Z"
+            />
+            <path
+              className="accent"
+              d="M1000,500h0a0,0,0,0,1,0,0V750a0,0,0,0,1,0,0H750a0,0,0,0,1,0,0v0a250,250,0,0,1,250-250Z"
+              transform="translate(1750 1250) rotate(-180)"
+            />
+            <path
+              className="secondary"
+              d="M0,750H250a0,0,0,0,1,0,0v250a0,0,0,0,1,0,0h0A250,250,0,0,1,0,750v0A0,0,0,0,1,0,750Z"
+            />
+            <path
+              className="accent"
+              d="M250,750H500a0,0,0,0,1,0,0v0a250,250,0,0,1-250,250h0a0,0,0,0,1,0,0V750A0,0,0,0,1,250,750Z"
+            />
+            <rect
+              className="primary"
+              x="500"
+              y="750"
+              width="250"
+              height="250"
+              rx="125"
+            />
+            <path
+              className="text"
+              d="M1000,750h0a0,0,0,0,1,0,0v250a0,0,0,0,1,0,0H750a0,0,0,0,1,0,0v0A250,250,0,0,1,1000,750Z"
+              transform="translate(1750 1750) rotate(-180)"
+            />
+          </svg>
           <ToolBar />
         </>
       )}

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import generateRandomPalette from "../utils";
+import generateRandomPalette, { switchPalettetheme } from "../utils";
 import { GetColorName } from "hex-color-to-color-name";
 
 let colorRoles = ["text", "background", "primary", "secondary", "accent"];
@@ -48,11 +48,11 @@ export const colorPalette = createSlice({
     upDateColorPalette: (state, action) => {
       let oldStateIsLocked = state.map((c) => c.isLocked);
 
-      let newPalette = generateRandomPalette(
-        action.payload.color,
-        action.payload.method,
-        action.payload.theme
-      );
+      let newPalette = switchPalettetheme(action.payload.theme, [
+        state[2].color,
+        state[3].color,
+        state[4].color,
+      ]);
 
       return newPalette.map((colorhex, index) => ({
         color: colorhex,

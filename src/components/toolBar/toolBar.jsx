@@ -30,9 +30,46 @@ export default function ToolBar() {
     >
       {p.role}
       <i
-        className={p.isLocked ? "fa-solid fa-lock" : "fa-solid fa-lock-open"}
+        className={
+          p.isLocked ? "fa-solid fa-lock left" : "fa-solid fa-lock-open left"
+        }
         onClick={() => dispatch(upDateLockState(p.role))}
       ></i>
+      {/* {p.role == "primary" || p.role == "secondary" ? (
+        chroma.contrast(p.color, palette[0].color) < 4.5 ? (
+          <i className="fa-solid fa-circle-xmark right"></i>
+        ) : chroma.contrast(p.color, palette[0].color) < 7 ? (
+          <i className="fa-solid fa-circle-minus right"></i>
+        ) : (
+          <i className="fa-solid fa-circle-check right"></i>
+        )
+      ) : p.role == "accent" ? (
+        chroma.contrast(p.color, palette[1].color) < 4.5 ? (
+          <i className="fa-solid fa-circle-xmark right"></i>
+        ) : chroma.contrast(p.color, palette[1].color) < 7 ? (
+          <i className="fa-solid fa-circle-minus right"></i>
+        ) : (
+          <i className="fa-solid fa-circle-check right"></i>
+        )
+      ) : p.role == "background" ? (
+        chroma.contrast(p.color, palette[0].color) < 4.5 ? (
+          <i className="fa-solid fa-circle-xmark right"></i>
+        ) : chroma.contrast(p.color, palette[0].color) < 7 ? (
+          <i className="fa-solid fa-circle-minus right"></i>
+        ) : (
+          <i className="fa-solid fa-circle-check right"></i>
+        )
+      ) : p.role == "text" ? (
+        chroma.contrast(p.color, palette[1].color) < 4.5 ? (
+          <i className="fa-solid fa-circle-xmark right"></i>
+        ) : chroma.contrast(p.color, palette[1].color) < 7 ? (
+          <i className="fa-solid fa-circle-minus right"></i>
+        ) : (
+          <i className="fa-solid fa-circle-check right"></i>
+        )
+      ) : (
+        ""
+      )} */}
     </div>
   ));
 

@@ -3,3 +3,40 @@
   min-height: 100vh;
   background-color: var(--background);
 }
+.artwork {
+  width: 550px;
+  max-width: 70vw;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+.primary {
+  fill: var(--primary);
+}
+.secondary {
+  fill: var(--secondary);
+}
+.accent {
+  fill: var(--accent);
+}
+.text {
+  fill: var(--text);
+}
+.primary--primary {
+  fill: var(--primary);
+}
+
+.rotation--one {
+  transform-origin: 75% 50%;
+  /* animation: rotate infinite 5s linear;
+  animation-play-state: paused; */
+}
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
