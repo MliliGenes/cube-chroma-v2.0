@@ -1,6 +1,6 @@
 .toolBar--container {
   position: fixed;
-  bottom: 15px;
+  bottom: 0px;
   left: 50%;
   translate: -50% 0;
   z-index: 1000;
@@ -46,7 +46,7 @@ i {
   gap: 6px;
   justify-content: center;
   align-items: center;
-  width: 70px;
+  min-width: 70px;
   height: 50px;
   border: 0;
   border-radius: 6px;

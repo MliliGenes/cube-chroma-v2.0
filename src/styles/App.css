@@ -6,6 +6,7 @@
 .artwork {
   width: 550px;
   max-width: 70vw;
+  min-width: 300px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -25,6 +26,10 @@
 }
 .primary--primary {
   fill: var(--primary);
+}
+.artwork path,
+.artwork rect {
+  transition: 0.2s;
 }
 
 .rotation--one {

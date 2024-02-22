@@ -21,7 +21,7 @@
 }
 .header--logo path,
 .header--logo rect {
-  transition: 0.2s;
+  transition: 0.1s;
 }
 .header--container a {
   font-family: var(--medium);
