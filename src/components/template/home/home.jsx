@@ -27,6 +27,37 @@ export default function Home() {
           <button className="btn special">Get Started</button>
           <button className="btn">Learn More</button>
         </div>
+        <p className="flex">
+          <svg
+            width="23"
+            height="33"
+            viewBox="0 0 23 33"
+            fill="none"
+            className="mouse"
+            data-astro-cid-j7pv25f6=""
+          >
+            <rect
+              x="0.767442"
+              y="0.767442"
+              width="20.7209"
+              height="31.4651"
+              rx="10.3605"
+              stroke="var(--text)"
+              stroke-width="1.53488"
+              data-astro-cid-j7pv25f6=""
+            ></rect>
+            <rect
+              x="9"
+              y="8"
+              width="4"
+              height="8"
+              rx="2"
+              fill="var(--text)"
+              data-astro-cid-j7pv25f6=""
+            ></rect>
+          </svg>
+          Scroll to see more sections
+        </p>
       </div>
       <div className="right">
         <svg

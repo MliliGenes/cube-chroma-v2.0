@@ -1,7 +1,7 @@
 .home--container {
   width: 100%;
   max-width: 1300px;
-  min-height: 200vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: start;
@@ -57,7 +57,7 @@
 }
 .left .btns .btn.special:hover {
   translate: 0 -3px;
-  box-shadow: 0px 15px 80px -20px var(--primary);
+  box-shadow: 0px 15px 80px -20px var(--secondary);
 }
 .circle {
   z-index: -1;
@@ -82,6 +82,15 @@
   font-family: var(--small);
   font-size: 18px;
   line-height: 2;
+}
+.left p.flex .mouse {
+  height: 80px;
+}
+.left p.flex {
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 .right {
   overflow: hidden;

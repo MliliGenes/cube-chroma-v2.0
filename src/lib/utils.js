@@ -55,37 +55,46 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
     colorPalette.length >= 3
       ? [
           colorPalette[0],
+          colorPalette[0],
+          colorPalette[0],
           colorPalette[1],
           colorPalette[2],
-          colorPalette[0],
-          colorPalette[0],
         ]
       : [
+          colorPalette[0],
+          colorPalette[0],
           colorPalette[0],
           chroma(colorPalette[1]),
           chroma(colorPalette[0])
             .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
             .hex(),
-          colorPalette[0],
-          colorPalette[0],
         ];
   return switchPalettetheme(theme, selected);
 }
 
 export function switchPalettetheme(theme, palette) {
   if (theme == "light") {
+    let textHex = chroma(palette[0]).get("hsl.h");
+    let text = chroma.hsl(textHex, 0.6, 0.05).hex();
+    let backgroundHex = chroma(palette[1]).get("hsl.h");
+    let background = chroma.hsl(backgroundHex, 0.6, 0.95).hex();
+
     let readyPalette = [
-      chroma(palette[0]).darken(4.6).set("hsl.s", 0.15).hex(),
-      chroma(palette[1]).mix("#fff", 0.85).hex(),
+      text,
+      background,
       chroma(palette[2]).set("hsl.l", 0.5).hex(),
       chroma(palette[3]).set("hsl.l", 0.75).hex(),
       chroma(palette[4]).set("hsl.l", 0.6).hex(),
     ];
     return readyPalette;
   } else {
+    let textHex = chroma(palette[0]).get("hsl.h");
+    let text = chroma.hsl(textHex, 0.6, 0.95).hex();
+    let backgroundHex = chroma(palette[1]).get("hsl.h");
+    let background = chroma.hsl(backgroundHex, 0.2, 0.05).hex();
     let readyPalette = [
-      chroma(palette[0]).mix("#fff", 0.85).hex(),
-      chroma(palette[1]).darken(4.6).set("hsl.s", 0.15).hex(),
+      text,
+      background,
       chroma(palette[2]).set("hsl.l", 0.6).hex(),
       chroma(palette[3]).set("hsl.l", 0.65).hex(),
       chroma(palette[4]).set("hsl.l", 0.5).hex(),
