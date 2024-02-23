@@ -34,10 +34,7 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
       ];
       break;
     case "monochromatic":
-      colorPalette = chroma
-        .scale([baseColor, baseColor.brighten(), baseColor.darken()])
-        .mode("hsl")
-        .colors(3);
+      colorPalette = [baseColor, baseColor, baseColor];
       break;
     case "square":
       colorPalette = [
@@ -82,9 +79,9 @@ export function switchPalettetheme(theme, palette) {
     let readyPalette = [
       text,
       background,
-      chroma(palette[2]).set("hsl.l", 0.5).hex(),
-      chroma(palette[3]).set("hsl.l", 0.75).hex(),
-      chroma(palette[4]).set("hsl.l", 0.6).hex(),
+      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.5).hex(),
+      chroma(palette[3]).set("hsl.s", 0.4).set("hsl.l", 0.8).hex(),
+      chroma(palette[4]).set("hsl.s", 0.6).set("hsl.l", 0.6).hex(),
     ];
     return readyPalette;
   } else {
@@ -95,9 +92,9 @@ export function switchPalettetheme(theme, palette) {
     let readyPalette = [
       text,
       background,
-      chroma(palette[2]).set("hsl.l", 0.6).hex(),
-      chroma(palette[3]).set("hsl.l", 0.65).hex(),
-      chroma(palette[4]).set("hsl.l", 0.5).hex(),
+      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.6).hex(),
+      chroma(palette[3]).set("hsl.s", 0.4).set("hsl.l", 0.7).hex(),
+      chroma(palette[4]).set("hsl.s", 0.6).set("hsl.l", 0.5).hex(),
     ];
     return readyPalette;
   }

@@ -3,7 +3,6 @@
   max-width: 1300px;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: start;
 }
 .left,
@@ -16,12 +15,12 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 25px;
 }
 
 .left h1 {
   position: relative;
-  font-size: 70px;
+  font-size: clamp(3rem, 3.5vw, 10rem);
   color: var(--text);
   font-family: var(--large);
   z-index: 0;
@@ -68,7 +67,11 @@
 }
 .gredient--1 {
   color: transparent;
-  background-image: linear-gradient(135deg, var(--primary), var(--accent));
+  background-image: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-light)
+  );
   background-clip: text;
 }
 .gredient--2 {

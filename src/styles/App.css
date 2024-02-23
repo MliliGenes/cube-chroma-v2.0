@@ -8,3 +8,6 @@
 ::-webkit-scrollbar-thumb {
   background-color: var(--background);
 }
+::selection {
+  background-color: var(--light-bg-color);
+}

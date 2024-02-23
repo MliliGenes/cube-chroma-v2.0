@@ -34,11 +34,15 @@ function App() {
     let text = palette[0]?.color || "#1b1414";
     let background = palette[1]?.color || "#ffffee";
     let primary = palette[2]?.color || "#ff9e33";
+    let primaryTransparent = chroma(primary).alpha(0.1);
+    let primaryLight = chroma(primary).brighten(0.8);
     let secondary = palette[3]?.color || "#d7ffb3";
     let accent = palette[4]?.color || "#fcff66";
+    let accentTransparent = chroma(accent).alpha(0.1);
+    let accentLight = chroma(accent).brighten(0.8);
     let textBtn1 = chroma.contrast(text, primary) > 4.5 ? text : background;
     let textBtn2 = chroma.contrast(text, secondary) > 4.5 ? text : background;
-    let lightBgColor = chroma(text).alpha(0.5).hex();
+    let lightBgColor = chroma(text).alpha(0.4).hex();
 
     document.querySelector(":root").setAttribute(
       "style",
@@ -46,8 +50,12 @@ function App() {
     --text: ${text};
     --background: ${background};
     --primary: ${primary};
+    --primary-light: ${primaryLight};
+    --primary-transparent: ${primaryTransparent};
     --secondary: ${secondary};
     --accent: ${accent};
+    --accent-light: ${accentLight};
+    --accent-transparent: ${accentTransparent};
     --text-btn-primary: ${textBtn1};
     --text-btn-secondary: ${textBtn2};
     --light-bg-color: ${lightBgColor}

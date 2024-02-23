@@ -10,8 +10,6 @@
 }
 .loader {
   --duration: 2s;
-  --primary-light: color-mix(in srgb, var(--primary) 80%, white 20%);
-  --primary-rgba: color-mix(in srgb, var(--primary) 4%, transparent 96%);
   width: 200px;
   height: 320px;
   position: relative;
@@ -83,7 +81,7 @@
   width: 156px;
   height: 300px;
   opacity: 0;
-  background: linear-gradient(var(--primary), var(--primary-rgba));
+  background: linear-gradient(var(--primary), var(--primary-transparent));
   position: absolute;
   transform: rotateX(var(--rx)) rotateY(var(--ry)) translate(var(--x), var(--y))
     translateZ(var(--z));
