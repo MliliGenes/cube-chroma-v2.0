@@ -8,7 +8,7 @@ export default function Template() {
     <div className="template--container">
       <Home />
       <Why />
-      <Home />
+      {/* <Home /> */}
     </div>
   );
 }

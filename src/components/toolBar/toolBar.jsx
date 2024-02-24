@@ -53,8 +53,8 @@ export default function ToolBar() {
   }, [theme]);
 
   useEffect(() => {
-    saveTolocalStorage(color, colorScheme, theme);
-  }, [dispatch, color, theme, colorScheme]);
+    saveTolocalStorage(color, colorScheme, theme, JSON.stringify(palette));
+  }, [dispatch, palette, color, theme, colorScheme]);
 
   function generateHundler() {
     dispatch(generateMainColor());

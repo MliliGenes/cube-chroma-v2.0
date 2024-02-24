@@ -1,5 +1,6 @@
 import chroma from "chroma-js";
 import clipboardCopy from "clipboard-copy";
+import { json } from "react-router-dom";
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
@@ -72,47 +73,53 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 export function switchPalettetheme(theme, palette) {
   if (theme == "light") {
     let textHex = chroma(palette[0]).get("hsl.h");
-    let text = chroma.hsl(textHex, 0.6, 0.025).hex();
+    let text = chroma.hsl(textHex, 0.6, 0.05).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.2, 0.95).hex();
+    let background = chroma.hsl(backgroundHex, 0.15, 0.95).hex();
 
     let lightTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.6).hex(),
-      chroma(palette[3]).set("hsl.s", 0.8).set("hsl.l", 0.8).hex(),
-      chroma(palette[4]).set("hsl.s", 0.8).set("hsl.l", 0.7).hex(),
+      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.5).hex(),
+      chroma(palette[3]).set("hsl.s", 0.6).set("hsl.l", 0.8).hex(),
+      chroma(palette[4]).set("hsl.s", 0.7).set("hsl.l", 0.6).hex(),
     ];
     return lightTheme;
   } else {
     let textHex = chroma(palette[0]).get("hsl.h");
     let text = chroma.hsl(textHex, 0.6, 0.95).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.2, 0.025).hex();
+    let background = chroma.hsl(backgroundHex, 0.15, 0.05).hex();
     let darkTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.5).hex(),
-      chroma(palette[3]).set("hsl.s", 0.8).set("hsl.l", 0.7).hex(),
-      chroma(palette[4]).set("hsl.s", 0.8).set("hsl.l", 0.6).hex(),
+      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.6).hex(),
+      chroma(palette[3]).set("hsl.s", 0.6).set("hsl.l", 0.7).hex(),
+      chroma(palette[4]).set("hsl.s", 0.7).set("hsl.l", 0.5).hex(),
     ];
     return darkTheme;
   }
 }
 
-export function saveTolocalStorage(color, scheme, theme, index) {
+export function saveTolocalStorage(color, scheme, theme, palette) {
   // if (index < getLength() - 1) {
   //   return null;
   // }
   let localdb = JSON.parse(localStorage.getItem("cubeCombo")) || [];
-  let cubeCombo = { color: color, scheme: scheme, theme: theme };
+  let cubeCombo = {
+    color: color,
+    scheme: scheme,
+    theme: theme,
+    palette: palette,
+  };
 
   let lastItem = localdb[localdb.length - 1];
   let combinationExists =
     lastItem &&
     lastItem.color === color &&
     lastItem.scheme === scheme &&
-    lastItem.theme === theme;
+    lastItem.theme === theme &&
+    lastItem.palette === palette;
 
   if (!combinationExists) {
     localdb.push(cubeCombo);
@@ -131,25 +138,101 @@ export function getLastCombo() {
     color: "#fff03d",
     scheme: "analogous",
     theme: "light",
+    palette: JSON.stringify([
+      {
+        color: "#0a0603",
+        name: "Asphalt",
+        isLocked: false,
+        isPickerActive: false,
+        role: "text",
+      },
+      {
+        color: "#f5f2f0",
+        name: "Pampas",
+        isLocked: false,
+        isPickerActive: false,
+        role: "background",
+      },
+      {
+        color: "#f26e0d",
+        name: "Christine",
+        isLocked: false,
+        isPickerActive: false,
+        role: "primary",
+      },
+      {
+        color: "#f5efa3",
+        name: "Sandwisp",
+        isLocked: false,
+        isPickerActive: false,
+        role: "secondary",
+      },
+      {
+        color: "#a6eb47",
+        name: "Conifer",
+        isLocked: false,
+        isPickerActive: false,
+        role: "accent",
+      },
+    ]),
   };
 }
 
-export function initCombo(color, scheme, theme) {
+export function initCombo(color, scheme, theme, palette) {
   let url = new URL(window.location.href);
   url.searchParams.set("color", color);
   url.searchParams.set("scheme", scheme);
   url.searchParams.set("theme", theme);
+  url.searchParams.set("palette", palette);
   window.history.replaceState({}, "", url);
 }
 
 export function getInitCombo() {
   let url = new URL(window.location.href);
   let color =
-    url.searchParams.get("color") || getLastCombo().color || "#fff03d";
+    url.searchParams.get("color") || getLastCombo()?.color || "#fff03d";
   let scheme =
-    url.searchParams.get("scheme") || getLastCombo().scheme || "analogous";
-  let theme = url.searchParams.get("theme") || getLastCombo().theme || "light";
-  return { color, scheme, theme };
+    url.searchParams.get("scheme") || getLastCombo()?.scheme || "analogous";
+  let theme = url.searchParams.get("theme") || getLastCombo()?.theme || "light";
+  let palette = JSON.parse(url.searchParams.get("palette")) ||
+    JSON.parse(getLastCombo()?.palette) || [
+      {
+        color: "#0a0603",
+        name: "Asphalt",
+        isLocked: false,
+        isPickerActive: false,
+        role: "text",
+      },
+      {
+        color: "#f5f2f0",
+        name: "Pampas",
+        isLocked: false,
+        isPickerActive: false,
+        role: "background",
+      },
+      {
+        color: "#f26e0d",
+        name: "Christine",
+        isLocked: false,
+        isPickerActive: false,
+        role: "primary",
+      },
+      {
+        color: "#f5efa3",
+        name: "Sandwisp",
+        isLocked: false,
+        isPickerActive: false,
+        role: "secondary",
+      },
+      {
+        color: "#a6eb47",
+        name: "Conifer",
+        isLocked: false,
+        isPickerActive: false,
+        role: "accent",
+      },
+    ];
+  return { color, scheme, theme, palette };
 }
 
 export function getLength() {

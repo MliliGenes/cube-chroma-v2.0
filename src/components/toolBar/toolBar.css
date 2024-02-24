@@ -96,10 +96,11 @@ i.flip-h {
   color: var(--background);
   font-family: var(--small);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 15px;
   font-family: var(--small);
   text-transform: capitalize;
   transition: 0.2s;

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import generateRandomPalette, {
+  getInitCombo,
   getLastCombo,
   switchPalettetheme,
 } from "../utils";
@@ -9,7 +10,7 @@ let colorRoles = ["text", "background", "primary", "secondary", "accent"];
 
 export const colorPalette = createSlice({
   name: "colorPalette",
-  initialState: [],
+  initialState: getInitCombo().palette || JSON.parse(getLastCombo()?.palette),
   reducers: {
     generateColorPalette: (state, action) => {
       let newPalette = generateRandomPalette(

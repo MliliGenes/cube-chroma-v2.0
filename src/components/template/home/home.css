@@ -82,11 +82,7 @@
 }
 .gredient--3 {
   color: transparent;
-  background-image: linear-gradient(
-    135deg,
-    var(--primary),
-    var(--accent-light)
-  );
+  background-image: linear-gradient(135deg, var(--primary), var(--accent));
   background-clip: text;
 }
 

@@ -6,7 +6,7 @@ export const theme = createSlice({
   initialState:
     getInitCombo().theme == "light" || getInitCombo().theme == "dark"
       ? getInitCombo().theme
-      : getLastCombo().theme,
+      : getLastCombo()?.theme,
   reducers: {
     toggleTheme: (state) => {
       return state === "light" ? "dark" : "light";

@@ -8,9 +8,7 @@ import Loader from "./components/loader/loader";
 import Template from "./components/template/template";
 import chroma from "chroma-js";
 import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
-import { getLastCombo, initCombo } from "./lib/utils";
-import { HexColorPicker } from "react-colorful";
-import { setMainColor } from "./lib/slices/mainColorSlice";
+import { initCombo } from "./lib/utils";
 
 function App() {
   let dispatch = useDispatch();
@@ -89,7 +87,7 @@ function App() {
   }, [dispatch, palette]);
 
   useEffect(() => {
-    initCombo(color, scheme, theme);
+    initCombo(color, scheme, theme, JSON.stringify(palette));
     dispatch(
       generateColorPalette({ color: color, method: scheme, theme: theme })
     );
