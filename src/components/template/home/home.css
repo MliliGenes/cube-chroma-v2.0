@@ -80,6 +80,15 @@
   background-image: linear-gradient(135deg, var(--accent), var(--secondary));
   background-clip: text;
 }
+.gredient--3 {
+  color: transparent;
+  background-image: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--accent-light)
+  );
+  background-clip: text;
+}
 
 .left p {
   color: var(--text);

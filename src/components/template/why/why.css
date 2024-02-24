@@ -1,0 +1,88 @@
+.why--container {
+  width: 100%;
+  max-width: 1300px;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+.why--container h1 {
+  color: var(--text);
+  font-family: var(--large);
+  font-size: 60px;
+}
+.cards {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.why--container .card {
+  flex: 1 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 30px;
+  gap: 10px;
+  color: var(--text);
+  background-color: var(--background-transparent);
+}
+
+.why--container .card svg {
+  display: flex;
+  width: 120px;
+}
+.why--container .card h2 {
+  z-index: 0;
+  position: relative;
+
+  font-family: var(--medium);
+  font-weight: 400;
+  font-size: 40px;
+  margin-top: -10px;
+}
+
+.why--container .card.color1 h2::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  width: 85%;
+  height: 25px;
+  bottom: 20px;
+  left: -10px;
+
+  background-color: var(--secondary-transparent);
+  border-radius: 2px;
+}
+.why--container .card.color2 h2::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  width: 60%;
+  height: 15px;
+  bottom: 5px;
+  left: 10px;
+  background-color: var(--secondary-transparent);
+  border-radius: 2px;
+}
+.why--container .card h2::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  width: 80%;
+  height: 20px;
+  bottom: 5px;
+  left: 50px;
+  background-color: var(--secondary-transparent);
+  border-radius: 2px;
+}
+
+.why--container .card p {
+  font-family: var(--small);
+  font-size: 18px;
+  line-height: 2;
+  font-weight: 300;
+}

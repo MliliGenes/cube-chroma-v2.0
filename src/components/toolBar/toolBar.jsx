@@ -15,6 +15,7 @@ import {
   getLength,
   saveTolocalStorage,
 } from "../../lib/utils";
+import { HexColorInput, HexColorPicker } from "react-colorful";
 
 export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
@@ -61,7 +62,7 @@ export default function ToolBar() {
 
   let colorPalette = palette.map((p) => (
     <div
-      key={p.color}
+      key={p.role}
       style={{
         backgroundColor: p.color,
         color:
@@ -76,6 +77,9 @@ export default function ToolBar() {
         className={p.isLocked ? "fa-solid fa-lock " : "fa-solid fa-lock-open "}
         onClick={() => dispatch(upDateLockState(p.role))}
       ></i>
+      <div className="color--picker">
+        {/* <HexColorPicker color={p.color} /> */}
+      </div>
     </div>
   ));
 

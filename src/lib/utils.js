@@ -79,9 +79,9 @@ export function switchPalettetheme(theme, palette) {
     let lightTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.5).hex(),
-      chroma(palette[3]).set("hsl.s", 0.8).set("hsl.l", 0.75).hex(),
-      chroma(palette[4]).set("hsl.s", 0.8).set("hsl.l", 0.55).hex(),
+      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.6).hex(),
+      chroma(palette[3]).set("hsl.s", 0.8).set("hsl.l", 0.8).hex(),
+      chroma(palette[4]).set("hsl.s", 0.8).set("hsl.l", 0.7).hex(),
     ];
     return lightTheme;
   } else {
@@ -92,7 +92,7 @@ export function switchPalettetheme(theme, palette) {
     let darkTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.55).hex(),
+      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.5).hex(),
       chroma(palette[3]).set("hsl.s", 0.8).set("hsl.l", 0.7).hex(),
       chroma(palette[4]).set("hsl.s", 0.8).set("hsl.l", 0.6).hex(),
     ];

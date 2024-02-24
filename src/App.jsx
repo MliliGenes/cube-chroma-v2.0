@@ -35,7 +35,7 @@ function App() {
         color,
         dark: chroma(color).darken(),
         light: chroma(color).brighten(),
-        transparent: chroma(color).alpha(0.1),
+        transparent: chroma(color).alpha(0.4),
       };
     }
 
@@ -52,7 +52,8 @@ function App() {
     const textBtn3 =
       chroma.contrast(text, accent.color) > 4.5 ? text : background;
 
-    const lightBgColor = chroma(text).alpha(0.4).hex();
+    const lightBgColor = chroma(text).alpha(0.075).hex();
+    const lightBgColor1 = chroma(text).alpha(0.4).hex();
 
     const textLight = chroma(text).brighten();
 
@@ -63,6 +64,7 @@ function App() {
     --text-light: ${textLight};
     --background: ${background};
     --background-transparent: ${lightBgColor};
+    --background-transparent-1: ${lightBgColor1};
     --primary: ${primary.color};
     --primary-light: ${primary.light};
     --primary-dark: ${primary.dark};
