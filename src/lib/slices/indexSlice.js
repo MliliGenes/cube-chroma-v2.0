@@ -1,15 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getIndex } from "../utils";
+import { getLength } from "../utils";
 
 export const index = createSlice({
   name: "index",
-  initialState: getIndex() || 0,
+  initialState: getLength() - 1 || 0,
   reducers: {
     upDateIndex: (state, action) => {
       return action.payload;
-    },
-    increment: (state) => {
-      return state + 1;
     },
     increment: (state) => {
       return state + 1;

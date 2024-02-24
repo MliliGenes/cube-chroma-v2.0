@@ -1,7 +1,7 @@
 .home--container {
   width: 100%;
   max-width: 1300px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   align-items: start;
 }
@@ -15,12 +15,12 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 30px;
 }
 
 .left h1 {
   position: relative;
-  font-size: clamp(3rem, 3.5vw, 10rem);
+  font-size: clamp(3rem, 4.5vw, 4.5rem);
   color: var(--text);
   font-family: var(--large);
   z-index: 0;
@@ -69,6 +69,7 @@
   color: transparent;
   background-image: linear-gradient(
     135deg,
+    var(--primary-dark),
     var(--primary),
     var(--primary-light)
   );
@@ -83,14 +84,12 @@
 .left p {
   color: var(--text);
   font-family: var(--small);
-  font-size: 18px;
-  line-height: 2;
+  font-size: 16px;
+  line-height: 2.5;
 }
-.left p.flex .mouse {
-  height: 80px;
-}
+
 .left p.flex {
-  margin-top: -20px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -102,10 +101,7 @@
   align-items: center;
 }
 .artwork {
-  translate: 0% 0%;
-  width: 600px;
-  max-width: 40vw;
-  /* animation: rotate 50s infinite linear; */
+  width: clamp(300px, 100%, 40vw);
 }
 .primary {
   fill: var(--primary);

@@ -18,11 +18,11 @@ i {
   max-width: 1300px;
   width: 100%;
   display: flex;
-  gap: 6px;
-  padding: 6px;
+  gap: 4px;
+  padding: 4px;
   border-radius: 10px;
   box-shadow: var(--shadow);
-  background-color: var(--light-bg-color);
+  background-color: var(--background-transparent);
 }
 .colorScheme-container {
   position: relative;
@@ -45,8 +45,11 @@ i {
 i.flip-h {
   rotate: 180deg;
 }
-
+.toolbar--wrapper .btn.disabled {
+  opacity: 0.5;
+}
 .toolbar--wrapper .btn {
+  border: 1px solid var(--background-transparent);
   cursor: pointer;
   display: flex;
   gap: 6px;
@@ -64,22 +67,14 @@ i.flip-h {
   transition: 0.3s scale;
 }
 
-.toolbar--wrapper .btn:hover {
-  scale: 0.98;
-}
-
-.toolbar--wrapper .btn:active {
-  scale: 0.9;
-}
-
 .toolbar--wrapper .btn.large {
   width: 120px;
 }
 
 .toolbar--wrapper .btn.xlarge {
-  width: 250px;
+  width: 230px;
   justify-content: start;
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
 .toolbar--wrapper .btn.xlarge.btn:hover {
@@ -93,17 +88,9 @@ i.flip-h {
 .toolbar--wrapper .icon {
   font-size: 20px;
 }
-
-.toolBar--palette {
-  display: flex;
-  flex: 1 0;
-  gap: 6px;
-  border-radius: 8px;
-}
-
-.toolBar--palette div {
+.palette--item {
   flex: 1;
-  padding: 0 25px;
+  padding: 0 20px;
   position: relative;
   height: 50px;
   color: var(--background);
@@ -119,25 +106,26 @@ i.flip-h {
   user-select: none;
 }
 
-.toolBar--palette div:hover i {
+.palette--item:hover i {
   opacity: 1;
 }
-.toolBar--palette div i {
+.palette--item i {
   opacity: 0;
   position: absolute;
-  bottom: 0px;
+  top: 0;
+  right: 0;
   font-size: 11px;
   padding: 6px;
   cursor: pointer;
   transition: 0.25s;
 }
-.toolBar--palette div i.fa-lock {
+.palette--item i.fa-lock {
   opacity: 1;
 }
-.toolBar--palette div i.left {
-  left: 0px;
-}
-.toolBar--palette div i.right {
-  right: 0px;
-  opacity: 1;
+
+.color--picker {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  translate: -50% 0;
 }

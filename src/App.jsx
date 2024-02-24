@@ -4,85 +4,94 @@ import "./styles/fonts.css";
 import Header from "./components/header/header";
 import ToolBar from "./components/toolBar/toolBar";
 import { useEffect, useState } from "react";
-import {
-  generateColorPalette,
-  upDateColorPalette,
-} from "./lib/slices/colorPaletteSlice";
 import Loader from "./components/loader/loader";
-import { getPaletteByIndex, saveTheme, saveTolocalStorage } from "./lib/utils";
-import Home from "./components/template/home/home";
-import { setMainColor } from "./lib/slices/mainColorSlice";
-import { upDateColorScheme } from "./lib/slices/colorSchemaSlice";
 import Template from "./components/template/template";
 import chroma from "chroma-js";
+import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
+import { getLastCombo, initCombo } from "./lib/utils";
+import { HexColorPicker } from "react-colorful";
+import { setMainColor } from "./lib/slices/mainColorSlice";
 
 function App() {
   let dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
   let color = useSelector((state) => state.mainColor.color);
+  let scheme = useSelector((state) => state.colorScheme);
   let palette = useSelector((state) => state.colorPalette);
-  let colorScheme = useSelector((state) => state.colorScheme);
   let theme = useSelector((state) => state.theme);
 
   // useEffect(() => {
-  //   localStorage.removeItem("cubeCombo");
-  //   saveTolocalStorage(color, colorScheme);
-  // }, [loading]);
+  //   initCombo("#ff9e33", "analogous", "light");
+  // }, []);
 
   useEffect(() => {
-    let text = palette[0]?.color || "#1b1414";
-    let background = palette[1]?.color || "#ffffee";
-    let primary = palette[2]?.color || "#ff9e33";
-    let primaryTransparent = chroma(primary).alpha(0.1);
-    let primaryLight = chroma(primary).brighten(0.8);
-    let secondary = palette[3]?.color || "#d7ffb3";
-    let accent = palette[4]?.color || "#fcff66";
-    let accentTransparent = chroma(accent).alpha(0.1);
-    let accentLight = chroma(accent).brighten(0.8);
-    let textBtn1 = chroma.contrast(text, primary) > 4.5 ? text : background;
-    let textBtn2 = chroma.contrast(text, secondary) > 4.5 ? text : background;
-    let lightBgColor = chroma(text).alpha(0.4).hex();
+    function getColorOrDefault(palette, index, defaultColor) {
+      return palette[index]?.color || defaultColor;
+    }
+
+    function getChromaColor(color) {
+      return {
+        color,
+        dark: chroma(color).darken(),
+        light: chroma(color).brighten(),
+        transparent: chroma(color).alpha(0.1),
+      };
+    }
+
+    const text = getColorOrDefault(palette, 0, "#1b1414");
+    const background = getColorOrDefault(palette, 1, "#ffffee");
+    const primary = getChromaColor(getColorOrDefault(palette, 2, "#ff9e33"));
+    const secondary = getChromaColor(getColorOrDefault(palette, 3, "#d7ffb3"));
+    const accent = getChromaColor(getColorOrDefault(palette, 4, "#fcff66"));
+
+    const textBtn1 =
+      chroma.contrast(text, primary.color) > 4.5 ? text : background;
+    const textBtn2 =
+      chroma.contrast(text, secondary.color) > 4.5 ? text : background;
+    const textBtn3 =
+      chroma.contrast(text, accent.color) > 4.5 ? text : background;
+
+    const lightBgColor = chroma(text).alpha(0.4).hex();
+
+    const textLight = chroma(text).brighten();
 
     document.querySelector(":root").setAttribute(
       "style",
       `
     --text: ${text};
+    --text-light: ${textLight};
     --background: ${background};
-    --primary: ${primary};
-    --primary-light: ${primaryLight};
-    --primary-transparent: ${primaryTransparent};
-    --secondary: ${secondary};
-    --accent: ${accent};
-    --accent-light: ${accentLight};
-    --accent-transparent: ${accentTransparent};
+    --background-transparent: ${lightBgColor};
+    --primary: ${primary.color};
+    --primary-light: ${primary.light};
+    --primary-dark: ${primary.dark};
+    --primary-transparent: ${primary.transparent};
+    --secondary: ${secondary.color};
+    --secondary-light: ${secondary.light};
+    --secondary-dark: ${secondary.dark};
+    --secondary-transparent: ${secondary.transparent};
+    --accent: ${accent.color};
+    --accent-light: ${accent.light};
+    --accent-dark: ${accent.dark};
+    --accent-transparent: ${accent.transparent};
     --text-btn-primary: ${textBtn1};
     --text-btn-secondary: ${textBtn2};
-    --light-bg-color: ${lightBgColor}
-  `
+    --text-btn-accent: ${textBtn3};
+    `
     );
-
-    color &&
-      theme &&
-      palette &&
+    palette &&
       setTimeout(() => {
         setLoading(false);
       }, 2000);
   }, [dispatch, palette]);
 
   useEffect(() => {
-    saveTolocalStorage(color, colorScheme);
-  }, [dispatch, color]);
-
-  useEffect(() => {
-    saveTheme(theme);
-  }, [dispatch, theme]);
-
-  useEffect(() => {
+    initCombo(color, scheme, theme);
     dispatch(
-      generateColorPalette({ color: color, method: colorScheme, theme: theme })
+      generateColorPalette({ color: color, method: scheme, theme: theme })
     );
-  }, [dispatch, color, colorScheme]);
+  }, [dispatch, color, scheme, theme]);
 
   return (
     <div className="app">

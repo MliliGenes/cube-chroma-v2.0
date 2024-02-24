@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-import { useDispatch } from "react-redux";
+import clipboardCopy from "clipboard-copy";
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
@@ -72,82 +72,101 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 export function switchPalettetheme(theme, palette) {
   if (theme == "light") {
     let textHex = chroma(palette[0]).get("hsl.h");
-    let text = chroma.hsl(textHex, 0.6, 0.05).hex();
+    let text = chroma.hsl(textHex, 0.6, 0.025).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.6, 0.95).hex();
+    let background = chroma.hsl(backgroundHex, 0.2, 0.95).hex();
 
-    let readyPalette = [
+    let lightTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.5).hex(),
-      chroma(palette[3]).set("hsl.s", 0.4).set("hsl.l", 0.8).hex(),
-      chroma(palette[4]).set("hsl.s", 0.6).set("hsl.l", 0.6).hex(),
+      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.5).hex(),
+      chroma(palette[3]).set("hsl.s", 0.8).set("hsl.l", 0.75).hex(),
+      chroma(palette[4]).set("hsl.s", 0.8).set("hsl.l", 0.55).hex(),
     ];
-    return readyPalette;
+    return lightTheme;
   } else {
     let textHex = chroma(palette[0]).get("hsl.h");
     let text = chroma.hsl(textHex, 0.6, 0.95).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.2, 0.05).hex();
-    let readyPalette = [
+    let background = chroma.hsl(backgroundHex, 0.2, 0.025).hex();
+    let darkTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.6).hex(),
-      chroma(palette[3]).set("hsl.s", 0.4).set("hsl.l", 0.7).hex(),
-      chroma(palette[4]).set("hsl.s", 0.6).set("hsl.l", 0.5).hex(),
+      chroma(palette[2]).set("hsl.s", 0.9).set("hsl.l", 0.55).hex(),
+      chroma(palette[3]).set("hsl.s", 0.8).set("hsl.l", 0.7).hex(),
+      chroma(palette[4]).set("hsl.s", 0.8).set("hsl.l", 0.6).hex(),
     ];
-    return readyPalette;
+    return darkTheme;
   }
 }
 
-export function saveTolocalStorage(color, scheme) {
+export function saveTolocalStorage(color, scheme, theme, index) {
+  // if (index < getLength() - 1) {
+  //   return null;
+  // }
   let localdb = JSON.parse(localStorage.getItem("cubeCombo")) || [];
-  let cubeCombo = { color: color, scheme: scheme };
+  let cubeCombo = { color: color, scheme: scheme, theme: theme };
 
   let lastItem = localdb[localdb.length - 1];
   let combinationExists =
-    lastItem && lastItem.color === color && lastItem.scheme === scheme;
+    lastItem &&
+    lastItem.color === color &&
+    lastItem.scheme === scheme &&
+    lastItem.theme === theme;
 
   if (!combinationExists) {
     localdb.push(cubeCombo);
     localStorage.setItem("cubeCombo", JSON.stringify(localdb));
-    localStorage.setItem("oneCubeCombo", JSON.stringify(cubeCombo));
   }
 }
-
-export function saveTheme(theme) {
-  localStorage.setItem("cubeTheme", theme);
-}
-
-export function getLastTheme() {
-  return localStorage.getItem("cubeTheme") || "light";
-}
-
-export function getLastColor() {
-  return JSON.parse(localStorage.getItem("oneCubeCombo"))?.color || "#fbff42";
-}
-
-export function getLastScheme() {
-  return (
-    JSON.parse(localStorage.getItem("oneCubeCombo"))?.scheme || "analogous"
-  );
-}
-
-export function getIndex() {
-  if (JSON.parse(localStorage.getItem("cubeCombo"))) {
-    let index = JSON.parse(localStorage.getItem("cubeCombo")).length - 1;
-    return index;
+export function getLastCombo() {
+  const cubeCombo = localStorage.getItem("cubeCombo");
+  if (cubeCombo) {
+    const comboArray = JSON.parse(cubeCombo);
+    if (Array.isArray(comboArray) && comboArray.length > 0) {
+      return comboArray[comboArray.length - 1];
+    }
   }
+  return {
+    color: "#fff03d",
+    scheme: "analogous",
+    theme: "light",
+  };
+}
+
+export function initCombo(color, scheme, theme) {
+  let url = new URL(window.location.href);
+  url.searchParams.set("color", color);
+  url.searchParams.set("scheme", scheme);
+  url.searchParams.set("theme", theme);
+  window.history.replaceState({}, "", url);
+}
+
+export function getInitCombo() {
+  let url = new URL(window.location.href);
+  let color =
+    url.searchParams.get("color") || getLastCombo().color || "#fff03d";
+  let scheme =
+    url.searchParams.get("scheme") || getLastCombo().scheme || "analogous";
+  let theme = url.searchParams.get("theme") || getLastCombo().theme || "light";
+  return { color, scheme, theme };
 }
 
 export function getLength() {
-  if (JSON.parse(localStorage.getItem("cubeCombo"))) {
-    return JSON.parse(localStorage.getItem("cubeCombo")).length;
+  const cubeCombo = localStorage.getItem("cubeCombo");
+  if (cubeCombo) {
+    const comboArray = JSON.parse(cubeCombo);
+    if (Array.isArray(comboArray) && comboArray.length > 0) {
+      return comboArray.length;
+    }
   }
 }
 
-export function getPaletteByIndex(index) {
-  if (getLength() > 0) {
-    return JSON.parse(localStorage.getItem("cubeCombo"))[index];
-  }
+export function getComboByIndex(index) {
+  return JSON.parse(localStorage.getItem("cubeCombo"))[index];
+}
+
+export function copyUrlToClipBoard() {
+  let url = new URL(window.location.href);
+  clipboardCopy(url);
 }

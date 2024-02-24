@@ -57,13 +57,13 @@
     translateZ(100px) scale(0);
   width: 200px;
   height: 200px;
-  background: var(--primary);
+  background: var(--secondary);
   background: linear-gradient(
     45deg,
-    var(--primary) 0%,
-    var(--primary) 50%,
-    var(--primary-light) 50%,
-    var(--primary-light) 100%
+    var(--accent) 0%,
+    var(--accent) 50%,
+    var(--accent-light) 50%,
+    var(--accent-light) 100%
   );
   transform-style: preserve-3d;
   -webkit-animation: ground var(--duration) linear forwards infinite;
@@ -81,7 +81,7 @@
   width: 156px;
   height: 300px;
   opacity: 0;
-  background: linear-gradient(var(--primary), var(--primary-transparent));
+  background: linear-gradient(var(--secondary), var(--secondary-transparent));
   position: absolute;
   transform: rotateX(var(--rx)) rotateY(var(--ry)) translate(var(--x), var(--y))
     translateZ(var(--z));

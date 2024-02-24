@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import generateRandomPalette, { switchPalettetheme } from "../utils";
+import generateRandomPalette, {
+  getLastCombo,
+  switchPalettetheme,
+} from "../utils";
 import { GetColorName } from "hex-color-to-color-name";
 
 let colorRoles = ["text", "background", "primary", "secondary", "accent"];
@@ -65,7 +68,7 @@ export const colorPalette = createSlice({
             color: color.color,
             name: GetColorName(color.color.replace("#", "")),
             isLocked: !color.isLocked,
-            isPickerActive: false,
+            isPickerActive: color.isPickerActive,
             role: color.role,
           };
           return newColor;

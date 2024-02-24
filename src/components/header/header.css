@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   background-color: var(--background);
-  border-bottom: 1px solid var(--light-bg-color);
+  border-bottom: 1px solid var(--background-transparent);
 }
 
 .header--wrepper {
@@ -18,8 +18,6 @@
   display: flex;
   gap: 15px;
   align-items: center;
-  padding: 12px;
-  border-radius: 10px;
 }
 .header--wrepper > a {
   text-decoration: none;

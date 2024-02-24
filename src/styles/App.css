@@ -9,5 +9,5 @@
   background-color: var(--background);
 }
 ::selection {
-  background-color: var(--light-bg-color);
+  background-color: var(--background-transparent);
 }

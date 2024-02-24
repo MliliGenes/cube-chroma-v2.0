@@ -1,25 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./toolBar.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  generateMainColor,
-  setMainColor,
-} from "../../lib/slices/mainColorSlice";
+import { generateMainColor } from "../../lib/slices/mainColorSlice";
 import DropUp from "../dropUp/dropUp";
 import chroma from "chroma-js";
 import { toggleTheme } from "../../lib/slices/themeSlice";
 import {
-  generateColorPalette,
   upDateColorPalette,
   upDateLockState,
 } from "../../lib/slices/colorPaletteSlice";
-import { decrement, increment, upDateIndex } from "../../lib/slices/indexSlice";
+import { decrement, increment } from "../../lib/slices/indexSlice";
 import {
-  getIndex,
-  getPaletteByIndex,
+  copyUrlToClipBoard,
+  getLength,
   saveTolocalStorage,
 } from "../../lib/utils";
-import { upDateColorScheme } from "../../lib/slices/colorSchemaSlice";
 
 export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
@@ -33,27 +28,6 @@ export default function ToolBar() {
   let palette = useSelector((state) => state.colorPalette);
   let colorScheme = useSelector((state) => state.colorScheme);
   let theme = useSelector((state) => state.theme);
-
-  let colorPalette = palette.map((p) => (
-    <div
-      key={p.color}
-      style={{
-        backgroundColor: p.color,
-        color:
-          chroma.contrast(palette[1].color, p.color) >= 3
-            ? "var(--background)"
-            : "var(--text)",
-      }}
-    >
-      {p.role}
-      <i
-        className={
-          p.isLocked ? "fa-solid fa-lock left" : "fa-solid fa-lock-open left"
-        }
-        onClick={() => dispatch(upDateLockState(p.role))}
-      ></i>
-    </div>
-  ));
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -75,44 +49,50 @@ export default function ToolBar() {
     dispatch(
       upDateColorPalette({ color: color, method: colorScheme, theme: theme })
     );
-  }, [dispatch, theme]);
+  }, [theme]);
 
-  // useEffect(() => {
-  //   console.log("hhh");
-  //   let color = getPaletteByIndex(index).color;
-  //   let scheme = getPaletteByIndex(index).scheme;
-  //   dispatch(setMainColor(color));
-  //   dispatch(upDateColorScheme(scheme));
-  // }, [dispatch, index]);
+  useEffect(() => {
+    saveTolocalStorage(color, colorScheme, theme);
+  }, [dispatch, color, theme, colorScheme]);
+
+  function generateHundler() {
+    dispatch(generateMainColor());
+  }
+
+  let colorPalette = palette.map((p) => (
+    <div
+      key={p.color}
+      style={{
+        backgroundColor: p.color,
+        color:
+          chroma.contrast(p.color, palette[1].color) > 4.5
+            ? "var(--background)"
+            : "var(--text)",
+      }}
+      className="palette--item"
+    >
+      {p.role}
+      <i
+        className={p.isLocked ? "fa-solid fa-lock " : "fa-solid fa-lock-open "}
+        onClick={() => dispatch(upDateLockState(p.role))}
+      ></i>
+    </div>
+  ));
 
   return (
     <div className="toolBar--container">
       <div className="toolbar--wrapper">
-        <div className="toolBar--palette">{colorPalette}</div>
-        <button className="btn" onClick={() => dispatch(toggleTheme())}>
-          <i
-            className={
-              theme == "light"
-                ? "fa-solid fa-circle-half-stroke"
-                : "fa-solid fa-circle-half-stroke flip-h"
-            }
-          ></i>
-        </button>
-
+        {colorPalette}
         <button
           className="btn"
           onClick={() => {
-            dispatch(increment());
-            dispatch(generateMainColor());
-            dispatch(
-              generateColorPalette({
-                color: color,
-                method: colorScheme,
-                theme: theme,
-              })
-            );
+            dispatch(toggleTheme());
           }}
         >
+          <i className="fa-solid fa-circle-half-stroke"></i>
+        </button>
+
+        <button className="btn" onClick={generateHundler}>
           <i className="fa-solid fa-dice-d20"></i>
         </button>
 
@@ -135,25 +115,31 @@ export default function ToolBar() {
         </div>
 
         <button
-          className="btn"
+          className={index == 0 ? "btn disabled" : "btn"}
           onClick={() => {
             dispatch(decrement());
           }}
+          disabled={index == 0}
         >
           <i className="fa-solid fa-arrow-rotate-left"></i>
         </button>
 
         <button
-          className="btn "
+          className={index == getLength() - 1 ? "btn disabled" : "btn"}
           onClick={() => {
             dispatch(increment());
           }}
+          disabled={index == getLength() - 1}
         >
           <i className="fa-solid fa-arrow-rotate-right"></i>
         </button>
 
         <button className="btn">
-          <i className="fa-solid   fa-floppy-disk"></i>
+          <i className="fa-solid fa-floppy-disk"></i>
+        </button>
+
+        <button className="btn" onClick={() => copyUrlToClipBoard()}>
+          <i className="fa-solid fa-up-right-from-square"></i>
         </button>
       </div>
     </div>
