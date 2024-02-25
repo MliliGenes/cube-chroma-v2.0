@@ -114,7 +114,7 @@ function App() {
 
   useEffect(() => {
     initCombo(color, scheme, theme, JSON.stringify(palette));
-  }, []);
+  }, [palette]);
 
   useEffect(() => {
     dispatch(

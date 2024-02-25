@@ -48,7 +48,12 @@ export default function ToolBar() {
 
   useEffect(() => {
     dispatch(
-      upDateColorPalette({ color: color, method: colorScheme, theme: theme })
+      upDateColorPalette({
+        color: color,
+        method: colorScheme,
+        theme: theme,
+        baseColor: color,
+      })
     );
   }, [theme]);
 

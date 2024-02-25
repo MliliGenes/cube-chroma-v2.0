@@ -69,7 +69,6 @@
   color: transparent;
   background-image: linear-gradient(
     135deg,
-    var(--primary-dark),
     var(--primary),
     var(--primary-light)
   );

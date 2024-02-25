@@ -41,8 +41,8 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
       colorPalette = [
         baseColor.hex(),
         baseColor.set("hsl.h", (baseColor.get("hsl.h") + 90) % 360).hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 180) % 360).hex(),
         baseColor.set("hsl.h", (baseColor.get("hsl.h") + 270) % 360).hex(),
+        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 180) % 360).hex(),
       ];
       break;
     default:
@@ -67,11 +67,11 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
             .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
             .hex(),
         ];
-  return switchPalettetheme(theme, selected);
+  return switchPalettetheme(theme, selected, baseColor);
 }
 
-export function switchPalettetheme(theme, palette) {
-  let lightnessPrimary = chroma(palette[2]).get("hsl.l");
+export function switchPalettetheme(theme, palette, baseColor) {
+  let lightnessPrimary = chroma(baseColor).get("hsl.l");
 
   if (theme == "light") {
     let textHex = chroma(palette[0]).get("hsl.h");
@@ -82,12 +82,14 @@ export function switchPalettetheme(theme, palette) {
     let lightTheme = [
       text,
       background,
-      chroma(palette[2]).hex(),
+      chroma(palette[2])
+        .set("hsl.l", lightnessPrimary + 0.05)
+        .hex(),
       chroma(palette[3])
-        .set("hsl.l", lightnessPrimary + 0.2)
+        .set("hsl.l", lightnessPrimary + 0.25)
         .hex(),
       chroma(palette[4])
-        .set("hsl.l", lightnessPrimary + 0.1)
+        .set("hsl.l", lightnessPrimary + 0.15)
         .hex(),
     ];
     return lightTheme;
@@ -101,12 +103,14 @@ export function switchPalettetheme(theme, palette) {
       text,
       background,
       chroma(palette[2])
-        .set("hsl.l", lightnessPrimary + 0.1)
+        .set("hsl.l", lightnessPrimary + 0.15)
         .hex(),
       chroma(palette[3])
-        .set("hsl.l", lightnessPrimary + 0.3)
+        .set("hsl.l", lightnessPrimary + 0.35)
         .hex(),
-      chroma(palette[4]).set("hsl.l", lightnessPrimary).hex(),
+      chroma(palette[4])
+        .set("hsl.l", lightnessPrimary + 0.25)
+        .hex(),
     ];
     return darkTheme;
   }

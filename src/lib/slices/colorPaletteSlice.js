@@ -4,7 +4,6 @@ import generateRandomPalette, {
   getLastCombo,
   switchPalettetheme,
 } from "../utils";
-import { GetColorName } from "hex-color-to-color-name";
 
 let colorRoles = ["text", "background", "primary", "secondary", "accent"];
 
@@ -42,13 +41,17 @@ export const colorPalette = createSlice({
     upDateColorPalette: (state, action) => {
       let oldStateIsLocked = state.map((c) => c.isLocked);
 
-      let newPalette = switchPalettetheme(action.payload.theme, [
-        state[0].color,
-        state[1].color,
-        state[2].color,
-        state[3].color,
-        state[4].color,
-      ]);
+      let newPalette = switchPalettetheme(
+        action.payload.theme,
+        [
+          state[0].color,
+          state[1].color,
+          state[2].color,
+          state[3].color,
+          state[4].color,
+        ],
+        action.payload.baseColor
+      );
 
       return newPalette.map((colorhex, index) => ({
         color: colorhex,
