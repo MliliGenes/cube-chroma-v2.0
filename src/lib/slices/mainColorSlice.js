@@ -5,7 +5,7 @@ import { getInitCombo, getLastCombo } from "../utils";
 function generateGoodLookingColor() {
   // const goldenRatio = 0.618033988749895;
   const hue = Math.random() % 1;
-  const saturation = 0.3 + Math.random() * 0.5;
+  const saturation = 0.4 + Math.random() * 0.4;
   const minLightness = 0.3;
   const maxLightness = 0.5;
   const lightness =
