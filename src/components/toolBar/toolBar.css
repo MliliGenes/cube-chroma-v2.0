@@ -22,7 +22,7 @@ i {
   padding: 4px;
   border-radius: 10px;
   box-shadow: var(--shadow);
-  background-color: var(--background-transparent);
+  background-color: var(--background-transparent-1);
 }
 .colorScheme-container {
   position: relative;

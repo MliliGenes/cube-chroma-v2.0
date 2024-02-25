@@ -4,10 +4,10 @@ import { getInitCombo, getLastCombo } from "../utils";
 
 function generateGoodLookingColor() {
   const goldenRatio = 0.618033988749895;
-  const hue = Math.random() % 1;
-  const saturation = 0.1 + Math.random() * 0.9;
-  const minLightness = 0.1;
-  const maxLightness = 0.9;
+  const hue = (goldenRatio + Math.random()) % 1;
+  const saturation = 0.3 + Math.random() * 0.5;
+  const minLightness = 0.4;
+  const maxLightness = 0.6;
   const lightness =
     minLightness + Math.random() * (maxLightness - minLightness);
   return chroma.hsl(hue * 360, saturation, lightness).hex();

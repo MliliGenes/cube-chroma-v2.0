@@ -9,7 +9,7 @@ import {
   upDateColorPalette,
   upDateLockState,
 } from "../../lib/slices/colorPaletteSlice";
-import { decrement, increment } from "../../lib/slices/indexSlice";
+import { decrement, increment, upDateIndex } from "../../lib/slices/indexSlice";
 import {
   copyUrlToClipBoard,
   getLength,
@@ -54,7 +54,7 @@ export default function ToolBar() {
 
   useEffect(() => {
     saveTolocalStorage(color, colorScheme, theme, JSON.stringify(palette));
-  }, [dispatch, palette, color, theme, colorScheme]);
+  }, [dispatch, palette]);
 
   function generateHundler() {
     dispatch(generateMainColor());

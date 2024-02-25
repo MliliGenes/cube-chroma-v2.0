@@ -11,7 +11,7 @@ export default function Why() {
         <div className="card color1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="svg-snoweb svg-theme-dark"
+            className="svg-snoweb svg-theme-dark"
             x="0"
             y="0"
             width="100%"
@@ -25,21 +25,21 @@ export default function Why() {
             />
             <path
               d="M84.26,41.32c-.75,1.06-1.97,1.68-3.26,1.68h-20c-2.21,0-4-1.79-4-4V19c0-1.29,.62-2.51,1.68-3.26,1.05-.75,2.4-.94,3.62-.52,10.62,3.66,18.82,11.86,22.48,22.48,.42,1.22,.23,2.57-.52,3.62Z"
-              fill="var(--accent)"
+              fill="var(--accent-light)"
             />
           </svg>
           <h2>
             Saves Time! <i></i>
           </h2>
           <p>
-            No need to spend hours implementing different variations of colors.
-            Decide right away!
+            There's no need to waste hours trying out various color variations.
+            Make your decision quickly!
           </p>
         </div>
         <div className="card color2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="svg-snoweb svg-theme-dark"
+            className="svg-snoweb svg-theme-dark"
             x="0"
             y="0"
             viewBox="0 0 100 100"
@@ -51,25 +51,25 @@ export default function Why() {
             />
             <path
               d="M16.7,82.4c-2.485,0-4.5-2.015-4.5-4.5v-3.601h-3.6c-2.485,0-4.5-2.015-4.5-4.5s2.015-4.5,4.5-4.5h3.6v-3.699c0-2.485,2.015-4.5,4.5-4.5s4.5,2.015,4.5,4.5v3.699h3.7c2.485,0,4.5,2.015,4.5,4.5s-2.015,4.5-4.5,4.5h-3.7v3.601c0,2.485-2.015,4.5-4.5,4.5Z"
-              fill="var(--accent)"
+              fill="var(--accent-light)"
             />
             <path
               d="M12.6,25.3c-2.485,0-4.5-2.015-4.5-4.5v-3.7h-3.6c-2.485,0-4.5-2.015-4.5-4.5s2.015-4.5,4.5-4.5h3.6v-3.6c0-2.485,2.015-4.5,4.5-4.5s4.5,2.015,4.5,4.5v3.6h3.7c2.485,0,4.5,2.015,4.5,4.5s-2.015,4.5-4.5,4.5h-3.7v3.7c0,2.485-2.015,4.5-4.5,4.5Z"
-              fill="var(--accent)"
+              fill="var(--accent-light)"
             />
           </svg>
           <h2>
             It's Practical! <i></i>
           </h2>
           <p>
-            Color Palettes make it hard to pick. This tool distributes the
-            colors on a real website.
+            Color palettes can be tough to choose from. This tool distributes
+            colors directly on a real website to help.
           </p>
         </div>
         <div className="card color3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="svg-snoweb svg-theme-dark"
+            className="svg-snoweb svg-theme-dark"
             x="0"
             y="0"
             viewBox="0 0 100 100"
@@ -85,7 +85,7 @@ export default function Why() {
             />
             <path
               d="M59.589,15.022l-7.8-3.9c-1.127-.563-2.451-.563-3.578,0l-7.8,3.9c-1.976,.988-2.776,3.391-1.789,5.367,.987,1.976,3.392,2.776,5.367,1.789l6.011-3.005,6.011,3.005c.574,.287,1.185,.423,1.786,.423,1.467,0,2.88-.811,3.581-2.212,.987-1.976,.187-4.379-1.789-5.367Z"
-              fill="var(--accent)"
+              fill="var(--accent-light)"
             />
             <path
               d="M30.087,24.729c-.979-1.981-3.379-2.793-5.357-1.816l-7.9,3.9c-.037,.018-.066,.044-.101,.063-.079,.042-.154,.087-.231,.134-.083,.051-.163,.104-.241,.161-.064,.047-.128,.092-.189,.142-.065,.053-.125,.11-.186,.167-.069,.064-.135,.13-.2,.199-.058,.063-.117,.124-.171,.19-.049,.06-.094,.122-.14,.185-.056,.078-.109,.157-.16,.238-.049,.078-.095,.156-.138,.237-.018,.035-.044,.063-.061,.098-.016,.033-.023,.069-.038,.102-.039,.084-.072,.169-.105,.255-.034,.089-.063,.177-.091,.268-.024,.079-.048,.158-.066,.238-.018,.077-.031,.155-.045,.234-.016,.095-.028,.19-.038,.286-.009,.094-.017,.186-.019,.28,0,.037-.011,.071-.011,.108v9.8c0,2.209,1.791,4,4,4s4-1.791,4-4v-3.365l2.129,1.051c.569,.281,1.173,.414,1.768,.414,1.474,0,2.893-.819,3.59-2.23,.978-1.981,.165-4.379-1.816-5.357l-.634-.313,.634-.313c1.981-.978,2.794-3.376,1.816-5.357Z"
@@ -97,19 +97,19 @@ export default function Why() {
             />
             <path
               d="M28.271,69.913l-5.671-2.8v-7.313c0-2.209-1.791-4-4-4s-4,1.791-4,4v9.8c0,1.522,.864,2.913,2.229,3.587l7.9,3.9c.569,.281,1.173,.414,1.768,.414,1.474,0,2.893-.818,3.589-2.23,.978-1.98,.165-4.379-1.815-5.357Z"
-              fill="var(--accent)"
+              fill="var(--accent-light)"
             />
             <path
               d="M81.4,55.8c-2.209,0-4,1.791-4,4v7.313l-5.671,2.8c-1.981,.979-2.794,3.377-1.816,5.357,.697,1.412,2.115,2.23,3.59,2.23,.595,0,1.198-.133,1.768-.414l7.9-3.9c1.365-.674,2.229-2.064,2.229-3.587v-9.8c0-2.209-1.791-4-4-4Z"
-              fill="var(--accent)"
+              fill="var(--accent-light)"
             />
           </svg>
           <h2>
             It's Simple! <i></i>
           </h2>
           <p>
-            Push a few buttons, and there you have it! Your very own branding
-            colors, ready to export.
+            Just push a few buttons, and voila! Your unique branding colors are
+            ready to export.
           </p>
         </div>
       </div>

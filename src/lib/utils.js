@@ -1,6 +1,6 @@
 import chroma from "chroma-js";
 import clipboardCopy from "clipboard-copy";
-import { json } from "react-router-dom";
+import { get } from "mongoose";
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
@@ -15,9 +15,9 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
       break;
     case "analogous":
       colorPalette = [
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") - 30) % 360).hex(),
         baseColor.hex(),
         baseColor.set("hsl.h", (baseColor.get("hsl.h") + 30) % 360).hex(),
+        baseColor.set("hsl.h", (baseColor.get("hsl.h") - 30) % 360).hex(),
       ];
       break;
     case "triadic":
@@ -71,6 +71,8 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 }
 
 export function switchPalettetheme(theme, palette) {
+  let lightnessPrimary = chroma(palette[2]).get("hsl.l");
+
   if (theme == "light") {
     let textHex = chroma(palette[0]).get("hsl.h");
     let text = chroma.hsl(textHex, 0.6, 0.05).hex();
@@ -80,9 +82,13 @@ export function switchPalettetheme(theme, palette) {
     let lightTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.5).hex(),
-      chroma(palette[3]).set("hsl.s", 0.6).set("hsl.l", 0.8).hex(),
-      chroma(palette[4]).set("hsl.s", 0.7).set("hsl.l", 0.6).hex(),
+      chroma(palette[2]).hex(),
+      chroma(palette[3])
+        .set("hsl.l", lightnessPrimary + 0.2)
+        .hex(),
+      chroma(palette[4])
+        .set("hsl.l", lightnessPrimary + 0.1)
+        .hex(),
     ];
     return lightTheme;
   } else {
@@ -90,12 +96,17 @@ export function switchPalettetheme(theme, palette) {
     let text = chroma.hsl(textHex, 0.6, 0.95).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
     let background = chroma.hsl(backgroundHex, 0.15, 0.05).hex();
+
     let darkTheme = [
       text,
       background,
-      chroma(palette[2]).set("hsl.s", 0.8).set("hsl.l", 0.6).hex(),
-      chroma(palette[3]).set("hsl.s", 0.6).set("hsl.l", 0.7).hex(),
-      chroma(palette[4]).set("hsl.s", 0.7).set("hsl.l", 0.5).hex(),
+      chroma(palette[2])
+        .set("hsl.l", lightnessPrimary + 0.1)
+        .hex(),
+      chroma(palette[3])
+        .set("hsl.l", lightnessPrimary + 0.3)
+        .hex(),
+      chroma(palette[4]).set("hsl.l", lightnessPrimary).hex(),
     ];
     return darkTheme;
   }

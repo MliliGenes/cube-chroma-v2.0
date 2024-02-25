@@ -1,0 +1,81 @@
+.stats--container {
+  width: 100%;
+  max-width: 1300px;
+  min-height: 100vh;
+}
+.stats--grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 300px 200px;
+  gap: 10px;
+}
+.stats--grid div {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-transform: capitalize;
+  gap: 5px;
+}
+.stats--grid div h2 {
+  font-family: var(--large);
+}
+.stats--grid div p {
+  font-family: var(--small);
+  font-size: 20px;
+}
+.stats--grid .primary--item {
+  font-size: 50px;
+  grid-column: span 4;
+  background-color: var(--primary);
+  color: var(--text-btn-primary);
+}
+
+.stats--grid .secondary--item {
+  font-size: 25px;
+  background-color: var(--secondary);
+  color: var(--text-btn-secondary);
+}
+
+.stats--grid .background--item {
+  grid-column: span 3;
+  background-color: var(--text);
+
+  color: var(--background);
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: 20px;
+  gap: 40px;
+  overflow: hidden;
+}
+.stats--grid .background--item .mini--container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+.stats--grid .background--item .mini--container h2 {
+  font-size: 35px;
+}
+.stats--grid .background--item .mini--container a {
+  margin-top: 8px;
+  padding: 5px 10px;
+  border: 1px solid var(--background);
+  border-radius: 6px;
+  color: var(--background);
+  font-family: var(--small);
+}
+.stats--grid .accent--item {
+  font-size: 50px;
+  grid-column: span 2;
+  background-color: var(--accent);
+  color: var(--text-btn-accent);
+}
+.stats--grid .background--item i {
+  font-size: 150px;
+}
+.stats--grid .accent--item i {
+  font-size: 150px;
+  color: var(--accent-light-2);
+}

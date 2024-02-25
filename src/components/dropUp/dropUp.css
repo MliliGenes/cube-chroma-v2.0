@@ -3,7 +3,7 @@
   left: 50%;
   translate: -50%;
   bottom: calc(100% + 8px);
-  width: 260px;
+  width: 240px;
   z-index: 1000;
 }
 
@@ -11,7 +11,7 @@
   backdrop-filter: blur(2px);
   padding: 4px;
   border-radius: 10px;
-  background-color: var(--background-transparent);
+  background-color: var(--background-transparent-1);
 }
 
 .dropup--wrapper ul {

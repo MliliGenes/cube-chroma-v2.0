@@ -30,9 +30,7 @@ export const colorPalette = createSlice({
 
         let newColor = {
           color: colorhex,
-          name: GetColorName(colorhex.replace("#", "")),
           isLocked: false,
-          isPickerActive: newState[index].isPickerActive,
           role: colorRoles[index],
         };
 
@@ -54,9 +52,7 @@ export const colorPalette = createSlice({
 
       return newPalette.map((colorhex, index) => ({
         color: colorhex,
-        name: GetColorName(colorhex.replace("#", "")),
         isLocked: oldStateIsLocked[index],
-        isPickerActive: false,
         role: colorRoles[index],
       }));
     },
@@ -67,9 +63,7 @@ export const colorPalette = createSlice({
         if (color.role == roleToUpdDate) {
           let newColor = {
             color: color.color,
-            name: GetColorName(color.color.replace("#", "")),
             isLocked: !color.isLocked,
-            isPickerActive: color.isPickerActive,
             role: color.role,
           };
           return newColor;

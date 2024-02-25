@@ -6,7 +6,7 @@ export const index = createSlice({
   initialState: getLength() - 1 || 0,
   reducers: {
     upDateIndex: (state, action) => {
-      return action.payload;
+      return getLength() - 1;
     },
     increment: (state) => {
       return state + 1;
