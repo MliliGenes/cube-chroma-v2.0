@@ -1,6 +1,5 @@
 import chroma from "chroma-js";
 import clipboardCopy from "clipboard-copy";
-import { get } from "mongoose";
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
@@ -84,10 +83,10 @@ export function switchPalettetheme(theme, palette, baseColor) {
       background,
       chroma(palette[2]).set("hsl.l", lightnessPrimary).hex(),
       chroma(palette[3])
-        .set("hsl.l", lightnessPrimary + 0.25)
+        .set("hsl.l", lightnessPrimary + 0.175)
         .hex(),
       chroma(palette[4])
-        .set("hsl.l", lightnessPrimary + 0.1)
+        .set("hsl.l", lightnessPrimary + 0.08)
         .hex(),
     ];
     return lightTheme;
@@ -101,14 +100,12 @@ export function switchPalettetheme(theme, palette, baseColor) {
       text,
       background,
       chroma(palette[2])
-        .set("hsl.l", lightnessPrimary + 0.1)
+        .set("hsl.l", lightnessPrimary + 0.08)
         .hex(),
       chroma(palette[3])
-        .set("hsl.l", lightnessPrimary + 0.35)
-        .hex(),
-      chroma(palette[4])
         .set("hsl.l", lightnessPrimary + 0.2)
         .hex(),
+      chroma(palette[4]).set("hsl.l", lightnessPrimary).hex(),
     ];
     return darkTheme;
   }

@@ -3,9 +3,8 @@ import chroma from "chroma-js";
 import { getInitCombo, getLastCombo } from "../utils";
 
 function generateGoodLookingColor() {
-  // const goldenRatio = 0.618033988749895;
   const hue = Math.random();
-  const saturation = 0.5 + Math.random() * 0.4;
+  const saturation = 0.75 + Math.random() * 0.25;
   const minLightness = 0.5;
   const maxLightness = 0.601;
   const lightness =

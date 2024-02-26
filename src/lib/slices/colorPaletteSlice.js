@@ -41,7 +41,6 @@ export const colorPalette = createSlice({
     upDateColorPaletteFromLocalStorage: (state, action) => {
       return action.payload;
     },
-
     upDateColorPalette: (state, action) => {
       let oldStateIsLocked = state.map((c) => c.isLocked);
 

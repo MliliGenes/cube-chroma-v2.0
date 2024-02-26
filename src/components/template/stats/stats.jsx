@@ -18,7 +18,9 @@ export default function Stats() {
           <i className="fa-brands fa-github"></i>
           <div className="mini--container">
             <h2>the project is open source </h2>
-            <a href="">Cube Chroma v2.0</a>
+            <a href="https://github.com/MliliGenes/cube-chroma-v2.0">
+              Cube Chroma v2.0
+            </a>
           </div>
         </div>
         <div className="accent--item">
