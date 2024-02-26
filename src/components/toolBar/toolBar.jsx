@@ -109,7 +109,6 @@ export default function ToolBar() {
     dispatch(upDateIndex());
     setIsHistoryActive(false);
     dispatch(generateMainColor());
-    console.log(isHistoryActive);
   }
 
   let colorPalette = palette.map((p) => (
