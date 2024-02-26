@@ -1,12 +1,12 @@
 .stats--container {
   width: 100%;
   max-width: 1300px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 .stats--grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 300px 200px;
+  grid-template-rows: 280px 220px;
   gap: 10px;
 }
 .stats--grid div {
@@ -26,14 +26,14 @@
   font-size: 20px;
 }
 .stats--grid .primary--item {
-  font-size: 50px;
-  grid-column: span 4;
+  font-size: 30px;
+  grid-column: span 3;
   background-color: var(--primary);
   color: var(--text-btn-primary);
 }
 
 .stats--grid .secondary--item {
-  font-size: 25px;
+  font-size: 20px;
   background-color: var(--secondary);
   color: var(--text-btn-secondary);
 }
@@ -41,7 +41,6 @@
 .stats--grid .background--item {
   grid-column: span 3;
   background-color: var(--text);
-
   color: var(--background);
   display: flex;
   flex-direction: row;
@@ -50,13 +49,19 @@
   gap: 40px;
   overflow: hidden;
 }
+
+.stats--grid .background-transparent--item {
+  background-color: var(--secondary);
+  grid-row: span 2;
+}
+
 .stats--grid .background--item .mini--container {
   display: flex;
   flex-direction: column;
   flex: 1 0;
 }
 .stats--grid .background--item .mini--container h2 {
-  font-size: 35px;
+  font-size: 30px;
 }
 .stats--grid .background--item .mini--container a {
   margin-top: 8px;
@@ -68,7 +73,6 @@
 }
 .stats--grid .accent--item {
   font-size: 50px;
-  grid-column: span 2;
   background-color: var(--accent);
   color: var(--text-btn-accent);
 }

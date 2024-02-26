@@ -38,6 +38,10 @@ export const colorPalette = createSlice({
         return newState[index];
       });
     },
+    upDateColorPaletteFromLocalStorage: (state, action) => {
+      return action.payload;
+    },
+
     upDateColorPalette: (state, action) => {
       let oldStateIsLocked = state.map((c) => c.isLocked);
 
@@ -80,6 +84,10 @@ export const colorPalette = createSlice({
   },
 });
 
-export const { generateColorPalette, upDateColorPalette, upDateLockState } =
-  colorPalette.actions;
+export const {
+  generateColorPalette,
+  upDateColorPalette,
+  upDateLockState,
+  upDateColorPaletteFromLocalStorage,
+} = colorPalette.actions;
 export default colorPalette.reducer;

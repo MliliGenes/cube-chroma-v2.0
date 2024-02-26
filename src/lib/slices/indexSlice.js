@@ -12,7 +12,7 @@ export const index = createSlice({
       return state + 1;
     },
     decrement: (state) => {
-      return state - 1;
+      return state - 1 >= 0 ? state - 1 : 0;
     },
   },
 });

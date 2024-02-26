@@ -9,6 +9,7 @@ import Template from "./components/template/template";
 import chroma from "chroma-js";
 import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
 import { initCombo } from "./lib/utils";
+import { upDateIndex } from "./lib/slices/indexSlice";
 
 function App() {
   let dispatch = useDispatch();
@@ -19,37 +20,33 @@ function App() {
   let palette = useSelector((state) => state.colorPalette);
   let theme = useSelector((state) => state.theme);
 
-  // useEffect(() => {
-  //   initCombo("#ff9e33", "analogous", "light");
-  // }, []);
-
   useEffect(() => {
-    function getColorOrDefault(palette, index, defaultColor) {
-      return palette[index]?.color || defaultColor;
+    function getColorOrDefault(palette, index) {
+      return palette[index]?.color;
     }
 
     function getChromaColor(color) {
-      let darkShades = chroma.scale([color, "#000"]).colors(7);
-      let lightShades = chroma.scale([color, "#fff"]).colors(7);
+      let darkShades = chroma.scale([color, "#000"]).colors(5);
+      let lightShades = chroma.scale([color, "#fff"]).colors(5);
       return {
         color,
-        dark1: darkShades[2],
-        dark2: darkShades[3],
-        dark3: darkShades[4],
-        light1: lightShades[2],
-        light2: lightShades[3],
-        light3: lightShades[4],
+        dark1: darkShades[1],
+        dark2: darkShades[2],
+        dark3: darkShades[3],
+        light1: lightShades[1],
+        light2: lightShades[2],
+        light3: lightShades[3],
         transparent1: chroma(color).alpha(0.4),
         transparent2: chroma(color).alpha(0.3),
         transparent3: chroma(color).alpha(0.2),
       };
     }
 
-    const text = getColorOrDefault(palette, 0, "#1b1414");
-    const background = getColorOrDefault(palette, 1, "#ffffee");
-    const primary = getChromaColor(getColorOrDefault(palette, 2, "#ff9e33"));
-    const secondary = getChromaColor(getColorOrDefault(palette, 3, "#d7ffb3"));
-    const accent = getChromaColor(getColorOrDefault(palette, 4, "#fcff66"));
+    const text = getColorOrDefault(palette, 0);
+    const background = getColorOrDefault(palette, 1);
+    const primary = getChromaColor(getColorOrDefault(palette, 2));
+    const secondary = getChromaColor(getColorOrDefault(palette, 3));
+    const accent = getChromaColor(getColorOrDefault(palette, 4));
 
     const textBtn1 =
       chroma.contrast(text, primary.color) > 4.5 ? text : background;
@@ -58,8 +55,8 @@ function App() {
     const textBtn3 =
       chroma.contrast(text, accent.color) > 4.5 ? text : background;
 
-    const lightBgColor = chroma(text).alpha(0.05).hex();
-    const lightBgColor1 = chroma(text).alpha(0.4).hex();
+    const lightBgColor = chroma(text).alpha(0.1).hex();
+    const lightBgColor1 = chroma(text).alpha(0.2).hex();
 
     const textLight = chroma(text).brighten();
 

@@ -1,24 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./toolBar.css";
 import { useDispatch, useSelector } from "react-redux";
-import { generateMainColor } from "../../lib/slices/mainColorSlice";
+import {
+  generateMainColor,
+  setMainColor,
+} from "../../lib/slices/mainColorSlice";
 import DropUp from "../dropUp/dropUp";
 import chroma from "chroma-js";
-import { toggleTheme } from "../../lib/slices/themeSlice";
+import { setTheme, toggleTheme } from "../../lib/slices/themeSlice";
 import {
   upDateColorPalette,
+  upDateColorPaletteFromLocalStorage,
   upDateLockState,
 } from "../../lib/slices/colorPaletteSlice";
 import { decrement, increment, upDateIndex } from "../../lib/slices/indexSlice";
 import {
   copyUrlToClipBoard,
+  getComboByIndex,
   getLength,
   saveTolocalStorage,
 } from "../../lib/utils";
 import { HexColorInput, HexColorPicker } from "react-colorful";
+import { upDateColorScheme } from "../../lib/slices/colorSchemaSlice";
 
 export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
+  const [isHistoryActive, setIsHistoryActive] = useState(false);
+
   const dropUpRef = useRef(null);
   const btnRef = useRef(null);
 
@@ -58,11 +66,50 @@ export default function ToolBar() {
   }, [theme]);
 
   useEffect(() => {
-    saveTolocalStorage(color, colorScheme, theme, JSON.stringify(palette));
-  }, [dispatch, palette]);
+    if (!isHistoryActive) {
+      saveTolocalStorage(color, colorScheme, theme, JSON.stringify(palette));
+      dispatch(upDateIndex());
+    }
+  }, [palette]);
+
+  useEffect(() => {
+    if (index < getLength() - 1) {
+      setIsHistoryActive(true);
+    } else {
+      setIsHistoryActive(false);
+    }
+  }, [index]);
+
+  useEffect(() => {
+    if (isHistoryActive) {
+      let historyState = getComboByIndex(index);
+      dispatch(
+        upDateColorPaletteFromLocalStorage(JSON.parse(historyState.palette))
+      );
+      dispatch(setMainColor(historyState.color));
+      dispatch(upDateColorScheme(historyState.scheme));
+      dispatch(setTheme(historyState.theme));
+    }
+  }, [index, isHistoryActive]);
 
   function generateHundler() {
+    if (isHistoryActive) {
+      let newLocalStorage = JSON.parse(localStorage.getItem("cubeCombo")).slice(
+        0,
+        index
+      );
+      // newLocalStorage.push({
+      //   color: color,
+      //   scheme: colorScheme,
+      //   theme: theme,
+      //   palette: JSON.stringify(palette),
+      // });
+      localStorage.setItem("cubeCombo", JSON.stringify(newLocalStorage));
+    }
+    dispatch(upDateIndex());
+    setIsHistoryActive(false);
     dispatch(generateMainColor());
+    console.log(isHistoryActive);
   }
 
   let colorPalette = palette.map((p) => (

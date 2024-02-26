@@ -13,6 +13,7 @@ export default function Stats() {
           <h2>1 User</h2>
           <p>that me!</p>
         </div>
+        <div className="background-transparent--item"></div>
         <div className="background--item">
           <i className="fa-brands fa-github"></i>
           <div className="mini--container">
@@ -21,7 +22,7 @@ export default function Stats() {
           </div>
         </div>
         <div className="accent--item">
-          <i className="fa-brands fa-product-hunt"></i>
+          {/* <i className="fa-brands fa-product-hunt"></i> */}
         </div>
       </div>
     </div>
