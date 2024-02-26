@@ -1,6 +1,5 @@
 import chroma from "chroma-js";
 import clipboardCopy from "clipboard-copy";
-import { get } from "mongoose";
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
