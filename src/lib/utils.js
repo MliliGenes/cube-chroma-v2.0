@@ -96,7 +96,7 @@ export function switchPalettetheme(theme, palette, baseColor) {
     let textHex = chroma(palette[0]).get("hsl.h");
     let text = chroma.hsl(textHex, 0.4, 0.025).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.25, 0.925).hex();
+    let background = chroma.hsl(backgroundHex, 0.25, 0.95).hex();
 
     let lightTheme = [
       text,

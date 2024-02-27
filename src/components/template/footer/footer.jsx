@@ -183,14 +183,16 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="footer--bottom-section">
+      </div>
+      <div className="footer--bottom-section">
+        <div>
           <p>
-            Made with ❤ by <a href="">@MliliGenes</a>
+            Made with ❤ by{" "}
+            <a href="https://twitter.com/saadbutcool" target="blank">
+              Saadbutcool
+            </a>
           </p>
-          <p>
-            Skip the cookies 🍪, savor the colors 🎨! No munching, just painting
-            and brunching! 🎉
-          </p>
+          <p>Cookies out, colors in!</p>
           {/* <span>No right resirved everything is open source</span> */}
         </div>
       </div>
