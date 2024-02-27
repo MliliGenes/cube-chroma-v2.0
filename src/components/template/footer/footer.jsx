@@ -176,15 +176,22 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://www.linkedin.com/in/saad-elmlili-97616b273/"
-                  target="blank"
-                >
-                  <i className="fa-brands fa-linkedin"></i> LinkedIn
+                <a href="https://mui.com/" target="blank">
+                  Material UI
                 </a>
               </li>
             </ul>
           </div>
+        </div>
+        <div className="footer--bottom-section">
+          <p>
+            Made with ❤ by <a href="">@MliliGenes</a>
+          </p>
+          <p>
+            Skip the cookies 🍪, savor the colors 🎨! No munching, just painting
+            and brunching! 🎉
+          </p>
+          {/* <span>No right resirved everything is open source</span> */}
         </div>
       </div>
     </div>

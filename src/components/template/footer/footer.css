@@ -39,7 +39,7 @@
   gap: 10px;
 }
 .footer--buyMeCoffee-link svg {
-  width: 240px;
+  width: 160px;
 }
 .footer--links-conatiner {
   width: 100%;
@@ -66,18 +66,43 @@
 }
 .footer--links-conatiner div ul li a {
   color: var(--text);
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   text-decoration: none;
   font-family: var(--small);
   font-weight: 300;
   align-items: center;
 }
+
 .footer--links-conatiner div ul li a:hover {
   opacity: 0.6;
   transition: 0.2s;
 }
-.footer--links-conatiner div ul li i {
-  font-size: 24px;
+
+.footer--bottom-section {
+  width: 100%;
+  border-top: 1px solid var(--background-transparent-1);
+  padding-top: 40px;
+}
+.footer--bottom-section p {
+  color: var(--text);
+  font-size: 16px;
+  font-family: var(--small);
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+.footer--bottom-section p a {
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+}
+.footer--bottom-section p a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--text);
+  left: 0;
+  bottom: -1px;
 }
