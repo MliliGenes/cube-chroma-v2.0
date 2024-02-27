@@ -4,6 +4,7 @@
   /* min-height: 100vh; */
   display: flex;
   align-items: start;
+  background: #f00;
 }
 .left,
 .right {

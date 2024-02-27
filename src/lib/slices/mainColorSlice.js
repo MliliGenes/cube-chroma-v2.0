@@ -4,9 +4,8 @@ import { getInitCombo, getLastCombo } from "../utils";
 
 function generateGoodLookingColor() {
   const hue = Math.floor(Math.random() * 361);
-  const saturation = Math.floor(6 + Math.random() * 3) / 10;
+  const saturation = Math.floor(60 + Math.random() * 15) / 100;
   const lightness = Math.floor(5 + Math.random() * 2) / 10;
-  console.log(hue, saturation, lightness);
   return chroma.hsl(hue, saturation, lightness).hex();
 }
 
