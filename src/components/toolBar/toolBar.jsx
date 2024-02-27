@@ -14,6 +14,7 @@ import {
 } from "../../lib/slices/colorPaletteSlice";
 import { decrement, increment, upDateIndex } from "../../lib/slices/indexSlice";
 import {
+  SCHEMES,
   copyUrlToClipBoard,
   getComboByIndex,
   getLength,
@@ -25,7 +26,8 @@ import { Tooltip, Typography, debounce } from "@mui/material";
 
 export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
-  const [isHistoryActive, setIsHistoryActive] = useState(false);
+  let [isHistoryActive, setIsHistoryActive] = useState(false);
+  let [schemeIndex, setSchemeIndex] = useState(0);
 
   const dropUpRef = useRef(null);
   const btnRef = useRef(null);
@@ -73,12 +75,21 @@ export default function ToolBar() {
   }, [color, colorScheme]);
 
   useEffect(() => {
+    setSchemeIndex(SCHEMES.indexOf(colorScheme));
+  }, [colorScheme]);
+
+  useEffect(() => {
+    dispatch(upDateColorScheme(SCHEMES[schemeIndex]));
+  }, [schemeIndex]);
+
+  useEffect(() => {
     if (index < getLength() - 1) {
       setIsHistoryActive(true);
     } else {
       setIsHistoryActive(false);
     }
   }, [index]);
+
   useEffect(() => {
     if (isHistoryActive) {
       let historyState = getComboByIndex(index);
@@ -105,6 +116,12 @@ export default function ToolBar() {
       } else if (event.code === "ArrowRight") {
         redo();
         event.preventDefault();
+      } else if (event.code === "ArrowUp") {
+        setSchemeIndex((prev) => (prev - 1 < 0 ? 5 : prev - 1));
+        event.preventDefault();
+      } else if (event.code === "ArrowDown") {
+        setSchemeIndex((prev) => (prev + 1 < 6 ? prev + 1 : 0));
+        event.preventDefault();
       } else if (event.ctrlKey && event.key === "e") {
         exportHandler();
         event.preventDefault();
@@ -114,17 +131,22 @@ export default function ToolBar() {
       }
     }, 100);
 
-    function stopScrolling(e) {
-      if (e.code === "Space" || (e.ctrlKey && e.key === "s")) {
+    function handlingDefaults(e) {
+      if (
+        e.code === "Space" ||
+        (e.ctrlKey && e.key === "s") ||
+        e.code === "ArrowUp" ||
+        e.code === "ArrowDown"
+      ) {
         e.preventDefault();
       }
     }
 
-    document.addEventListener("keydown", stopScrolling);
+    document.addEventListener("keydown", handlingDefaults);
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", stopScrolling);
+      document.removeEventListener("keydown", handlingDefaults);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [dispatch]);

@@ -1,7 +1,7 @@
 import chroma from "chroma-js";
 import clipboardCopy from "clipboard-copy";
 
-let defaultcolor = "#6453dc",
+export let defaultcolor = "#6453dc",
   defaultscheme = "analogous",
   defaulttheme = "light",
   defaultpalette = JSON.stringify([
@@ -11,6 +11,15 @@ let defaultcolor = "#6453dc",
     { color: "#debdf2", isLocked: false, role: "secondary" },
     { color: "#93b3e9", isLocked: false, role: "accent" },
   ]);
+
+export const SCHEMES = [
+  "analogous",
+  "complementary",
+  "monochromatic",
+  "split Complementary",
+  "square",
+  "triadic",
+];
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);

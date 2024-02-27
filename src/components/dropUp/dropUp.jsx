@@ -2,9 +2,8 @@ import React from "react";
 import "./dropUp.css";
 import { useDispatch, useSelector } from "react-redux";
 import { upDateColorScheme } from "../../lib/slices/colorSchemaSlice";
-import chroma from "chroma-js";
 
-const DropUp = React.forwardRef(({ bgColor }, ref) => {
+const DropUp = React.forwardRef((props, ref) => {
   let dispatch = useDispatch();
   let colorScheme = useSelector((state) => state.colorScheme);
 
