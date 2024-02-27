@@ -1,0 +1,83 @@
+.footer--container {
+  width: 100%;
+  max-width: 1300px;
+}
+.footer--wrapper {
+  width: 100%;
+  background-color: var(--background-transparent);
+  border-radius: 6px;
+  padding: 60px 70px;
+  display: flex;
+  align-items: start;
+  gap: 40px;
+  flex-direction: column;
+}
+.footer--wrapper > a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  color: var(--text);
+}
+.footer--wrapper .footer--logo {
+  width: 40px;
+}
+
+.footer--wrapper h1 {
+  font-family: var(--large);
+  font-size: 18px;
+}
+.footer--buyMeCoffee-link {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--large);
+  font-size: 18px;
+  flex: 1 0;
+  text-decoration: none;
+  color: var(--text);
+  gap: 10px;
+}
+.footer--buyMeCoffee-link svg {
+  width: 240px;
+}
+.footer--links-conatiner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.footer--links-conatiner div {
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+}
+.footer--links-conatiner div > h2 {
+  font-family: var(--large);
+  margin-bottom: 40px;
+  font-size: 30px;
+}
+
+.footer--links-conatiner div ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer--links-conatiner div ul li a {
+  color: var(--text);
+  font-size: 20px;
+  display: flex;
+  gap: 15px;
+  text-decoration: none;
+  font-family: var(--small);
+  font-weight: 300;
+  align-items: center;
+}
+.footer--links-conatiner div ul li a:hover {
+  opacity: 0.6;
+  transition: 0.2s;
+}
+.footer--links-conatiner div ul li i {
+  font-size: 24px;
+}

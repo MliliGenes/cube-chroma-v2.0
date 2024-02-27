@@ -3,6 +3,7 @@ import Home from "./home/home";
 import "./template.css";
 import Why from "./why/why";
 import Stats from "./stats/stats";
+import Footer from "./footer/footer";
 
 export default function Template() {
   return (
@@ -10,6 +11,7 @@ export default function Template() {
       <Home />
       <Why />
       <Stats />
+      <Footer />
     </div>
   );
 }
