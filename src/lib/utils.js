@@ -94,7 +94,7 @@ export function switchPalettetheme(theme, palette, baseColor) {
 
   if (theme == "light") {
     let textHex = chroma(palette[0]).get("hsl.h");
-    let text = chroma.hsl(textHex, 0.4, 0.025).hex();
+    let text = chroma.hsl(textHex, 0.4, 0.05).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
     let background = chroma.hsl(backgroundHex, 0.25, 0.95).hex();
 
@@ -114,7 +114,7 @@ export function switchPalettetheme(theme, palette, baseColor) {
     let textHex = chroma(palette[0]).get("hsl.h");
     let text = chroma.hsl(textHex, 0.6, 0.95).hex();
     let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.05, 0.05).hex();
+    let background = chroma.hsl(backgroundHex, 0.1, 0.06).hex();
 
     let darkTheme = [
       text,

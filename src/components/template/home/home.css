@@ -161,7 +161,7 @@
     align-items: center;
   }
   .artwork {
-    width: clamp(300px, 100%, 100vw);
+    width: clamp(300px, 100%, 50vw);
   }
   .left .btns {
     display: flex;
@@ -169,5 +169,9 @@
   }
   .left .btns .btn {
     font-size: 18px;
+  }
+  .left,
+  .right {
+    width: 100%;
   }
 }

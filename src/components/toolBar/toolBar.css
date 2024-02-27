@@ -137,6 +137,10 @@ i.flip-h {
 }
 
 @media screen and (max-width: 1350px) {
+  .toolBar--container {
+    padding: 0 6vw;
+    padding-bottom: 14px;
+  }
   .toolbar--wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
