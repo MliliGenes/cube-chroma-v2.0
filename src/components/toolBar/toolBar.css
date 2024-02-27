@@ -138,7 +138,8 @@ i.flip-h {
 
 @media screen and (max-width: 1350px) {
   .toolbar--wrapper {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
   .toolbar--wrapper .btn {
     width: 100%;
@@ -151,5 +152,14 @@ i.flip-h {
 
   .toolBar--container {
     bottom: 0px;
+  }
+  .palette--item {
+    grid-column: span 2;
+  }
+  .colorScheme-container {
+    grid-column: span 2;
+  }
+  .btn.startBtn {
+    grid-column: span 2;
   }
 }

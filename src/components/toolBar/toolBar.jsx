@@ -366,14 +366,26 @@ export default function ToolBar() {
             </Tooltip>
           </>
         )}
-        <div
-          className="btn startBtn"
-          onClick={() => setIsToolsActive((state) => !state)}
+        <Tooltip
+          placement="top"
+          title={
+            <React.Fragment>
+              <Typography variant="caption">Open and close toolbar</Typography>
+            </React.Fragment>
+          }
+          arrow
         >
-          <i
-            className={isToolsActive ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
-          ></i>
-        </div>
+          <div
+            className="btn startBtn"
+            onClick={() => setIsToolsActive((state) => !state)}
+          >
+            <i
+              className={
+                isToolsActive ? "fa-solid fa-xmark" : "fa-solid fa-bars"
+              }
+            ></i>
+          </div>
+        </Tooltip>
       </div>
     </div>
   );
