@@ -7,8 +7,10 @@ import { store } from "./lib/store/store.js";
 import { Analytics } from "@vercel/analytics/react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <App />
+  <>
+    <Provider store={store}>
+      <App />
+    </Provider>
     <Analytics />
-  </Provider>
+  </>
 );
