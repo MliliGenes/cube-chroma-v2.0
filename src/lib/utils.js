@@ -94,10 +94,10 @@ export function switchPalettetheme(theme, palette, baseColor) {
       background,
       chroma(palette[2]).set("hsl.l", lightnessPrimary).hex(),
       chroma(palette[3])
-        .set("hsl.l", lightnessPrimary + 0.22)
+        .set("hsl.l", lightnessPrimary + 0.2)
         .hex(),
       chroma(palette[4])
-        .set("hsl.l", lightnessPrimary + 0.12)
+        .set("hsl.l", lightnessPrimary + 0.08)
         .hex(),
     ];
     return lightTheme;
@@ -117,7 +117,7 @@ export function switchPalettetheme(theme, palette, baseColor) {
         .set("hsl.l", lightnessPrimary + 0.22)
         .hex(),
       chroma(palette[4])
-        .set("hsl.l", lightnessPrimary + 0.08)
+        .set("hsl.l", lightnessPrimary + 0.12)
         .hex(),
     ];
     return darkTheme;
@@ -220,7 +220,6 @@ export function getComboByIndex(index) {
   return getLastCombo();
 }
 
-export function copyUrlToClipBoard() {
-  let url = new URL(window.location.href);
-  clipboardCopy(url);
+export function copyUrlToClipBoard(value) {
+  clipboardCopy(value);
 }

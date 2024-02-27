@@ -43,23 +43,6 @@
 .header--logo rect {
   transition: 0.1s;
 }
-/* .header--container a {
-  font-family: var(--medium);
-  font-size: 18px;
-  color: rgb(80, 80, 80);
-  border-radius: 6px;
-  height: 60px;
-  width: 180px;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s ease-in-out;
-}
-
-.header--container a:active {
-  scale: 0.9;
-} */
 
 .cls-1 {
   fill: var(--primary);

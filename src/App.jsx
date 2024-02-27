@@ -105,6 +105,14 @@ function App() {
   }, [dispatch, palette]);
 
   useEffect(() => {
+    if (CSSVariables) {
+      Object.entries(CSSVariables).forEach(([key, value]) => {
+        document.documentElement.style.setProperty(key, value);
+      });
+    }
+  }, [CSSVariables]);
+
+  useEffect(() => {
     initCombo(color, scheme, theme, JSON.stringify(palette));
   }, [palette]);
 
@@ -115,7 +123,7 @@ function App() {
   }, [dispatch, color, scheme, theme]);
 
   return (
-    <div className="app" style={CSSVariables}>
+    <div className="app">
       {loading ? (
         <Loader />
       ) : (

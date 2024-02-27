@@ -9,7 +9,7 @@ export const index = createSlice({
       return getLength() - 1;
     },
     increment: (state) => {
-      return state + 1;
+      return state + 1 < getLength() - 1 ? state + 1 : getLength() - 1;
     },
     decrement: (state) => {
       return state - 1 >= 0 ? state - 1 : 0;

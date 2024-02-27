@@ -1,12 +1,11 @@
-:root {
-  --bg: red;
-}
 ::-webkit-scrollbar {
-  width: 8px;
-  background-color: var(--text);
+  width: 14px;
+  background-color: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--background);
+  background-color: var(--text);
+  border-radius: 10px;
+  border: 4px solid var(--background);
 }
 ::selection {
   background-color: var(--background-transparent);

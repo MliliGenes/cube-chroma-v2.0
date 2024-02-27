@@ -6,7 +6,6 @@ import {
   setMainColor,
 } from "../../lib/slices/mainColorSlice";
 import DropUp from "../dropUp/dropUp";
-import chroma from "chroma-js";
 import { setTheme, toggleTheme } from "../../lib/slices/themeSlice";
 import {
   upDateColorPalette,
@@ -22,7 +21,7 @@ import {
 } from "../../lib/utils";
 
 import { upDateColorScheme } from "../../lib/slices/colorSchemaSlice";
-import { Tooltip, Typography } from "@mui/material";
+import { Tooltip, Typography, debounce } from "@mui/material";
 
 export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
@@ -92,7 +91,45 @@ export default function ToolBar() {
     }
   }, [index, isHistoryActive]);
 
-  function generateHundler() {
+  useEffect(() => {
+    const handleKeyDown = debounce((event) => {
+      if (event.ctrlKey && event.key === "x") {
+        toggleThemeHandler();
+        event.preventDefault();
+      } else if (event.code === "Space") {
+        generateHandler();
+        event.preventDefault();
+      } else if (event.code === "ArrowLeft") {
+        undo();
+        event.preventDefault();
+      } else if (event.code === "ArrowRight") {
+        redo();
+        event.preventDefault();
+      } else if (event.ctrlKey && event.key === "e") {
+        exportHandler();
+        event.preventDefault();
+      } else if (event.ctrlKey && event.key === "s") {
+        shareLink();
+        event.preventDefault();
+      }
+    }, 100);
+
+    function stopScrolling(e) {
+      if (e.code === "Space" || (e.ctrlKey && e.key === "s")) {
+        e.preventDefault();
+      }
+    }
+
+    document.addEventListener("keydown", stopScrolling);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", stopScrolling);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [dispatch]);
+
+  function generateHandler() {
     if (isHistoryActive) {
       let newLocalStorage = localStorage.getItem("cubeCombo");
       if (newLocalStorage) {
@@ -104,6 +141,24 @@ export default function ToolBar() {
     setIsHistoryActive(false);
     dispatch(generateMainColor());
   }
+
+  function toggleThemeHandler() {
+    dispatch(toggleTheme());
+  }
+
+  function undo() {
+    dispatch(decrement());
+  }
+
+  function redo() {
+    dispatch(increment());
+  }
+
+  function shareLink() {
+    let url = new URL(window.location.href);
+    copyUrlToClipBoard(url);
+  }
+
   let colorPalette = palette.map((p) => {
     let textColor;
     if (p.role == "text") {
@@ -114,22 +169,44 @@ export default function ToolBar() {
       textColor = `var(--text-btn-${p.role})`;
     }
     return (
-      <div
+      <Tooltip
+        placement="top"
+        title={
+          <React.Fragment>
+            <Typography
+              variant="caption"
+              style={{ textTransform: "capitalize" }}
+            >
+              {p.role}{" "}
+              <span
+                style={{
+                  textTransform: "uppercase",
+                }}
+              >
+                {p.color}
+              </span>
+            </Typography>
+          </React.Fragment>
+        }
+        arrow
         key={p.role}
-        style={{
-          backgroundColor: p.color,
-          color: textColor,
-        }}
-        className="palette--item"
       >
-        {p.role}
-        <i
-          className={
-            p.isLocked ? "fa-solid fa-lock " : "fa-solid fa-lock-open "
-          }
-          onClick={() => dispatch(upDateLockState(p.role))}
-        ></i>
-      </div>
+        <div
+          style={{
+            backgroundColor: p.color,
+            color: textColor,
+          }}
+          className="palette--item"
+        >
+          {p.role}
+          <i
+            className={
+              p.isLocked ? "fa-solid fa-lock " : "fa-solid fa-lock-open "
+            }
+            onClick={() => dispatch(upDateLockState(p.role))}
+          ></i>
+        </div>
+      </Tooltip>
     );
   });
 
@@ -148,12 +225,7 @@ export default function ToolBar() {
           }
           arrow
         >
-          <button
-            className="btn"
-            onClick={() => {
-              dispatch(toggleTheme());
-            }}
-          >
+          <button className="btn" onClick={toggleThemeHandler}>
             <i className="fa-solid fa-circle-half-stroke"></i>
           </button>
         </Tooltip>
@@ -166,7 +238,7 @@ export default function ToolBar() {
           }
           arrow
         >
-          <button className="btn" onClick={generateHundler}>
+          <button className="btn" onClick={generateHandler}>
             <i className="fa-solid fa-dice-d20"></i>
           </button>
         </Tooltip>
@@ -211,10 +283,7 @@ export default function ToolBar() {
           <span>
             <button
               className={index == 0 ? "btn disabled" : "btn"}
-              onClick={() => {
-                dispatch(decrement());
-              }}
-              disabled={index == 0}
+              onClick={undo}
             >
               <i className="fa-solid fa-arrow-rotate-left"></i>
             </button>
@@ -232,10 +301,7 @@ export default function ToolBar() {
           <span>
             <button
               className={index == getLength() - 1 ? "btn disabled" : "btn"}
-              onClick={() => {
-                dispatch(increment());
-              }}
-              disabled={index == getLength() - 1}
+              onClick={redo}
             >
               <i className="fa-solid fa-arrow-rotate-right"></i>
             </button>
@@ -263,7 +329,7 @@ export default function ToolBar() {
           }
           arrow
         >
-          <button className="btn" onClick={() => copyUrlToClipBoard()}>
+          <button className="btn" onClick={shareLink}>
             <i className="fa-solid fa-up-right-from-square"></i>
           </button>
         </Tooltip>
