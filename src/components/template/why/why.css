@@ -96,4 +96,7 @@
   .why--container .card {
     padding: 30px 20px 20px 20px;
   }
+  .why--container .card p {
+    font-size: 16px;
+  }
 }

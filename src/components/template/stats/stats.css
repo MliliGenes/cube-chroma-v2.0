@@ -86,7 +86,7 @@
 @media screen and (max-width: 1350px) {
   .stats--grid {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(5, 200px);
+    grid-template-rows: repeat(5, 150px);
   }
   .stats--grid .primary--item {
     grid-column: span 2;

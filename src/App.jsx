@@ -58,7 +58,7 @@ function App() {
     const lightBgColor = chroma(text).alpha(0.05).hex();
     const lightBgColor1 = chroma(text).alpha(0.2).hex();
 
-    const textLight = chroma(text).brighten();
+    const textLight = chroma(text).brighten(2);
 
     setCSSVariables(() => ({
       "--text": text,

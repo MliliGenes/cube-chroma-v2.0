@@ -155,11 +155,19 @@ i.flip-h {
   }
   .palette--item {
     grid-column: span 2;
+    font-size: 18px;
   }
   .colorScheme-container {
     grid-column: span 2;
   }
   .btn.startBtn {
     grid-column: span 2;
+  }
+  .palette--item i {
+    font-size: 16px;
+    top: 50%;
+    right: 10px;
+    translate: 0 -50%;
+    opacity: 1;
   }
 }
