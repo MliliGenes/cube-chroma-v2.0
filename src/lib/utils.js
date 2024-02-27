@@ -1,6 +1,17 @@
 import chroma from "chroma-js";
 import clipboardCopy from "clipboard-copy";
 
+let defaultcolor = "#6453dc",
+  defaultscheme = "analogous",
+  defaulttheme = "light",
+  defaultpalette = JSON.stringify([
+    { color: "#070514", isLocked: false, role: "text" },
+    { color: "#f1f0f4", isLocked: false, role: "background" },
+    { color: "#7768e0", isLocked: false, role: "primary" },
+    { color: "#debdf2", isLocked: false, role: "secondary" },
+    { color: "#93b3e9", isLocked: false, role: "accent" },
+  ]);
+
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
   let colorPalette = [];
@@ -142,48 +153,47 @@ export function getLastCombo() {
     }
   }
   return {
-    color: "#f0a60f",
-    scheme: "analogous",
-    theme: "light",
-    palette: JSON.stringify([
-      { color: "#050a03", isLocked: false, role: "text" },
-      { color: "#f1f5f0", isLocked: false, role: "background" },
-      { color: "#63ef2e", isLocked: false, role: "primary" },
-      { color: "#a4f8b7", isLocked: false, role: "secondary" },
-      { color: "#d1f35d", isLocked: false, role: "accent" },
-    ]),
+    color: defaultcolor,
+    scheme: defaultscheme,
+    theme: defaulttheme,
+    palette: defaultpalette,
   };
 }
 
 export function initCombo(color, scheme, theme, palette) {
   let url = new URL(window.location.href);
-  url.searchParams.set("q", [color, scheme, theme, palette].join(";;"));
+  url.searchParams.set("q", [color, scheme, theme, palette].join("-"));
   window.history.replaceState({}, "", url);
 }
 
 export function getInitCombo() {
-  let url = new URL(window.location.href);
-  let q = url.searchParams.get("q");
-  let param = q
-    ? q.split(";;")
-    : [
-        "#6453dc",
-        "analogous",
-        "light",
-        JSON.stringify([
-          { color: "#070514", isLocked: false, role: "text" },
-          { color: "#f1f0f4", isLocked: false, role: "background" },
-          { color: "#7768e0", isLocked: false, role: "primary" },
-          { color: "#debdf2", isLocked: false, role: "secondary" },
-          { color: "#93b3e9", isLocked: false, role: "accent" },
-        ]),
-      ];
+  try {
+    let url = new URL(window.location.href);
+    let q = url.searchParams.get("q");
+    let param = q ? q.split("-") : null;
 
-  let color = param[0] || getLastCombo().color;
-  let scheme = param[1] || getLastCombo().scheme;
-  let theme = param[2] || getLastCombo().theme;
-  let palette = JSON.parse(param[3]) || JSON.parse(getLastCombo().palette);
-  return { color, scheme, theme, palette };
+    if (param && param.length === 4) {
+      var color = param[0];
+      var scheme = param[1];
+      var theme = param[2];
+      var palette = JSON.parse(param[3]);
+    }
+  } catch (error) {
+    console.error("Error parsing URL:", error);
+  }
+
+  let initcolor = color || getLastCombo().color || defaultcolor;
+  let initscheme = scheme || getLastCombo().scheme || defaultscheme;
+  let inittheme = theme || getLastCombo().theme || defaulttheme;
+  let initpalette =
+    palette || JSON.parse(getLastCombo().palette) || defaultpalette;
+
+  return {
+    color: initcolor,
+    scheme: initscheme,
+    theme: inittheme,
+    palette: initpalette,
+  };
 }
 
 export function getLength() {

@@ -20,7 +20,7 @@ import {
   getLength,
   saveTolocalStorage,
 } from "../../lib/utils";
-import { HexColorInput, HexColorPicker } from "react-colorful";
+
 import { upDateColorScheme } from "../../lib/slices/colorSchemaSlice";
 
 export default function ToolBar() {
@@ -70,7 +70,7 @@ export default function ToolBar() {
       saveTolocalStorage(color, colorScheme, theme, JSON.stringify(palette));
       dispatch(upDateIndex());
     }
-  }, [palette]);
+  }, [color, colorScheme]);
 
   useEffect(() => {
     if (index < getLength() - 1) {

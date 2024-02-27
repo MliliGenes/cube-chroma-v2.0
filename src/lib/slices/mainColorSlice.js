@@ -3,13 +3,11 @@ import chroma from "chroma-js";
 import { getInitCombo, getLastCombo } from "../utils";
 
 function generateGoodLookingColor() {
-  const hue = Math.random();
-  const saturation = 0.75 + Math.random() * 0.25;
-  const minLightness = 0.5;
-  const maxLightness = 0.601;
-  const lightness =
-    minLightness + Math.random() * (maxLightness - minLightness);
-  return chroma.hsl(hue * 360, saturation, lightness).hex();
+  const hue = Math.floor(Math.random() * 361);
+  const saturation = Math.floor(6 + Math.random() * 3) / 10;
+  const lightness = Math.floor(5 + Math.random() * 2) / 10;
+  console.log(hue, saturation, lightness);
+  return chroma.hsl(hue, saturation, lightness).hex();
 }
 
 let color = chroma.valid(getInitCombo().color)
