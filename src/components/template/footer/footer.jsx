@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className="footer--container">
       <div className="footer--wrapper">
-        <a href="" className="">
+        <a href="">
           <svg
             id="Layer_1"
             className="footer--logo"
