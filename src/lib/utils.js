@@ -174,7 +174,7 @@ export function getLastCombo() {
 export function initCombo(color, scheme, theme, palette) {
   let url = new URL(window.location.href);
   url.searchParams.set("q", [color, scheme, theme, palette].join("-"));
-  window.history.pushState({}, "", url);
+  window.history.replaceState({}, "", url);
 }
 
 export function getInitCombo() {
