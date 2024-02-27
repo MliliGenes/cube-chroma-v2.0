@@ -53,3 +53,9 @@
 .cls-3 {
   fill: var(--secondary);
 }
+
+@media screen and (max-width: 1350px) {
+  .header--wrepper {
+    justify-content: center;
+  }
+}

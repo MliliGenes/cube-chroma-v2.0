@@ -6,7 +6,6 @@
 }
 .footer--wrapper {
   width: 100%;
-
   display: flex;
   align-items: start;
   gap: 40px;
@@ -102,4 +101,19 @@
 .footer--bottom-section div p a {
   color: var(--text);
   position: relative;
+}
+@media screen and (max-width: 1350px) {
+  .footer--links-conatiner {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .footer--wrapper {
+    padding: 40px 20px;
+  }
+  .footer--bottom-section {
+    padding: 30px 20px;
+  }
+  .footer--links-conatiner div > h2 {
+    margin-bottom: 20px;
+  }
 }

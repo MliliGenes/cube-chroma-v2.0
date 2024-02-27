@@ -28,6 +28,7 @@ export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
   let [isHistoryActive, setIsHistoryActive] = useState(false);
   let [schemeIndex, setSchemeIndex] = useState(0);
+  let [isToolsActive, setIsToolsActive] = useState(true);
 
   const dropUpRef = useRef(null);
   const btnRef = useRef(null);
@@ -235,126 +236,144 @@ export default function ToolBar() {
   return (
     <div className="toolBar--container">
       <div className="toolbar--wrapper">
-        {colorPalette}
-        <Tooltip
-          placement="top"
-          title={
-            <React.Fragment>
-              <Typography variant="caption">
-                Theme Toggle ( Ctrl + X )
-              </Typography>
-            </React.Fragment>
-          }
-          arrow
-        >
-          <button className="btn" onClick={toggleThemeHandler}>
-            <i className="fa-solid fa-circle-half-stroke"></i>
-          </button>
-        </Tooltip>
-        <Tooltip
-          placement="top"
-          title={
-            <React.Fragment>
-              <Typography variant="caption">Generate ( Space Bar )</Typography>
-            </React.Fragment>
-          }
-          arrow
-        >
-          <button className="btn" onClick={generateHandler}>
-            <i className="fa-solid fa-dice-d20"></i>
-          </button>
-        </Tooltip>
-        <div className="colorScheme-container">
-          {isActive && <DropUp ref={dropUpRef} />}
-          <Tooltip
-            placement="top"
-            title={
-              <React.Fragment>
-                <Typography variant="caption">
-                  Color Scheme ( Up Arrow & Down Arrow)
-                </Typography>
-              </React.Fragment>
-            }
-            arrow
-          >
-            <button
-              className="btn xlarge"
-              ref={btnRef}
-              onClick={() => setIsActive((state) => !state)}
+        {isToolsActive && (
+          <>
+            {colorPalette}
+            <Tooltip
+              placement="top"
+              title={
+                <React.Fragment>
+                  <Typography variant="caption">
+                    Theme Toggle ( Ctrl + X )
+                  </Typography>
+                </React.Fragment>
+              }
+              arrow
             >
-              {colorScheme}
-              <i
-                className={
-                  isActive
-                    ? "fa-solid fa-chevron-up flip"
-                    : "fa-solid fa-chevron-up "
+              <button className="btn" onClick={toggleThemeHandler}>
+                <i className="fa-solid fa-circle-half-stroke"></i>
+              </button>
+            </Tooltip>
+            <Tooltip
+              placement="top"
+              title={
+                <React.Fragment>
+                  <Typography variant="caption">
+                    Generate ( Space Bar )
+                  </Typography>
+                </React.Fragment>
+              }
+              arrow
+            >
+              <button className="btn" onClick={generateHandler}>
+                <i className="fa-solid fa-dice-d20"></i>
+              </button>
+            </Tooltip>
+            <div className="colorScheme-container">
+              {isActive && <DropUp ref={dropUpRef} />}
+              <Tooltip
+                placement="top"
+                title={
+                  <React.Fragment>
+                    <Typography variant="caption">
+                      Color Scheme ( Up Arrow & Down Arrow)
+                    </Typography>
+                  </React.Fragment>
                 }
-              ></i>
-            </button>
-          </Tooltip>
+                arrow
+              >
+                <button
+                  className="btn xlarge"
+                  ref={btnRef}
+                  onClick={() => setIsActive((state) => !state)}
+                >
+                  {colorScheme}
+                  <i
+                    className={
+                      isActive
+                        ? "fa-solid fa-chevron-up flip"
+                        : "fa-solid fa-chevron-up "
+                    }
+                  ></i>
+                </button>
+              </Tooltip>
+            </div>
+            <Tooltip
+              placement="top"
+              title={
+                <React.Fragment>
+                  <Typography variant="caption">Undo ( Left Arrow )</Typography>
+                </React.Fragment>
+              }
+              arrow
+            >
+              <span>
+                <button
+                  className={index == 0 ? "btn disabled" : "btn"}
+                  onClick={undo}
+                >
+                  <i className="fa-solid fa-arrow-rotate-left"></i>
+                </button>
+              </span>
+            </Tooltip>
+            <Tooltip
+              placement="top"
+              title={
+                <React.Fragment>
+                  <Typography variant="caption">
+                    Redo ( Right Arrow )
+                  </Typography>
+                </React.Fragment>
+              }
+              arrow
+            >
+              <span>
+                <button
+                  className={index == getLength() - 1 ? "btn disabled" : "btn"}
+                  onClick={redo}
+                >
+                  <i className="fa-solid fa-arrow-rotate-right"></i>
+                </button>
+              </span>
+            </Tooltip>
+            <Tooltip
+              placement="top"
+              title={
+                <React.Fragment>
+                  <Typography variant="caption">Export ( Ctrl + E )</Typography>
+                </React.Fragment>
+              }
+              arrow
+            >
+              <button className="btn">
+                <i className="fa-solid fa-floppy-disk"></i>
+              </button>
+            </Tooltip>
+            <Tooltip
+              placement="top"
+              title={
+                <React.Fragment>
+                  <Typography variant="caption">
+                    Copy Link ( Ctrl + S )
+                  </Typography>
+                </React.Fragment>
+              }
+              arrow
+            >
+              <button className="btn" onClick={shareLink}>
+                <i className="fa-solid fa-up-right-from-square"></i>
+              </button>
+            </Tooltip>
+          </>
+        )}
+        <div
+          className="btn startBtn"
+          onClick={() => setIsToolsActive((state) => !state)}
+        >
+          <i
+            className={isToolsActive ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
+          ></i>
         </div>
-        <Tooltip
-          placement="top"
-          title={
-            <React.Fragment>
-              <Typography variant="caption">Undo ( Left Arrow )</Typography>
-            </React.Fragment>
-          }
-          arrow
-        >
-          <span>
-            <button
-              className={index == 0 ? "btn disabled" : "btn"}
-              onClick={undo}
-            >
-              <i className="fa-solid fa-arrow-rotate-left"></i>
-            </button>
-          </span>
-        </Tooltip>
-        <Tooltip
-          placement="top"
-          title={
-            <React.Fragment>
-              <Typography variant="caption">Redo ( Right Arrow )</Typography>
-            </React.Fragment>
-          }
-          arrow
-        >
-          <span>
-            <button
-              className={index == getLength() - 1 ? "btn disabled" : "btn"}
-              onClick={redo}
-            >
-              <i className="fa-solid fa-arrow-rotate-right"></i>
-            </button>
-          </span>
-        </Tooltip>
-        <Tooltip
-          placement="top"
-          title={
-            <React.Fragment>
-              <Typography variant="caption">Export ( Ctrl + E )</Typography>
-            </React.Fragment>
-          }
-          arrow
-        >
-          <button className="btn">
-            <i className="fa-solid fa-floppy-disk"></i>
-          </button>
-        </Tooltip>
-        <Tooltip
-          placement="top"
-          title={
-            <React.Fragment>
-              <Typography variant="caption">Copy Link ( Ctrl + S )</Typography>
-            </React.Fragment>
-          }
-          arrow
-        >
-          <button className="btn" onClick={shareLink}>
-            <i className="fa-solid fa-up-right-from-square"></i>
-          </button>
-        </Tooltip>
       </div>
     </div>
   );

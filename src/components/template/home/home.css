@@ -20,7 +20,7 @@
 
 .left h1 {
   position: relative;
-  font-size: clamp(3rem, 4.5vw, 4.5rem);
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
   color: var(--text);
   font-family: var(--large);
   z-index: 0;
@@ -114,7 +114,7 @@
   align-items: center;
 }
 .artwork {
-  width: clamp(300px, 100%, 40vw);
+  width: clamp(300px, 100%, 80vw);
 }
 .primary {
   fill: var(--primary);
@@ -153,4 +153,21 @@
 }
 .cls-3 {
   fill: var(--secondary);
+}
+
+@media screen and (max-width: 1350px) {
+  .home--container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .artwork {
+    width: clamp(300px, 100%, 100vw);
+  }
+  .left .btns {
+    display: flex;
+    flex-direction: column;
+  }
+  .left .btns .btn {
+    font-size: 18px;
+  }
 }

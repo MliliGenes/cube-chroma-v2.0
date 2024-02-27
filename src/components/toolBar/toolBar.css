@@ -7,7 +7,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 12px;
+  padding: 4px;
   color: var(--text);
 }
 i {
@@ -26,6 +26,7 @@ i {
 }
 .colorScheme-container {
   position: relative;
+  border-radius: 6px;
 }
 .colorScheme-container i {
   position: absolute;
@@ -56,7 +57,7 @@ i.flip-h {
   justify-content: center;
   align-items: center;
   min-width: 70px;
-  height: 50px;
+  min-height: 50px;
   border: 0;
   border-radius: 6px;
   font-family: var(--medium);
@@ -77,6 +78,10 @@ i.flip-h {
   padding-left: 15px;
 }
 
+.toolbar--wrapper .btn.startBtn {
+  flex: 1;
+}
+
 .toolbar--wrapper .btn.xlarge.btn:hover {
   scale: 1;
 }
@@ -92,7 +97,7 @@ i.flip-h {
   flex: 1;
   padding: 0 20px;
   position: relative;
-  height: 50px;
+  min-height: 50px;
   color: var(--background);
   font-family: var(--small);
   display: flex;
@@ -129,4 +134,22 @@ i.flip-h {
   bottom: calc(100% + 10px);
   left: 50%;
   translate: -50% 0;
+}
+
+@media screen and (max-width: 1350px) {
+  .toolbar--wrapper {
+    flex-direction: column;
+  }
+  .toolbar--wrapper .btn {
+    width: 100%;
+  }
+  .toolbar--wrapper .btn.xlarge {
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .toolBar--container {
+    bottom: 0px;
+  }
 }

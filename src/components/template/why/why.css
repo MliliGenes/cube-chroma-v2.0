@@ -10,7 +10,8 @@
 .why--container h1 {
   color: var(--text);
   font-family: var(--large);
-  font-size: 60px;
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  padding: 0 20px;
 }
 .cards {
   width: 100%;
@@ -86,4 +87,13 @@
   font-size: 18px;
   line-height: 2;
   font-weight: 300;
+}
+
+@media screen and (max-width: 1350px) {
+  .cards {
+    flex-direction: column;
+  }
+  .why--container .card {
+    padding: 20px 15px;
+  }
 }
