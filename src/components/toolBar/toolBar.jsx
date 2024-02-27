@@ -104,26 +104,34 @@ export default function ToolBar() {
     setIsHistoryActive(false);
     dispatch(generateMainColor());
   }
-
-  let colorPalette = palette.map((p) => (
-    <div
-      key={p.role}
-      style={{
-        backgroundColor: p.color,
-        color:
-          chroma.contrast(p.color, palette[1].color) > 4.5
-            ? "var(--background)"
-            : "var(--text)",
-      }}
-      className="palette--item"
-    >
-      {p.role}
-      <i
-        className={p.isLocked ? "fa-solid fa-lock " : "fa-solid fa-lock-open "}
-        onClick={() => dispatch(upDateLockState(p.role))}
-      ></i>
-    </div>
-  ));
+  let colorPalette = palette.map((p) => {
+    let textColor;
+    if (p.role == "text") {
+      textColor = "var(--background)";
+    } else if (p.role == "background") {
+      textColor = "var(--text)";
+    } else {
+      textColor = `var(--text-btn-${p.role})`;
+    }
+    return (
+      <div
+        key={p.role}
+        style={{
+          backgroundColor: p.color,
+          color: textColor,
+        }}
+        className="palette--item"
+      >
+        {p.role}
+        <i
+          className={
+            p.isLocked ? "fa-solid fa-lock " : "fa-solid fa-lock-open "
+          }
+          onClick={() => dispatch(upDateLockState(p.role))}
+        ></i>
+      </div>
+    );
+  });
 
   return (
     <div className="toolBar--container">
