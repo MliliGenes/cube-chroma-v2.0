@@ -25,9 +25,13 @@ import { upDateColorScheme } from "../../lib/slices/colorSchemaSlice";
 import { Tooltip, Typography, debounce } from "@mui/material";
 
 export default function ToolBar() {
+  let viewWidth = window.innerWidth;
+
   const [isActive, setIsActive] = useState(false);
   let [isHistoryActive, setIsHistoryActive] = useState(false);
-  let [isToolsActive, setIsToolsActive] = useState(false);
+  let [isToolsActive, setIsToolsActive] = useState(
+    viewWidth > 1300 ? true : false
+  );
 
   const dropUpRef = useRef(null);
   const btnRef = useRef(null);
