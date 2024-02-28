@@ -27,7 +27,6 @@ import { Tooltip, Typography, debounce } from "@mui/material";
 export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
   let [isHistoryActive, setIsHistoryActive] = useState(false);
-  let [schemeIndex, setSchemeIndex] = useState(0);
   let [isToolsActive, setIsToolsActive] = useState(false);
 
   const dropUpRef = useRef(null);
@@ -40,6 +39,8 @@ export default function ToolBar() {
   let palette = useSelector((state) => state.colorPalette);
   let colorScheme = useSelector((state) => state.colorScheme);
   let theme = useSelector((state) => state.theme);
+
+  let [schemeIndex, setSchemeIndex] = useState(SCHEMES.indexOf(colorScheme));
 
   useEffect(() => {
     function handleClickOutside(event) {

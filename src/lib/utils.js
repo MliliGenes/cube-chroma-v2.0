@@ -178,26 +178,25 @@ export function initCombo(color, scheme, theme, palette) {
 }
 
 export function getInitCombo() {
-  try {
-    let url = new URL(window.location.href);
-    let q = url.searchParams.get("q");
-    let param = q ? q.split("-") : null;
+  let url = new URL(window.location.href);
+  let q = url.searchParams.get("q");
+  let param = q ? q.split("-") : null;
 
-    if (param && param.length === 4) {
-      var color = param[0];
-      var scheme = param[1];
-      var theme = param[2];
-      var palette = JSON.parse(param[3]);
-    }
-  } catch (error) {
-    console.error("Error parsing URL:", error);
+  if (param && param.length === 4) {
+    var color = param[0];
+    var scheme = param[1];
+    var theme = param[2];
+    var palette = JSON.parse(param[3]);
   }
+  console.log(scheme);
 
-  let initcolor = color || getLastCombo().color || defaultcolor;
-  let initscheme = scheme || getLastCombo().scheme || defaultscheme;
-  let inittheme = theme || getLastCombo().theme || defaulttheme;
+  let initcolor = color;
+  let initscheme = scheme;
+  let inittheme = theme;
   let initpalette =
     palette || JSON.parse(getLastCombo().palette) || defaultpalette;
+
+  console.log(initscheme);
 
   return {
     color: initcolor,
