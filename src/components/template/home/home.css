@@ -155,7 +155,7 @@
   fill: var(--secondary);
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1300px) {
   .home--container {
     flex-direction: column-reverse;
     align-items: center;

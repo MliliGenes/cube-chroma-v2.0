@@ -83,7 +83,7 @@
   font-size: 150px;
   color: var(--accent-light-2);
 }
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1300px) {
   .stats--grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(5, 150px);

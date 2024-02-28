@@ -54,7 +54,7 @@
   fill: var(--secondary);
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1300px) {
   .header--wrepper {
     justify-content: center;
   }

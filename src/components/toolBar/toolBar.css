@@ -136,7 +136,7 @@ i.flip-h {
   translate: -50% 0;
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1300px) {
   .toolBar--container {
     padding: 0 6vw;
     padding-bottom: 14px;

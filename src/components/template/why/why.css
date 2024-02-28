@@ -88,8 +88,7 @@
   line-height: 2;
   font-weight: 300;
 }
-
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1300px) {
   .cards {
     flex-direction: column;
   }

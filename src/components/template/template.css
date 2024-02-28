@@ -12,7 +12,7 @@
   flex-direction: column;
   gap: 150px;
 }
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1300px) {
   .template--container {
     gap: 100px;
     padding: 0 6vw;

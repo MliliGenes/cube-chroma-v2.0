@@ -370,7 +370,7 @@ export default function ToolBar() {
           placement="top"
           title={
             <React.Fragment>
-              <Typography variant="caption">Open and close toolbar</Typography>
+              <Typography variant="caption">Open & Close Toolbar</Typography>
             </React.Fragment>
           }
           arrow
