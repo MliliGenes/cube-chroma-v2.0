@@ -120,7 +120,7 @@ function App() {
     dispatch(
       generateColorPalette({ color: color, method: scheme, theme: theme })
     );
-  }, [dispatch, color, scheme, theme]);
+  }, [color, scheme]);
 
   return (
     <div className="app">

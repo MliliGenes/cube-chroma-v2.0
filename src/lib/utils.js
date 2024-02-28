@@ -90,7 +90,15 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 }
 
 export function switchPalettetheme(theme, palette, baseColor) {
-  let lightnessPrimary = chroma(baseColor).get("hsl.l");
+  let lightnessPrimary = chroma
+    .average([
+      palette[0].color,
+      palette[1].color,
+      palette[2].color,
+      palette[3].color,
+      palette[4].color,
+    ])
+    .get("hsl.l");
 
   if (theme == "light") {
     let textHex = chroma(palette[0]).get("hsl.h");
