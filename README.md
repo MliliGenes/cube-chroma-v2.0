@@ -12,10 +12,6 @@
 
 <img src="https://raw.githubusercontent.com/MliliGenes/cube-chroma-v2.0/main/preview.png" alt="project-screenshot" width="100%" height="100%/">
 
-<h2>🧐 Features</h2>
-
-Here're some of the project's best features:
-
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
