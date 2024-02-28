@@ -40,3 +40,18 @@
   background-color: var(--text);
   color: var(--background);
 }
+@media screen and (max-width: 1300px) {
+  .dropup--container {
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    bottom: calc(100% + 4px);
+    width: 100%;
+    z-index: 1000;
+  }
+  .dropup--wrapper {
+    backdrop-filter: none;
+    border-radius: 10px;
+    padding: 0;
+  }
+}
