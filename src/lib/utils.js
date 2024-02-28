@@ -23,7 +23,7 @@ export const SCHEMES = [
 
 export function generateGoodLookingColor() {
   const hue = Math.floor(Math.random() * 361);
-  const saturation = Math.floor(40 + Math.random() * 40) / 100;
+  const saturation = Math.floor(50 + Math.random() * 40) / 100;
   const lightness = Math.floor(50 + Math.random() * 20) / 100;
   return chroma.hsl(hue, saturation, lightness).hex();
 }
