@@ -90,15 +90,7 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
 }
 
 export function switchPalettetheme(theme, palette, baseColor) {
-  let lightnessPrimary = chroma
-    .average([
-      palette[0].color,
-      palette[1].color,
-      palette[2].color,
-      palette[3].color,
-      palette[4].color,
-    ])
-    .get("hsl.l");
+  let lightnessPrimary = chroma(baseColor).get("hsl.l");
 
   if (theme == "light") {
     let textHex = chroma(palette[0]).get("hsl.h");
@@ -198,9 +190,9 @@ export function getInitCombo() {
   }
   console.log(scheme);
 
-  let initcolor = color;
-  let initscheme = scheme;
-  let inittheme = theme;
+  let initcolor = color || getLastCombo().color || defaultcolor;
+  let initscheme = scheme || getLastCombo().scheme || defaultscheme;
+  let inittheme = theme || getLastCombo().theme || defaulttheme;
   let initpalette =
     palette || JSON.parse(getLastCombo().palette) || defaultpalette;
 
