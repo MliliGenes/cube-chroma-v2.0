@@ -28,7 +28,7 @@ export default function ToolBar() {
   const [isActive, setIsActive] = useState(false);
   let [isHistoryActive, setIsHistoryActive] = useState(false);
   let [schemeIndex, setSchemeIndex] = useState(0);
-  let [isToolsActive, setIsToolsActive] = useState(true);
+  let [isToolsActive, setIsToolsActive] = useState(false);
 
   const dropUpRef = useRef(null);
   const btnRef = useRef(null);
