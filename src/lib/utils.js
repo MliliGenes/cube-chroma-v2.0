@@ -188,15 +188,12 @@ export function getInitCombo() {
     var theme = param[2];
     var palette = JSON.parse(param[3]);
   }
-  console.log(scheme);
 
   let initcolor = color || getLastCombo().color || defaultcolor;
   let initscheme = scheme || getLastCombo().scheme || defaultscheme;
   let inittheme = theme || getLastCombo().theme || defaulttheme;
   let initpalette =
     palette || JSON.parse(getLastCombo().palette) || defaultpalette;
-
-  console.log(initscheme);
 
   return {
     color: initcolor,
