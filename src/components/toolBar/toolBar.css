@@ -144,6 +144,18 @@ i.flip-h {
   .toolbar--wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .toolbar--wrapper::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--background);
+    border-radius: 6px;
+  }
+  .toolbar--wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--text);
+    border-radius: 10px;
+    border: 2px solid var(--background);
   }
   .toolbar--wrapper .btn {
     width: 100%;
