@@ -2,6 +2,28 @@ import React, { useEffect, useState } from "react";
 import "./stats.css";
 
 export default function Stats() {
+  let [stats, setStats] = useState();
+  useEffect(() => {
+    async function getRepoInfo(owner, repo) {
+      try {
+        const response = await fetch(
+          `https://api.github.com/repos/${owner}/${repo}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
+        return data;
+      } catch (error) {
+        console.error("Error:", error);
+        return null;
+      }
+    }
+    getRepoInfo("MliliGenes", "cube-chroma-v2.0").then((data) =>
+      setStats(data)
+    );
+  });
   return (
     <div className="stats--container">
       <div className="stats--grid">
