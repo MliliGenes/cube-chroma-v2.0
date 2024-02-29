@@ -145,7 +145,8 @@ export default function ToolBar() {
         e.code === "Space" ||
         (e.ctrlKey && e.key === "s") ||
         e.code === "ArrowUp" ||
-        e.code === "ArrowDown"
+        e.code === "ArrowDown" ||
+        (e.ctrlKey && e.key === "e")
       ) {
         e.preventDefault();
       }
