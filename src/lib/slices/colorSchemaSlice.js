@@ -4,7 +4,6 @@ let scheme =
   SCHEMES.indexOf(getInitCombo().scheme) !== -1
     ? getInitCombo()?.scheme
     : getLastCombo()?.scheme;
-console.log("slice", scheme);
 export const colorScheme = createSlice({
   name: "colorScheme",
   initialState: scheme,

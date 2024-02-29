@@ -22,8 +22,8 @@ export const SCHEMES = [
 ];
 
 export function generateGoodLookingColor() {
-  const hue = Math.floor(Math.random() * 361);
-  const saturation = Math.floor(50 + Math.random() * 40) / 100;
+  const hue = Math.floor(Math.random() * 360);
+  const saturation = Math.floor(50 + Math.random() * 30) / 100;
   const lightness = Math.floor(50 + Math.random() * 20) / 100;
   return chroma.hsl(hue, saturation, lightness).hex();
 }
@@ -61,7 +61,10 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
       ];
       break;
     case "monochromatic":
-      colorPalette = [baseColor, baseColor, baseColor];
+      colorPalette = chroma
+        .scale([baseColor, baseColor.brighten(0.8), baseColor.darken(0.5)])
+        .mode("hsl")
+        .colors(3);
       break;
     case "square":
       colorPalette = [
@@ -93,51 +96,29 @@ export default function generateRandomPalette(baseColor, algorithm, theme) {
             .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
             .hex(),
         ];
-  return switchPalettetheme(theme, selected, baseColor);
+  return switchPalettetheme(theme, selected);
 }
 
-export function switchPalettetheme(theme, palette, baseColor) {
-  let lightnessPrimary = chroma(baseColor).get("hsl.l");
+export function switchPalettetheme(theme, palette) {
+  let text, background;
 
-  if (theme == "light") {
-    let textHex = chroma(palette[0]).get("hsl.h");
-    let text = chroma.hsl(textHex, 0.4, 0.05).hex();
-    let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.25, 0.95).hex();
-
-    let lightTheme = [
-      text,
-      background,
-      chroma(palette[2]).set("hsl.l", lightnessPrimary).hex(),
-      chroma(palette[3])
-        .set("hsl.l", lightnessPrimary + 0.2)
-        .hex(),
-      chroma(palette[4])
-        .set("hsl.l", lightnessPrimary + 0.08)
-        .hex(),
-    ];
-    return lightTheme;
+  if (theme === "light") {
+    text = chroma.hsl(chroma(palette[0]).get("hsl.h"), 0.4, 0.05).hex();
+    background = chroma.hsl(chroma(palette[1]).get("hsl.h"), 0.25, 0.95).hex();
   } else {
-    let textHex = chroma(palette[0]).get("hsl.h");
-    let text = chroma.hsl(textHex, 0.6, 0.95).hex();
-    let backgroundHex = chroma(palette[1]).get("hsl.h");
-    let background = chroma.hsl(backgroundHex, 0.1, 0.06).hex();
-
-    let darkTheme = [
-      text,
-      background,
-      chroma(palette[2])
-        .set("hsl.l", lightnessPrimary + 0.02)
-        .hex(),
-      chroma(palette[3])
-        .set("hsl.l", lightnessPrimary + 0.22)
-        .hex(),
-      chroma(palette[4])
-        .set("hsl.l", lightnessPrimary + 0.12)
-        .hex(),
-    ];
-    return darkTheme;
+    text = chroma.hsl(chroma(palette[0]).get("hsl.h"), 0.6, 0.95).hex();
+    background = chroma.hsl(chroma(palette[1]).get("hsl.h"), 0.1, 0.06).hex();
   }
+
+  let themeColors = [
+    text,
+    background,
+    palette[2],
+    chroma(palette[3]).hex(),
+    chroma(palette[4]).hex(),
+  ];
+
+  return themeColors;
 }
 
 export function saveTolocalStorage(color, scheme, theme, palette) {
