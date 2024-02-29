@@ -1,4 +1,5 @@
 ::-webkit-scrollbar {
+  height: 5px;
   width: 14px;
   background-color: var(--background);
 }

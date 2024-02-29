@@ -9,6 +9,7 @@ import Template from "./components/template/template";
 import chroma from "chroma-js";
 import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
 import { initCombo } from "./lib/utils";
+import Export from "./components/export/export";
 
 function App() {
   let dispatch = useDispatch();

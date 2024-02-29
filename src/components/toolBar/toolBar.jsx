@@ -23,11 +23,14 @@ import {
 
 import { upDateColorScheme } from "../../lib/slices/colorSchemaSlice";
 import { Tooltip, Typography, debounce } from "@mui/material";
+import Export from "../export/export";
 
 export default function ToolBar() {
   let viewWidth = window.innerWidth;
 
   const [isActive, setIsActive] = useState(false);
+  const [isActiveExport, setIsActiveExport] = useState(false);
+
   let [isHistoryActive, setIsHistoryActive] = useState(false);
   let [isToolsActive, setIsToolsActive] = useState(
     viewWidth > 1300 ? true : false
@@ -178,6 +181,10 @@ export default function ToolBar() {
     dispatch(decrement());
   }
 
+  function exportHandler() {
+    setIsActiveExport((prev) => !prev);
+  }
+
   function redo() {
     dispatch(increment());
   }
@@ -240,6 +247,7 @@ export default function ToolBar() {
 
   return (
     <div className="toolBar--container">
+      {isActiveExport && <Export />}
       <div className="toolbar--wrapper">
         {isToolsActive && (
           <>
@@ -350,7 +358,7 @@ export default function ToolBar() {
               }
               arrow
             >
-              <button className="btn">
+              <button className="btn" onClick={exportHandler}>
                 <i className="fa-solid fa-floppy-disk"></i>
               </button>
             </Tooltip>

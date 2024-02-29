@@ -6,9 +6,12 @@
   z-index: 1000;
   width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: center;
   padding: 12px;
   color: var(--text);
+  flex-direction: column;
+
+  gap: 5px;
 }
 i {
   font-size: 18px;
@@ -140,12 +143,12 @@ i.flip-h {
   .toolBar--container {
     padding: 0 6vw;
     padding-bottom: 14px;
+    overflow-y: scroll;
+    max-height: 90vh;
   }
   .toolbar--wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    max-height: 100vh;
-    overflow-y: auto;
   }
   .toolbar--wrapper::-webkit-scrollbar {
     width: 10px;
