@@ -34,27 +34,75 @@ const Export = ({ onClose }) => {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
+  // Generate color gradients for each main color
+  const generateColorGradients = () => {
+    const primary = palette[2]?.color;
+    const secondary = palette[3]?.color;
+    const accent = palette[4]?.color;
+
+    if (!primary || !secondary || !accent) return null;
+
+    const primaryGradients = chroma
+      .scale(["white", primary, "black"])
+      .mode("lch")
+      .colors(7);
+    const secondaryGradients = chroma
+      .scale(["white", secondary, "black"])
+      .mode("lch")
+      .colors(7);
+    const accentGradients = chroma
+      .scale(["white", accent, "black"])
+      .mode("lch")
+      .colors(7);
+
+    return { primaryGradients, secondaryGradients, accentGradients };
+  };
+
   useEffect(() => {
     let code;
+    const gradients = generateColorGradients();
+
     if (section == "CSS") {
       code =
-        "/* hex values */\n:root {\n" +
+        "/* base colors */\n:root {\n" +
         palette.map((c) => `\t--${c.role} : ${c.color};`).join("\n") +
         "\n}\n\n" +
         "/* rgb values */\n:root {\n" +
         palette
           .map((c) => `\t ${c.role} : rgb(${chroma(c.color).rgb()});`)
           .join("\n") +
-        "\n}";
+        "\n}" +
+        (gradients
+          ? `\n\n/* primary gradients - tints & shades */\n:root {\n${gradients.primaryGradients
+              .map((color, idx) => `\t--primary-${idx * 100} : ${color};`)
+              .join(
+                "\n"
+              )}\n}\n\n/* secondary gradients - tints & shades */\n:root {\n${gradients.secondaryGradients
+              .map((color, idx) => `\t--secondary-${idx * 100} : ${color};`)
+              .join(
+                "\n"
+              )}\n}\n\n/* accent gradients - tints & shades */\n:root {\n${gradients.accentGradients
+              .map((color, idx) => `\t--accent-${idx * 100} : ${color};`)
+              .join("\n")}\n}`
+          : "");
     } else if (section == "SCSS") {
       code =
-        "/* hex values */\n" +
+        "/* base colors */\n" +
         palette.map((c) => `$${c.role} : ${c.color};`).join("\n") +
         "\n\n" +
         "/* rgb values */\n" +
         palette
           .map((c) => `$${c.role} : rgb(${chroma(c.color).rgb()});`)
-          .join("\n");
+          .join("\n") +
+        (gradients
+          ? `\n\n/* primary gradients */\n${gradients.primaryGradients
+              .map((color, idx) => `$primary-${idx * 100} : ${color};`)
+              .join("\n")}\n\n/* secondary gradients */\n${gradients.secondaryGradients
+              .map((color, idx) => `$secondary-${idx * 100} : ${color};`)
+              .join("\n")}\n\n/* accent gradients */\n${gradients.accentGradients
+              .map((color, idx) => `$accent-${idx * 100} : ${color};`)
+              .join("\n")}`
+          : "");
     } else if (section == "TailWind") {
       const colors = {
         text: palette[0].color,
@@ -63,19 +111,44 @@ const Export = ({ onClose }) => {
         secondary: palette[3].color,
         accent: palette[4].color,
       };
-      code = `/* hex values */\ncolors: {
-\ttext: '${colors.text}',
-\tbackground: '${colors.background}',
-\tprimary: '${colors.primary}',
-\tsecondary: '${colors.secondary}',
-\taccent: '${colors.accent}',
-}\n\n/* rgb values */\ncolors: {
+      code = `colors: {
 \ttext: '${colors.text}',
 \tbackground: '${colors.background}',
 \tprimary: '${colors.primary}',
 \tsecondary: '${colors.secondary}',
 \taccent: '${colors.accent}',
 }`;
+
+      if (gradients) {
+        code += `\n\n/* primary gradients */\nprimary: {
+${gradients.primaryGradients
+  .map((color, idx) => `\t\t${idx * 100}: '${color}',`)
+  .join("\n")}
+\t},`;
+        code += `\n\n/* secondary gradients */\nsecondary: {
+${gradients.secondaryGradients
+  .map((color, idx) => `\t\t${idx * 100}: '${color}',`)
+  .join("\n")}
+\t},`;
+        code += `\n\n/* accent gradients */\naccent: {
+${gradients.accentGradients
+  .map((color, idx) => `\t\t${idx * 100}: '${color}',`)
+  .join("\n")}
+\t},`;
+      }
+    } else if (section == "Colors") {
+      code = "PRIMARY COLOR GRADIENTS (white → color → black):\n\n";
+      if (gradients) {
+        code += gradients.primaryGradients
+          .map((color, idx) => `${idx * 100}: ${color}`)
+          .join("\n") + "\n\nSECONDARY COLOR GRADIENTS:\n\n";
+        code += gradients.secondaryGradients
+          .map((color, idx) => `${idx * 100}: ${color}`)
+          .join("\n") + "\n\nACCENT COLOR GRADIENTS:\n\n";
+        code += gradients.accentGradients
+          .map((color, idx) => `${idx * 100}: ${color}`)
+          .join("\n");
+      }
     }
     setSyntax(code);
   }, [section, palette]);
@@ -91,16 +164,22 @@ const Export = ({ onClose }) => {
             CSS
           </li>
           <li
+            className={section == "SCSS" ? "active" : ""}
+            onClick={() => setSection("SCSS")}
+          >
+            SCSS
+          </li>
+          <li
             className={section == "TailWind" ? "active" : ""}
             onClick={() => setSection("TailWind")}
           >
             Tailwind CSS
           </li>
           <li
-            className={section == "SCSS" ? "active" : ""}
-            onClick={() => setSection("SCSS")}
+            className={section == "Colors" ? "active" : ""}
+            onClick={() => setSection("Colors")}
           >
-            SCSS
+            Colors
           </li>
         </ul>
         <div className="export--display">

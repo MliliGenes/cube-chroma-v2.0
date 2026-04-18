@@ -121,9 +121,9 @@ export function switchPalettetheme(theme, palette) {
 
   if (theme === "light") {
     // Light theme: dark text, light background
-    // Use primary hue but with low saturation and moderate-to-dark lightness for text
-    // Increased lightness from 0.15 to 0.28 for better appearance
-    text = chroma.hsl(primaryHue, Math.min(0.3, primarySat * 0.3), 0.28).hex();
+    // Use primary hue but with low saturation and darker lightness for text
+    // Reduced lightness to 0.22 for darker appearance
+    text = chroma.hsl(primaryHue, Math.min(0.3, primarySat * 0.3), 0.22).hex();
     
     // Background: very desaturated, very light version
     background = chroma.hsl(primaryHue, Math.max(0.05, primarySat * 0.15), 0.96).hex();
