@@ -121,9 +121,9 @@ export function switchPalettetheme(theme, palette) {
 
   if (theme === "light") {
     // Light theme: dark text, light background
-    // Use primary hue but with low saturation and very high lightness for text
-    // This ensures readability while maintaining color coherence
-    text = chroma.hsl(primaryHue, Math.min(0.3, primarySat * 0.3), 0.15).hex();
+    // Use primary hue but with low saturation and moderate-to-dark lightness for text
+    // Increased lightness from 0.15 to 0.28 for better appearance
+    text = chroma.hsl(primaryHue, Math.min(0.3, primarySat * 0.3), 0.28).hex();
     
     // Background: very desaturated, very light version
     background = chroma.hsl(primaryHue, Math.max(0.05, primarySat * 0.15), 0.96).hex();
@@ -141,7 +141,7 @@ export function switchPalettetheme(theme, palette) {
   const contrast = chroma.contrast(text, background);
   if (contrast < 4.5) {
     if (theme === "light") {
-      text = chroma.hsl(primaryHue, 0.2, 0.1).hex();
+      text = chroma.hsl(primaryHue, 0.2, 0.22).hex();
     } else {
       text = chroma.hsl(primaryHue, 0.15, 0.95).hex();
     }
