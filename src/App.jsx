@@ -10,11 +10,14 @@ import chroma from "chroma-js";
 import { generateColorPalette } from "./lib/slices/colorPaletteSlice";
 import { initCombo } from "./lib/utils";
 import Export from "./components/export/export";
+import KeyboardShortcuts from "./components/common/KeyboardShortcuts";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
   let dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   let [CSSVariables, setCSSVariables] = useState({});
+  const [showShortcuts, setShowShortcuts] = useState(false);
 
   let color = useSelector((state) => state.mainColor.color);
   let scheme = useSelector((state) => state.colorScheme);
@@ -114,8 +117,8 @@ function App() {
   }, [CSSVariables]);
 
   useEffect(() => {
-    initCombo(color, scheme, theme, JSON.stringify(palette));
-  }, [palette]);
+    initCombo(color, scheme, theme);
+  }, [color, scheme, theme]);
 
   useEffect(() => {
     dispatch(
@@ -123,8 +126,26 @@ function App() {
     );
   }, [color, scheme]);
 
+  // Handle keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "?" || event.key === "/") {
+        event.preventDefault();
+        setShowShortcuts((prev) => !prev);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <div className="app">
+      <KeyboardShortcuts
+        isOpen={showShortcuts}
+        onClose={() => setShowShortcuts(false)}
+      />
+      <ScrollToTop />
       {loading ? (
         <Loader />
       ) : (

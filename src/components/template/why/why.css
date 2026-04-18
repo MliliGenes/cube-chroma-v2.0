@@ -1,15 +1,16 @@
 .why--container {
   width: 100%;
   max-width: 1300px;
-  /* min-height: 100vh */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: 60px;
+  margin: 120px 0;
 }
 .why--container h1 {
   color: var(--text);
   font-family: var(--large);
+  font-weight: 300;
   font-size: clamp(1.8rem, 3vw, 4rem);
   padding: 0 20px;
 }
@@ -17,19 +18,20 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .why--container .card {
   flex: 1 0;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
-  gap: 20px;
+  padding: 40px 30px;
+  gap: 25px;
   color: var(--text);
   background-color: var(--background-transparent);
+  border: 1px solid var(--primary-transparent-2);
 }
 
 .why--container .card svg {
@@ -38,55 +40,29 @@
   margin-bottom: 20px;
 }
 .why--container .card h2 {
-  z-index: 0;
-  position: relative;
-
-  font-family: var(--medium);
+  font-size: 22px;
+  font-family: var(--large);
   font-weight: 400;
-  font-size: 40px;
-  margin-top: -10px;
+  margin: 0;
+  text-align: center;
 }
 
 .why--container .card.color1 h2::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  width: 85%;
-  height: 25px;
-  bottom: 20px;
-  left: -10px;
-
-  background-color: var(--secondary-transparent);
-  border-radius: 2px;
+  display: none;
 }
 .why--container .card.color2 h2::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  width: 60%;
-  height: 15px;
-  bottom: 5px;
-  left: 10px;
-  background-color: var(--secondary-transparent);
-  border-radius: 2px;
+  display: none;
 }
 .why--container .card h2::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  width: 80%;
-  height: 20px;
-  bottom: 5px;
-  left: 50px;
-  background-color: var(--secondary-transparent);
-  border-radius: 2px;
+  display: none;
 }
 
 .why--container .card p {
   font-family: var(--small);
-  font-size: 18px;
-  line-height: 2;
+  font-size: 14px;
+  line-height: 1.7;
   font-weight: 300;
+  text-align: center;
 }
 @media screen and (max-width: 1300px) {
   .cards {

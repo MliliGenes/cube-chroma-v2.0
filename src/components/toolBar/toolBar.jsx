@@ -248,7 +248,7 @@ export default function ToolBar() {
 
   return (
     <div className="toolBar--container">
-      {isActiveExport && <Export />}
+      {isActiveExport && <Export onClose={() => setIsActiveExport(false)} />}
       <div className="toolbar--wrapper">
         {isToolsActive && (
           <>

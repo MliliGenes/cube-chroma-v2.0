@@ -1,0 +1,167 @@
+.keyboard-shortcuts--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.keyboard-shortcuts--modal {
+  background: var(--background);
+  border: 1px solid var(--primary-transparent);
+  border-radius: 8px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.modal--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid var(--primary-transparent-2);
+}
+
+.modal--header h2 {
+  font-size: 18px;
+  font-family: var(--large);
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+}
+
+.close--button {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.close--button:hover {
+  color: var(--primary);
+}
+
+.modal--content {
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.shortcuts--group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.group--title {
+  font-size: 11px;
+  font-family: var(--small);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary);
+  margin: 0;
+  font-weight: 500;
+}
+
+.shortcuts--list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shortcut--item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background: var(--background-transparent);
+  border-radius: 6px;
+}
+
+.shortcut--key {
+  background: var(--primary);
+  color: var(--background);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  min-width: 90px;
+  text-align: center;
+}
+
+.shortcut--action {
+  font-size: 13px;
+  color: var(--text);
+  font-family: var(--small);
+  font-weight: 300;
+}
+
+.modal--footer {
+  padding: 15px 25px;
+  border-top: 1px solid var(--primary-transparent-2);
+  background: var(--background-transparent);
+}
+
+.modal--footer p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-light);
+  font-family: var(--small);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Scrollbar styling */
+.keyboard-shortcuts--modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.keyboard-shortcuts--modal::-webkit-scrollbar-track {
+  background: var(--background-transparent);
+}
+
+.keyboard-shortcuts--modal::-webkit-scrollbar-thumb {
+  background: var(--primary-transparent);
+  border-radius: 4px;
+}
+
+.keyboard-shortcuts--modal::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+@media (max-width: 600px) {
+  .keyboard-shortcuts--modal {
+    max-width: 90vw;
+  }
+
+  .modal--header,
+  .modal--content,
+  .modal--footer {
+    padding: 15px;
+  }
+
+  .shortcut--key {
+    min-width: 80px;
+    font-size: 11px;
+  }
+
+  .shortcut--action {
+    font-size: 13px;
+  }
+}

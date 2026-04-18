@@ -2,12 +2,20 @@
   height: 5px;
   width: 14px;
   background-color: var(--background);
+  transition: background-color 0.3s ease;
 }
 ::-webkit-scrollbar-thumb {
   background-color: var(--text);
   border-radius: 10px;
   border: 4px solid var(--background);
+  transition: background-color 0.3s ease;
 }
 ::selection {
   background-color: var(--background-transparent);
+}
+
+/* Smooth theme transition (kept minimal) */
+html,
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
 }

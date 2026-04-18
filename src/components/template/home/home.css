@@ -23,6 +23,8 @@
   font-size: clamp(2rem, 4.5vw, 4.5rem);
   color: var(--text);
   font-family: var(--large);
+  font-weight: 300;
+  line-height: 1.2;
   z-index: 0;
 }
 
@@ -35,14 +37,15 @@
   justify-content: center;
   align-items: center;
   border-radius: 6px;
-  font-family: var(--medium);
-  font-size: 20px;
+  font-family: var(--small);
+  font-size: 16px;
+  font-weight: 400;
   border: 0;
   color: var(--text-btn-primary);
   height: 50px;
   padding: 0 40px;
   background-color: var(--primary);
-  transition: 0.2s;
+  transition: 0.15s;
 }
 .left .btns .btn.special {
   border: 0;
@@ -99,6 +102,7 @@
   font-family: var(--small);
   font-size: 16px;
   line-height: 2.5;
+  font-weight: 300;
 }
 
 .left p.flex {
@@ -154,6 +158,8 @@
 .cls-3 {
   fill: var(--secondary);
 }
+
+/* Minimal, clean design - no fancy animations */
 
 @media screen and (max-width: 1300px) {
   .home--container {

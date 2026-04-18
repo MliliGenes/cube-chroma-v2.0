@@ -8,9 +8,9 @@
   width: 100%;
   display: flex;
   align-items: start;
-  gap: 40px;
+  gap: 60px;
   flex-direction: column;
-  padding: 50px 60px;
+  padding: 60px 60px;
 }
 .footer--wrapper > a {
   text-decoration: none;
@@ -26,7 +26,8 @@
 
 .footer--wrapper h1 {
   font-family: var(--large);
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 300;
 }
 .footer--buyMeCoffee-link {
   display: flex;
@@ -55,7 +56,8 @@
 .footer--links-conatiner div > h2 {
   font-family: var(--large);
   margin-bottom: 40px;
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 .footer--links-conatiner div ul {
@@ -66,7 +68,7 @@
 }
 .footer--links-conatiner div ul li a {
   color: var(--text);
-  font-size: 18px;
+  font-size: 14px;
   display: flex;
   gap: 10px;
   text-decoration: none;

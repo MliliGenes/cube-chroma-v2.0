@@ -15,12 +15,24 @@ import { useSelector } from "react-redux";
 import chroma from "chroma-js";
 import { copyUrlToClipBoard } from "../../lib/utils";
 
-const Export = () => {
+const Export = ({ onClose }) => {
   let [section, setSection] = useState("CSS");
 
   let [syntax, setSyntax] = useState("");
   let palette = useSelector((state) => state.colorPalette);
   let theme = useSelector((state) => state.theme);
+
+  // Handle Escape key to close export
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose && onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
 
   useEffect(() => {
     let code;

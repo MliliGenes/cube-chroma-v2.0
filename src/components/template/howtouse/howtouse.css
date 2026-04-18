@@ -1,0 +1,180 @@
+.howtouse--container {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin: 120px 0;
+}
+
+.howtouse--title {
+  font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+  font-family: var(--large);
+  font-weight: 300;
+  color: var(--text);
+  text-align: center;
+}
+
+.howtouse--wrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.steps--list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step--button {
+  background: var(--background-transparent);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--small);
+  color: var(--text);
+  text-align: left;
+  font-size: 13px;
+}
+
+.step--button.active {
+  background: var(--primary-transparent);
+  border-color: var(--primary);
+  color: var(--text);
+}
+
+.step--number {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-transparent);
+  border-radius: 50%;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.step--label {
+  flex: 1;
+  font-size: 14px;
+}
+
+.step--details {
+  background: var(--background-transparent);
+  border: 1px solid var(--primary-transparent-1);
+  border-radius: 8px;
+  padding: 45px;
+}
+
+.step--content h3 {
+  font-size: 20px;
+  font-family: var(--large);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 15px;
+}
+
+.step--content p {
+  font-size: 14px;
+  color: var(--text-light);
+  font-family: var(--small);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.shortcut--badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary-transparent);
+  color: var(--primary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: var(--small);
+  border: 1px solid var(--primary-transparent-1);
+}
+
+.tips--container {
+  background: var(--background-transparent);
+  border-left: 2px solid var(--accent);
+  border-radius: 6px;
+  padding: 35px;
+}
+
+.tips--container h3 {
+  font-size: 18px;
+  font-family: var(--large);
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.tips--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.tip {
+  background: var(--background);
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-light);
+  font-family: var(--small);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.tip strong {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .howtouse--wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .steps--list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+  }
+
+  .step--button {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .step--label {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .step--details {
+    padding: 20px;
+  }
+
+  .step--content h3 {
+    font-size: 18px;
+  }
+
+  .step--content p {
+    font-size: 14px;
+  }
+
+  .tips--grid {
+    grid-template-columns: 1fr;
+  }
+}

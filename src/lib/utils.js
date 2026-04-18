@@ -22,100 +22,137 @@ export const SCHEMES = [
 ];
 
 export function generateGoodLookingColor() {
-  const hue = Math.floor(Math.random() * 360);
-  const saturation = Math.floor(50 + Math.random() * 30) / 100;
-  const lightness = Math.floor(60 + Math.random() * 10) / 100;
-  return chroma.hsl(hue, saturation, lightness).hex();
+  // Generate colors that are naturally appealing
+  // Avoid extreme saturation (too pure) and extreme lightness (too bright/dark)
+  
+  const hue = Math.random() * 360;
+  
+  // Saturation: between 45-85% for vibrant but not oversaturated colors
+  const saturation = (45 + Math.random() * 40) / 100;
+  
+  // Lightness: between 45-65% for balanced colors (not too dark, not too light)
+  // This range ensures the color looks good as a primary color
+  const lightness = (45 + Math.random() * 20) / 100;
+  
+  // Use LCH color space for more perceptually uniform colors
+  // Then convert to hex for compatibility
+  const color = chroma.hsl(hue, saturation, lightness);
+  
+  // Ensure the color has reasonable contrast properties
+  // If it's too close to white or black, adjust it
+  const lum = color.get("hsl.l");
+  if (lum < 0.3 || lum > 0.8) {
+    return chroma.hsl(hue, saturation, 0.5).hex();
+  }
+  
+  return color.hex();
 }
 
 export default function generateRandomPalette(baseColor, algorithm, theme) {
   baseColor = chroma(baseColor);
-  let colorPalette = [];
+  const baseHue = baseColor.get("hsl.h");
+  const baseSat = baseColor.get("hsl.s");
+  const baseLum = baseColor.get("hsl.l");
 
+  let primaryColor, secondaryColor, accentColor;
+
+  // Generate harmony colors based on algorithm with saturation/lightness adjustments
   switch (algorithm) {
     case "complementary":
-      colorPalette = [
-        baseColor.hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 180) % 360).hex(),
-      ];
+      primaryColor = baseColor.hex();
+      // Complementary with reduced saturation for balance
+      secondaryColor = chroma.hsl((baseHue + 180) % 360, Math.max(0.3, baseSat * 0.8), baseLum).hex();
+      // Accent between primary and secondary
+      accentColor = chroma.hsl((baseHue + 90) % 360, baseSat * 0.9, baseLum).hex();
       break;
+
     case "analogous":
-      colorPalette = [
-        baseColor.hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 30) % 360).hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") - 30) % 360).hex(),
-      ];
+      primaryColor = baseColor.hex();
+      // Left analogous with saturation reduction
+      secondaryColor = chroma.hsl((baseHue + 30) % 360, baseSat * 0.7, baseLum).hex();
+      // Right analogous with slight lightness increase
+      accentColor = chroma.hsl((baseHue - 30 + 360) % 360, baseSat * 0.85, Math.min(1, baseLum * 1.05)).hex();
       break;
+
     case "triadic":
-      colorPalette = [
-        baseColor.hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 120) % 360).hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 240) % 360).hex(),
-      ];
+      primaryColor = baseColor.hex();
+      // Triadic colors with saturation adjustments for visual hierarchy
+      secondaryColor = chroma.hsl((baseHue + 120) % 360, baseSat * 0.8, baseLum).hex();
+      accentColor = chroma.hsl((baseHue + 240) % 360, baseSat * 0.75, baseLum).hex();
       break;
+
     case "split Complementary":
-      colorPalette = [
-        baseColor.hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 150) % 360).hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 210) % 360).hex(),
-      ];
+      primaryColor = baseColor.hex();
+      // Split complementary with saturation balance
+      secondaryColor = chroma.hsl((baseHue + 150) % 360, baseSat * 0.75, baseLum).hex();
+      accentColor = chroma.hsl((baseHue + 210) % 360, baseSat * 0.8, Math.max(0.2, baseLum * 0.95)).hex();
       break;
+
     case "monochromatic":
-      colorPalette = chroma
-        .scale([baseColor, baseColor.brighten(0.8), baseColor.darken(0.5)])
-        .mode("hsl")
-        .colors(3);
+      // Monochromatic uses same hue with different saturation and brightness
+      primaryColor = baseColor.hex();
+      // Lighter, less saturated version
+      secondaryColor = chroma.hsl(baseHue, Math.max(0.1, baseSat * 0.5), Math.min(1, baseLum * 1.2)).hex();
+      // Darker, more saturated accent
+      accentColor = chroma.hsl(baseHue, baseSat * 0.7, Math.max(0.2, baseLum * 0.8)).hex();
       break;
+
     case "square":
-      colorPalette = [
-        baseColor.hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 90) % 360).hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 270) % 360).hex(),
-        baseColor.set("hsl.h", (baseColor.get("hsl.h") + 180) % 360).hex(),
-      ];
+      primaryColor = baseColor.hex();
+      // Square tetrad with saturation adjustments
+      secondaryColor = chroma.hsl((baseHue + 90) % 360, baseSat * 0.8, baseLum).hex();
+      accentColor = chroma.hsl((baseHue + 270) % 360, baseSat * 0.85, baseLum).hex();
       break;
+
     default:
       throw new Error(`Unexpected algorithm: ${algorithm}`);
   }
 
-  let selected =
-    colorPalette.length >= 3
-      ? [
-          colorPalette[0],
-          colorPalette[0],
-          colorPalette[0],
-          colorPalette[1],
-          colorPalette[2],
-        ]
-      : [
-          colorPalette[0],
-          colorPalette[0],
-          colorPalette[0],
-          chroma(colorPalette[1]),
-          chroma(colorPalette[0])
-            .set("hsl.h", (chroma(colorPalette[1]).get("hsl.h") + 45) % 360)
-            .hex(),
-        ];
+  // Create the final palette with color roles
+  const selected = [primaryColor, primaryColor, primaryColor, secondaryColor, accentColor];
+
   return switchPalettetheme(theme, selected);
 }
 
 export function switchPalettetheme(theme, palette) {
+  const primaryHue = chroma(palette[2]).get("hsl.h");
+  const primarySat = chroma(palette[2]).get("hsl.s");
   let text, background;
 
   if (theme === "light") {
-    text = chroma.hsl(chroma(palette[0]).get("hsl.h"), 0.4, 0.05).hex();
-    background = chroma.hsl(chroma(palette[1]).get("hsl.h"), 0.25, 0.95).hex();
+    // Light theme: dark text, light background
+    // Use primary hue but with low saturation and very high lightness for text
+    // This ensures readability while maintaining color coherence
+    text = chroma.hsl(primaryHue, Math.min(0.3, primarySat * 0.3), 0.15).hex();
+    
+    // Background: very desaturated, very light version
+    background = chroma.hsl(primaryHue, Math.max(0.05, primarySat * 0.15), 0.96).hex();
   } else {
-    text = chroma.hsl(chroma(palette[0]).get("hsl.h"), 0.6, 0.95).hex();
-    background = chroma.hsl(chroma(palette[1]).get("hsl.h"), 0.1, 0.06).hex();
+    // Dark theme: light text, dark background
+    // Text: highly desaturated, very light
+    text = chroma.hsl(primaryHue, Math.max(0.05, primarySat * 0.2), 0.93).hex();
+    
+    // Background: desaturated, very dark
+    background = chroma.hsl(primaryHue, Math.max(0.05, primarySat * 0.15), 0.08).hex();
+  }
+
+  // Ensure minimum contrast between text and background
+  // WCAG AA standard requires 4.5:1 for normal text
+  const contrast = chroma.contrast(text, background);
+  if (contrast < 4.5) {
+    if (theme === "light") {
+      text = chroma.hsl(primaryHue, 0.2, 0.1).hex();
+    } else {
+      text = chroma.hsl(primaryHue, 0.15, 0.95).hex();
+    }
   }
 
   let themeColors = [
     text,
     background,
     palette[2],
-    chroma(palette[3]).hex(),
-    chroma(palette[4]).hex(),
+    palette[3],
+    palette[4],
   ];
 
   return themeColors;
@@ -139,8 +176,13 @@ export function saveTolocalStorage(color, scheme, theme, palette) {
     lastItem.palette === palette;
 
   if (!combinationExists) {
-    localdb.push(cubeCombo);
-    localStorage.setItem("cubeCombo", JSON.stringify(localdb));
+    try {
+      localdb.push(cubeCombo);
+      localStorage.setItem("cubeCombo", JSON.stringify(localdb));
+    } catch (e) {
+      // Handle localStorage quota exceeded
+      console.warn("localStorage quota exceeded", e);
+    }
   }
 }
 export function getLastCombo() {
@@ -159,9 +201,9 @@ export function getLastCombo() {
   };
 }
 
-export function initCombo(color, scheme, theme, palette) {
+export function initCombo(color, scheme, theme) {
   let url = new URL(window.location.href);
-  url.searchParams.set("q", [color, scheme, theme, palette].join("-"));
+  url.searchParams.set("q", [color, scheme, theme].join("-"));
   window.history.replaceState({}, "", url);
 }
 
@@ -170,18 +212,40 @@ export function getInitCombo() {
   let q = url.searchParams.get("q");
   let param = q ? q.split("-") : null;
 
-  if (param && param.length === 4) {
-    var color = param[0];
-    var scheme = param[1];
-    var theme = param[2];
-    var palette = JSON.parse(param[3]);
+  let color, scheme, theme, palette;
+
+  // Support both new minimal format (3 params) and legacy format (4 params with JSON palette)
+  if (param) {
+    if (param.length === 3) {
+      // New minimal format: color-scheme-theme
+      color = param[0];
+      scheme = param[1];
+      theme = param[2];
+      // Palette will be regenerated from color, scheme, theme
+      palette = undefined;
+    } else if (param.length === 4 && param[3].startsWith("[")) {
+      // Legacy format: color-scheme-theme-paletteJSON
+      // This is kept for backward compatibility
+      try {
+        color = param[0];
+        scheme = param[1];
+        theme = param[2];
+        palette = JSON.parse(param[3]);
+      } catch (e) {
+        // If parsing fails, fall back to defaults
+        color = undefined;
+        scheme = undefined;
+        theme = undefined;
+        palette = undefined;
+      }
+    }
   }
 
   let initcolor = color || getLastCombo().color || defaultcolor;
   let initscheme = scheme || getLastCombo().scheme || defaultscheme;
   let inittheme = theme || getLastCombo().theme || defaulttheme;
   let initpalette =
-    palette || JSON.parse(getLastCombo().palette) || defaultpalette;
+    palette || JSON.parse(getLastCombo().palette) || JSON.parse(defaultpalette);
 
   return {
     color: initcolor,
